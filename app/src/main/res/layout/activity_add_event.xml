@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@color/colorWhite"
+        android:focusableInTouchMode="true"
+        tools:context=".activities.AddEventActivity">
+
+    <android.support.design.widget.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="?android:attr/actionBarSize"
+            app:elevation="0dp">
+
+        <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar_add_event"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/colorWhite">
+
+            <ImageView
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:src="@drawable/ic_sport"
+                    android:contentDescription="@string/sport"
+                    android:tint="@color/colorBlack"/>
+
+            <Spinner
+                    android:id="@+id/spn_sport_add"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:entries="@array/sport_array"/>
+
+        </android.support.v7.widget.Toolbar>
+
+    </android.support.design.widget.AppBarLayout>
+
+    <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="?attr/actionBarSize">
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                <EditText
+                        android:id="@+id/et_place"
+                        android:layout_width="0dip"
+                        android:layout_weight="0.84"
+                        android:layout_height="wrap_content"
+                        android:padding="18dp"
+                        android:textSize="14sp"
+                        android:drawableStart="@drawable/ic_place"
+                        android:drawablePadding="10dp"
+                        android:background="@color/colorWhite"
+                        android:hint="@string/venue"/>
+
+                <Button
+                        android:id="@+id/btnPlaceSearch"
+                        android:layout_width="0dip"
+                        android:layout_weight="0.16"
+                        android:layout_height="wrap_content"
+                        android:textAllCaps="false"
+                        android:layout_gravity="center_vertical"
+                        android:textColor="@color/colorPrimary"
+                        style="@style/Base.Widget.AppCompat.Button.Borderless"
+                        android:text="@string/find"/>
+
+            </LinearLayout>
+
+            <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.3dp"
+                    android:background="@color/colorMuted"/>
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                <EditText
+                        android:id="@+id/et_date"
+                        android:layout_width="0dip"
+                        android:layout_weight="0.84"
+                        android:layout_height="wrap_content"
+                        android:padding="18dp"
+                        android:textSize="14sp"
+                        android:drawableStart="@drawable/ic_date"
+                        android:drawablePadding="10dp"
+                        android:editable="false"
+                        android:background="@color/colorWhite"
+                        android:hint="@string/date"/>
+
+                <Button
+                        android:id="@+id/btnDatePicker"
+                        android:layout_width="0dip"
+                        android:layout_weight="0.16"
+                        android:layout_height="wrap_content"
+                        android:textAllCaps="false"
+                        android:textColor="@color/colorPrimary"
+                        style="@style/Base.Widget.AppCompat.Button.Borderless"
+                        android:text="@string/set"/>
+
+            </LinearLayout>
+
+            <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.3dp"
+                    android:background="@color/colorMuted"/>
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                <EditText
+                        android:id="@+id/et_time"
+                        android:layout_width="0dip"
+                        android:layout_weight="0.84"
+                        android:layout_height="wrap_content"
+                        android:padding="18dp"
+                        android:textSize="14sp"
+                        android:drawableStart="@drawable/ic_time"
+                        android:drawablePadding="10dp"
+                        android:editable="false"
+                        android:background="@color/colorWhite"
+                        android:hint="@string/time"/>
+
+                <Button
+                        android:id="@+id/btnTimePicker"
+                        android:layout_width="0dip"
+                        android:layout_weight="0.16"
+                        android:layout_height="wrap_content"
+                        android:textAllCaps="false"
+                        android:textColor="@color/colorPrimary"
+                        style="@style/Base.Widget.AppCompat.Button.Borderless"
+                        android:text="@string/set"/>
+
+            </LinearLayout>
+
+            <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.3dp"
+                    android:background="@color/colorMuted"/>
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                <EditText
+                        android:id="@+id/et_slot"
+                        android:layout_width="0dip"
+                        android:layout_weight="0.6"
+                        android:layout_height="wrap_content"
+                        android:padding="18dp"
+                        android:textSize="14sp"
+                        android:inputType="number"
+                        android:drawableStart="@drawable/ic_people"
+                        android:drawablePadding="10dp"
+                        android:background="@color/colorWhite"
+                        android:hint="@string/slot"/>
+
+                <Spinner
+                        android:id="@+id/spn_slot_type"
+                        android:layout_width="0dip"
+                        android:layout_weight="0.4"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="1dp"
+                        android:entries="@array/slot_type_array"/>
+
+            </LinearLayout>
+
+            <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.3dp"
+                    android:background="@color/colorMuted"/>
+
+            <EditText
+                    android:id="@+id/et_desc"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="18dp"
+                    android:textSize="14sp"
+                    android:inputType="textMultiLine"
+                    android:drawableStart="@drawable/ic_event_note"
+                    android:drawablePadding="10dp"
+                    android:ems="10"
+                    android:background="@color/colorWhite"
+                    android:hint="@string/add_desc"/>
+
+            <TextView
+                    android:id="@+id/tvDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:text="@string/date"/>
+        </LinearLayout>
+    </ScrollView>
+
+</android.support.design.widget.CoordinatorLayout>

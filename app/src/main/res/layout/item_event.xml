@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:id="@+id/cvEvent"
+        android:background="@color/colorWhite"
+        android:layout_height="wrap_content">
+
+    <RelativeLayout
+            android:id="@+id/event_layout"
+            android:layout_width="match_parent"
+            android:padding="10dp"
+            android:layout_height="wrap_content">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/imgUserMini"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginEnd="8dp"
+                android:contentDescription="@string/full_name"
+                app:civ_border_width="1dp"
+                app:civ_border_color="@color/colorMuted"
+                app:civ_fill_color="@color/colorPrimary"
+                tools:src="@drawable/ic_logo_login"/>
+
+        <TextView
+                android:id="@+id/tvUser"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/imgUserMini"
+                android:textColor="@color/colorPrimary"
+                android:textStyle="bold"
+                android:layout_marginTop="1dp"
+                tools:text="USERNAME"/>
+
+        <TextView
+                android:id="@+id/tvUserCity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/imgUserMini"
+                android:layout_below="@id/card"
+                android:textSize="12sp"
+                android:layout_margin="3dp"
+                tools:text="City"/>
+
+        <TextView
+                android:id="@+id/tvTimePost"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/tvUser"
+                android:textSize="12sp"
+                android:layout_marginTop="2dp"
+                android:layout_alignParentEnd="true"
+                android:textAlignment="textEnd"
+                tools:text="8m"/>
+
+        <TextView
+                android:id="@+id/tvDesc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorBlack"
+                android:maxLines="4"
+                android:ellipsize="end"
+                android:layout_toEndOf="@id/imgUserMini"
+                android:layout_below="@id/tvUser"
+                tools:text="Deskripsi"/>
+
+
+        <android.support.v7.widget.CardView
+                android:id="@+id/card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvDesc"
+                android:layout_toEndOf="@id/imgUserMini"
+                app:cardElevation="0dp"
+                android:layout_marginTop="5dp"
+                app:cardCornerRadius="4dp"
+                android:layout_marginEnd="2dp">
+
+            <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="1dp"
+                    android:background="@drawable/card_shape"
+                    android:paddingBottom="10dp">
+
+                <TextView
+                        android:id="@+id/tvDay"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginEnd="18dp"
+                        android:textSize="44sp"
+                        android:textColor="@color/colorBlack"
+                        tools:text="10"/>
+
+                <TextView
+                        android:id="@+id/tvMonth"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="12sp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="-8dp"
+                        android:layout_below="@id/tvDay"
+                        android:textColor="@color/colorBlack"
+                        tools:text="Jan 2018"/>
+
+                <ImageView
+                        android:id="@+id/imgSport"
+                        android:layout_width="14dp"
+                        android:layout_height="14dp"
+                        android:layout_marginTop="12dp"
+                        android:contentDescription="@string/sport"
+                        android:layout_marginEnd="4dp"
+                        android:layout_toEndOf="@id/tvDay"
+                        android:tint="@color/colorBlack"
+                        android:src="@drawable/ic_sport"/>
+
+                <TextView
+                        android:id="@+id/tvSport"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_toEndOf="@id/imgSport"
+                        tools:text="Nama Olahraga"/>
+
+                <ImageView
+                        android:id="@+id/imgPlace"
+                        android:layout_width="14dp"
+                        android:layout_height="14dp"
+                        android:contentDescription="@string/venue"
+                        android:layout_marginTop="6dp"
+                        android:layout_marginEnd="4dp"
+                        android:layout_toEndOf="@id/tvDay"
+                        android:layout_below="@id/imgSport"
+                        android:tint="@color/colorBlack"
+                        android:src="@drawable/ic_place"/>
+
+                <TextView
+                        android:id="@+id/tvPlace"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toEndOf="@id/imgPlace"
+                        android:layout_below="@id/tvSport"
+                        android:maxLines="1"
+                        android:ellipsize="end"
+                        tools:text="Tempat"/>
+
+                <ImageView
+                        android:id="@+id/imgDesc"
+                        android:layout_width="14dp"
+                        android:layout_height="14dp"
+                        android:contentDescription="@string/add_desc"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="4dp"
+                        android:layout_toEndOf="@id/tvDay"
+                        android:layout_below="@id/imgPlace"
+                        android:tint="@color/colorBlack"
+                        android:src="@drawable/ic_people"/>
+
+                <TextView
+                        android:id="@+id/tvSlotJoin"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toEndOf="@id/imgDesc"
+                        android:layout_below="@id/tvPlace"
+                        tools:text="0/1 Team Joined"/>
+
+            </RelativeLayout>
+
+        </android.support.v7.widget.CardView>
+
+        <RelativeLayout
+                android:id="@+id/button"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_below="@id/tvUserCity"
+                android:layout_toEndOf="@id/imgUserMini">
+
+            <ImageButton
+                    android:id="@+id/btnEdit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/Base.Widget.AppCompat.Button.Borderless"
+                    android:visibility="gone"
+                    android:contentDescription="@string/edit"
+                    android:src="@drawable/ic_edit_small"/>
+
+            <ImageButton
+                    android:id="@+id/btnDelete"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:visibility="gone"
+                    android:contentDescription="@string/delete"
+                    style="@style/Base.Widget.AppCompat.Button.Borderless"
+                    android:src="@drawable/ic_delete_x"/>
+
+            <ImageButton
+                    android:id="@+id/btnJoinReq"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/Base.Widget.AppCompat.Button.Borderless"
+                    android:visibility="gone"
+                    android:contentDescription="@string/join"
+                    android:src="@drawable/ic_join_request_small"/>
+
+            <ImageButton
+                    android:id="@+id/btnJoinAcc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/Base.Widget.AppCompat.Button.Borderless"
+                    android:visibility="gone"
+                    android:contentDescription="@string/join"
+                    android:src="@drawable/ic_join_accept_small"/>
+
+            <ImageButton
+                    android:id="@+id/btnJoin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/join"
+                    style="@style/Base.Widget.AppCompat.Button.Borderless"
+                    android:src="@drawable/ic_join_small"/>
+
+            <ImageButton
+                    android:id="@+id/btnChat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:contentDescription="@string/chat"
+                    style="@style/Base.Widget.AppCompat.Button.Borderless"
+                    android:src="@drawable/ic_chat_small"/>
+
+            <ImageButton
+                    android:id="@+id/btnShare"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:contentDescription="@string/share"
+                    style="@style/Base.Widget.AppCompat.Button.Borderless"
+                    android:src="@drawable/ic_share_small"/>
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <View
+            android:layout_width="match_parent"
+            android:layout_height="0.3dp"
+            android:background="@color/colorMuted"
+            app:layout_constraintBottom_toBottomOf="@id/event_layout"/>
+
+</android.support.constraint.ConstraintLayout>

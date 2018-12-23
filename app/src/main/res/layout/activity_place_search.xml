@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+              android:orientation="vertical"
+             tools:context=".fragments.ExploreFragment">
+
+    <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar_place_search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorWhite">
+
+        <TextView
+                android:id="@+id/tvPlaceSearch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:maxLines="1"
+                android:ellipsize="end"
+                tools:text="Place"/>
+
+    </android.support.v7.widget.Toolbar>
+    <WebView
+            android:id="@+id/placeSearch"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+</LinearLayout>

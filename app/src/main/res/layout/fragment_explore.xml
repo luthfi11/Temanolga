@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".fragments.ExploreFragment">
+
+    <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="20dp">
+
+            <TextView
+                    android:id="@+id/tvSugPeople"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="16sp"
+                    android:text="@string/suggested_user"/>
+
+            <ImageButton
+                    android:id="@+id/btnSearchPeople"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:contentDescription="@string/suggested_user"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/ic_search"/>
+
+            <LinearLayout
+                    android:id="@+id/lyt_people"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_below="@id/tvSugPeople">
+
+                <ProgressBar
+                        android:id="@+id/progressExplore"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="10dp"
+                        android:visibility="gone"/>
+
+                <android.support.v7.widget.RecyclerView
+                        android:id="@+id/rv_people"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="10dp"
+                        android:clipToPadding="false"
+                        app:layoutManager="android.support.v7.widget.GridLayoutManager"
+                        app:spanCount="3"
+                        tools:listitem="@layout/item_people"/>
+
+            </LinearLayout>
+
+            <TextView
+                    android:id="@+id/tvSportVenue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorBlack"
+                    android:layout_below="@id/lyt_people"
+                    android:textSize="16sp"
+                    android:layout_marginTop="14dp"
+                    android:layout_marginBottom="6dp"
+                    android:text="@string/sport_venue"/>
+
+            <Button
+                    android:id="@+id/btnRunningTrack"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tvSportVenue"
+                    style="@style/Base.Widget.AppCompat.Button.Borderless"
+                    android:drawableEnd="@drawable/ic_arrow_forward"
+                    android:textAllCaps="false"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:text="@string/running_track"/>
+
+            <Button
+                    android:id="@+id/btnFutsalField"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/btnRunningTrack"
+                    style="@style/Base.Widget.AppCompat.Button.Borderless"
+                    android:drawableEnd="@drawable/ic_arrow_forward"
+                    android:textAllCaps="false"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:text="@string/futsal_field"/>
+
+            <Button
+                    android:id="@+id/btnFootballField"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/btnFutsalField"
+                    style="@style/Base.Widget.AppCompat.Button.Borderless"
+                    android:drawableEnd="@drawable/ic_arrow_forward"
+                    android:textAllCaps="false"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:text="@string/football_field"/>
+
+        </RelativeLayout>
+
+    </ScrollView>
+</android.support.constraint.ConstraintLayout>

@@ -1,0 +1,109 @@
+<resources>
+    <string name="app_name">Temanolga</string>
+    <string name="title_home">Home</string>
+    <string name="title_explore">Explore</string>
+    <string name="title_message">Message</string>
+    <string name="title_profile">Profile</string>
+    <string name="title_notification">Notification</string>
+    <string name="signin">Sign In</string>
+    <string name="signup">Sign Up</string>
+    <string name="full_name">Full Name</string>
+    <string name="prompt_email">E-Mail</string>
+    <string name="prompt_password">Password</string>
+    <string name="account_type">Account Type</string>
+    <string name="sport_preferred">Sport Preferred</string>
+    <string name="sport">Sport</string>
+    <string name="running">Running</string>
+    <string name="futsal">Futsal</string>
+    <string name="football">Football</string>
+    <string name="person">Person</string>
+    <string name="team">Team</string>
+    <string name="city">City</string>
+    <string name="signup_msg">Don\'t have an account ?</string>
+    <string name="signin_msg">Already have an account ?</string>
+    <string name="empty_password">Please fill your password</string>
+    <string name="email_invalid">Email is invalid</string>
+    <string name="fullname_invalid">Please fill your name</string>
+    <string name="city_invalid">Please fill your city</string>
+    <string name="password_length">Password min 8 character</string>
+    <string name="login_fail">Username and Password is wrong</string>
+    <string name="done">Done</string>
+    <string name="join">Join</string>
+    <string name="chat">Chat</string>
+    <string name="finish">Finish</string>
+    <string name="venue">Venue (Required)</string>
+    <string name="slot">Slot</string>
+    <string name="add_desc">Add description here ...</string>
+    <string name="date">Date (Required)</string>
+    <string name="time">Time (Required)</string>
+    <string name="set">Set</string>
+    <string name="find">Find</string>
+    <string name="search">Search</string>
+    <string name="search_place">Search Place</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="logout">Logout</string>
+    <string name="place_invalid">Please fill the venue data</string>
+    <string name="date_invalid">Please fill the date</string>
+    <string name="time_invalid">Please fill the time</string>
+    <string name="message_text">Text Message</string>
+    <string name="event_detail">Event Detail</string>
+    <string name="refresh">Refresh</string>
+    <string name="send">Send</string>
+    <string name="edit">Edit</string>
+    <string name="delete">Delete</string>
+    <string name="share">Share</string>
+    <string name="joined">Joined</string>
+    <string name="requested">Requested</string>
+    <string name="request_notif">%1$s want to join your %2$s invitation</string>
+    <string name="confirm_notif">%1$s has %2$s your join request</string>
+    <string name="accept">Accept</string>
+    <string name="ignore">Ignore</string>
+    <string name="accepted">Accepted</string>
+    <string name="ignored">Ignored</string>
+    <string name="confirmation">Confirmation</string>
+    <string name="request">Request</string>
+    <string name="filter">Filter</string>
+    <string name="suggested_user">Discover User</string>
+    <string name="sport_venue">Sport Venue</string>
+    <string name="running_track">Running Track</string>
+    <string name="futsal_field">Futsal Field</string>
+    <string name="football_field">Football Field</string>
+    <string name="change_photo">Change Photo</string>
+
+    <string name="event_invitation">%s Invitation</string>
+    <string name="joined_event_limited">%1$d/%2$d %3$s Joined</string>
+    <string name="slot_type_limited">%d %s Quota</string>
+    <string name="joined_event">%d %s Joined</string>
+    <string name="slot_type">Free %s Join</string>
+
+    <string name="acc_personal">Interested in %s</string>
+    <string name="acc_team">%s Team</string>
+
+    <string name="enable_location">Enable Location</string>
+    <string name="please_enable">Please enable your device location</string>
+    <string name="to_access_venue">to access nearby sport venue</string>
+
+    <string name="showing_filter">Showing %1$s invitation in %2$s</string>
+    <string name="showing_filter_no_city">Showing %1$s invitation</string>
+
+    <string name="access_token">
+        pk.eyJ1IjoibHV0aGZpMTEiLCJhIjoiY2psdWVvM3J3MGszaTN3cXA1ODRqcGQ1cSJ9.Kg15RUMGU58Zigp5yJvq3g
+    </string>
+
+    <array name="account_type">
+        <item>Personal</item>
+        <item>Team</item>
+    </array>
+
+    <array name="sport_array">
+        <item>Running</item>
+        <item>Futsal</item>
+        <item>Football</item>
+    </array>
+
+    <array name="slot_type_array">
+        <item>Person</item>
+        <item>Team</item>
+    </array>
+
+</resources>

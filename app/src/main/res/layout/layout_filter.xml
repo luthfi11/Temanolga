@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" xmlns:tools="http://schemas.android.com/tools"
+        android:focusableInTouchMode="true">
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="10dp">
+
+        <View
+                android:layout_width="match_parent"
+                android:layout_height="0.3dp"
+                android:background="@color/colorMuted"/>
+
+        <Spinner
+                android:id="@+id/spnSportFilter"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
+                android:entries="@array/sport_array"/>
+
+        <View
+                android:layout_width="match_parent"
+                android:layout_height="0.3dp"
+                android:background="@color/colorMuted"/>
+
+        <AutoCompleteTextView
+                android:id="@+id/etCityFilter"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
+                tools:text="@string/city"
+                android:background="@android:color/transparent"
+                style="@style/Widget.AppCompat.DropDownItem.Spinner"
+                android:hint="@string/city"/>
+
+        <View
+                android:layout_width="match_parent"
+                android:layout_height="0.3dp"
+                android:background="@color/colorMuted"/>
+
+        <Button
+                android:id="@+id/btnFilterDone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                style="@style/Base.Widget.AppCompat.Button.Borderless"
+                android:text="@string/done"
+                android:textColor="@color/colorPrimary"/>
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>

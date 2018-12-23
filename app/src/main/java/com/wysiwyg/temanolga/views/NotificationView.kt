@@ -1,0 +1,7 @@
+package com.wysiwyg.temanolga.views
+
+interface NotificationView {
+    fun showLoading()
+    fun hideLoading()
+    fun showNotification()
+}

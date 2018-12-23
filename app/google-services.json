@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "1053137858931",
+    "firebase_url": "https://temanolahraga-uno.firebaseio.com",
+    "project_id": "temanolahraga-uno",
+    "storage_bucket": "temanolahraga-uno.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1053137858931:android:5860076fc26060c3",
+        "android_client_info": {
+          "package_name": "com.wysiwyg.temanolga"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1053137858931-cms9d2lksovc57s2jk2fja28v6734ra9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.wysiwyg.temanolga",
+            "certificate_hash": "d875ca79f2b50d65b386e4be28f59a1cedc653ec"
+          }
+        },
+        {
+          "client_id": "1053137858931-nrlc6rtcq67t5d8baaubd3h512dlk4b4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB2ZPkQ16W5R5U5JkwgStpJpIz6KTuXETY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1053137858931-nrlc6rtcq67t5d8baaubd3h512dlk4b4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
