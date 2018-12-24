@@ -20,10 +20,9 @@ import com.wysiwyg.temanolga.R
 import kotlinx.android.synthetic.main.activity_sport_venue.*
 import android.content.Intent
 import android.provider.Settings
-import org.jetbrains.anko.indeterminateProgressDialog
+import android.view.KeyEvent
 
 class SportVenueActivity : AppCompatActivity() {
-
     private lateinit var locationManager: LocationManager
     private lateinit var venue: String
     private lateinit var title: String
@@ -65,11 +64,11 @@ class SportVenueActivity : AppCompatActivity() {
                 ), 1
             )
         } else {
+            initMap(venue)
             val location: Location? = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER)
             if (location != null) {
                 longitude = location.longitude
                 latitude = location.latitude
-                initMap(venue)
             } else {
                 locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 0F, locationListener)
             }
@@ -102,7 +101,6 @@ class SportVenueActivity : AppCompatActivity() {
     }
 
     private fun initMap(venue: String) {
-        mapsWeb.visibility = View.GONE
         mapsWeb.webViewClient = MyBrowser()
         mapsWeb.settings.javaScriptEnabled = true
         mapsWeb.settings.setGeolocationEnabled(true)
@@ -115,17 +113,20 @@ class SportVenueActivity : AppCompatActivity() {
             view.loadUrl(url)
             return true
         }
-
-        override fun onPageFinished(view: WebView?, url: String?) {
-            super.onPageFinished(view, url)
-            mapsWeb.visibility = View.VISIBLE
-        }
     }
 
     inner class GeoWebClient : WebChromeClient() {
         override fun onGeolocationPermissionsShowPrompt(origin: String?, callback: GeolocationPermissions.Callback?) {
             callback?.invoke(origin, true, false)
         }
+    }
+
+    override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
+        if ((keyCode == KeyEvent.KEYCODE_BACK) && (mapsWeb.canGoBack()) && (mapsWeb.url.contains("place"))) {
+            mapsWeb.goBack()
+            return true
+        }
+        return super.onKeyDown(keyCode, event)
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {

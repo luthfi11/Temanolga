@@ -1,4 +1,5 @@
 package com.wysiwyg.temanolga.adapters
+
 import android.content.Intent
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -47,10 +48,10 @@ class EventAdapter(private val events: MutableList<Event>) :
         fun bindItem(event: Event) {
 
             val time: Long = event.postTime!!.toLong()
-            val ago = DateUtils.getRelativeTimeSpanString(time, System.currentTimeMillis(), DateUtils.MINUTE_IN_MILLIS)
+            val ago = DateUtils.getRelativeTimeSpanString(time, System.currentTimeMillis(), DateUtils.SECOND_IN_MILLIS)
 
             var place = event.place
-            if(place!!.contains(",")) {
+            if (place!!.contains(",")) {
                 val shortPlace = event.place?.split(",")
                 place = shortPlace!![0]
             }
@@ -71,14 +72,18 @@ class EventAdapter(private val events: MutableList<Event>) :
             }
 
             if (event.slot == null) {
-                itemView.tvSlotJoin.text = String.format(itemView.context.getString(R.string.joined_event),
-                    event.slotFill, slotType(itemView.context, event.slotType))
+                itemView.tvSlotJoin.text = String.format(
+                    itemView.context.getString(R.string.joined_event),
+                    event.slotFill, slotType(itemView.context, event.slotType)
+                )
             } else {
-                itemView.tvSlotJoin.text = String.format(itemView.context.getString(R.string.joined_event_limited),
-                    event.slotFill, event.slot, slotType(itemView.context, event.slotType))
+                itemView.tvSlotJoin.text = String.format(
+                    itemView.context.getString(R.string.joined_event_limited),
+                    event.slotFill, event.slot, slotType(itemView.context, event.slotType)
+                )
             }
 
-            if(event.postSender != FirebaseApi.currentUser()) {
+            if (event.postSender != FirebaseApi.currentUser()) {
                 itemView.imgUserMini.setOnClickListener {
                     itemView.context.startActivity<UserDetailActivity>("userId" to event.postSender)
                 }
@@ -124,7 +129,7 @@ class EventAdapter(private val events: MutableList<Event>) :
                 itemView.context.startActivity(Intent.createChooser(intent, "Share Invitation"))
             }
 
-            if (event.postSender == FirebaseApi.currentUser()){
+            if (event.postSender == FirebaseApi.currentUser()) {
                 itemView.btnJoin.visibility = View.GONE
                 itemView.btnChat.visibility = View.GONE
                 itemView.btnEdit.visibility = View.VISIBLE
@@ -139,29 +144,30 @@ class EventAdapter(private val events: MutableList<Event>) :
             checkJoin(event.eventId)
         }
 
-        private fun checkJoin (eventId: String?) {
+        private fun checkJoin(eventId: String?) {
             database.child("join")
                 .child(eventId!!)
                 .orderByChild("userReqId")
-                .equalTo(FirebaseApi.currentUser()).addValueEventListener(object : ValueEventListener{
+                .equalTo(FirebaseApi.currentUser()).addValueEventListener(object : ValueEventListener {
                     override fun onCancelled(p0: DatabaseError) {
 
                     }
 
                     override fun onDataChange(p0: DataSnapshot) {
-                        if(p0.exists()) {
+                        if (p0.exists()) {
                             val join: MutableList<Join> = mutableListOf()
                             p0.children.mapNotNullTo(join) {
                                 val data = it.getValue(Join::class.java)
                                 when (data?.status) {
                                     "1" -> {
-                                        itemView.btnJoin.visibility = View.GONE
-                                        itemView.btnJoinAcc.visibility = View.VISIBLE
+                                        joined()
+                                        itemView.btnJoinAcc.showCancel(eventId, data.joinId!!)
                                     }
                                     "2" -> {
-                                        itemView.btnJoin.visibility = View.GONE
-                                        itemView.btnJoinReq.visibility = View.VISIBLE
+                                        requested()
+                                        itemView.btnJoinReq.cancel(eventId, data.joinId!!)
                                     }
+                                    else -> default()
                                 }
                                 data
                             }
@@ -170,7 +176,45 @@ class EventAdapter(private val events: MutableList<Event>) :
                 })
         }
 
-        private fun dateTimeFormat(date: String?, pattern: String) :  String {
+
+        private fun joined() {
+            itemView.btnJoin.visibility = View.GONE
+            itemView.btnJoinReq.visibility = View.GONE
+            itemView.btnJoinAcc.visibility = View.VISIBLE
+        }
+
+        private fun requested() {
+            itemView.btnJoin.visibility = View.GONE
+            itemView.btnJoinAcc.visibility = View.GONE
+            itemView.btnJoinReq.visibility = View.VISIBLE
+        }
+
+        private fun default() {
+            itemView.btnJoin.visibility = View.VISIBLE
+            itemView.btnJoinAcc.visibility = View.GONE
+            itemView.btnJoinReq.visibility = View.GONE
+        }
+
+        private fun View.showCancel(eventId: String, joinId: String) {
+            setOnClickListener {
+                itemView.context.alert("Cancel joined this invitation ?") {
+                    yesButton {
+                        FirebaseApi.cancelJoin(eventId, joinId)
+                        default()
+                    }
+                    noButton { it.dismiss() }
+                }.show()
+            }
+        }
+
+        private fun View.cancel(eventId: String, joinId: String) {
+            setOnClickListener {
+                FirebaseApi.cancelJoin(eventId, joinId)
+                default()
+            }
+        }
+
+        private fun dateTimeFormat(date: String?, pattern: String): String {
             val format = SimpleDateFormat("dd/MM/yyy", Locale.getDefault())
             val sdf = SimpleDateFormat(pattern, Locale.getDefault())
 

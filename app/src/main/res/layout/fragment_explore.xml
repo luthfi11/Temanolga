@@ -71,41 +71,67 @@
                     android:layout_marginBottom="6dp"
                     android:text="@string/sport_venue"/>
 
-            <Button
-                    android:id="@+id/btnRunningTrack"
+            <android.support.v7.widget.CardView
+                    android:id="@+id/cardRunning"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/tvSportVenue"
-                    style="@style/Base.Widget.AppCompat.Button.Borderless"
-                    android:drawableEnd="@drawable/ic_arrow_forward"
-                    android:textAllCaps="false"
-                    android:textAlignment="textStart"
-                    android:textColor="@color/colorPrimaryDark"
-                    android:text="@string/running_track"/>
+                    android:layout_height="100dp"
+                    app:cardCornerRadius="6dp"
+                    android:layout_below="@id/tvSportVenue">
 
-            <Button
-                    android:id="@+id/btnFutsalField"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/btnRunningTrack"
-                    style="@style/Base.Widget.AppCompat.Button.Borderless"
-                    android:drawableEnd="@drawable/ic_arrow_forward"
-                    android:textAllCaps="false"
-                    android:textAlignment="textStart"
-                    android:textColor="@color/colorPrimaryDark"
-                    android:text="@string/futsal_field"/>
+                <Button
+                        android:id="@+id/btnRunningTrack"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        style="@style/Base.Widget.AppCompat.Button.Borderless"
+                        android:background="@drawable/venue_running"
+                        android:textAllCaps="false"
+                        android:textSize="16sp"
+                        android:textColor="@color/colorWhite"
+                        android:text="@string/running_track"/>
 
-            <Button
-                    android:id="@+id/btnFootballField"
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                    android:id="@+id/cardFutsal"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/btnFutsalField"
-                    style="@style/Base.Widget.AppCompat.Button.Borderless"
-                    android:drawableEnd="@drawable/ic_arrow_forward"
-                    android:textAllCaps="false"
-                    android:textAlignment="textStart"
-                    android:textColor="@color/colorPrimaryDark"
-                    android:text="@string/football_field"/>
+                    android:layout_height="100dp"
+                    app:cardCornerRadius="6dp"
+                    android:layout_marginTop="6dp"
+                    android:layout_below="@id/cardRunning">
+
+                <Button
+                        android:id="@+id/btnFutsalField"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        style="@style/Base.Widget.AppCompat.Button.Borderless"
+                        android:background="@drawable/venue_futsal"
+                        android:textAllCaps="false"
+                        android:textSize="16sp"
+                        android:textColor="@color/colorWhite"
+                        android:text="@string/futsal_field"/>
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                    android:id="@+id/cardFootball"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    app:cardCornerRadius="6dp"
+                    android:layout_marginTop="6dp"
+                    android:layout_below="@id/cardFutsal">
+
+                <Button
+                        android:id="@+id/btnFootballField"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        style="@style/Base.Widget.AppCompat.Button.Borderless"
+                        android:background="@drawable/venue_football"
+                        android:textAllCaps="false"
+                        android:textSize="16sp"
+                        android:textColor="@color/colorWhite"
+                        android:text="@string/football_field"/>
+
+            </android.support.v7.widget.CardView>
 
         </RelativeLayout>
 

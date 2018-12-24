@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.view.MenuItem
 import android.view.MotionEvent
 import android.view.View
-import android.widget.ImageView
 import com.mapbox.mapboxsdk.Mapbox
 import com.wysiwyg.temanolga.R
 import com.wysiwyg.temanolga.api.FirebaseApi
@@ -32,8 +31,6 @@ class EventDetailActivity : AppCompatActivity(), EventDetailView {
 
     override fun showEventData() {
         try {
-            val imgUserEvent = findViewById<ImageView>(R.id.imgUserEvent)
-
             FirebaseApi.getPostSender(event[0].postSender!!, tvUserEvent, null, imgUserEvent)
             tvSportEvent.text = String.format(getString(R.string.event_invitation), sportPref(this, event[0].sportName))
             tvDateEvent.text = dateTimeFormat(event[0].date)
@@ -115,14 +112,33 @@ class EventDetailActivity : AppCompatActivity(), EventDetailView {
         snackbar(tvDescEvent, "Requested").show()
     }
 
-    override fun showRequested() {
+    override fun showRequested(joinId: String) {
         btnJoin.visibility = View.GONE
         btnJoinRequest.visibility = View.VISIBLE
+        btnJoinAccepted.visibility = View.GONE
+
+        btnJoinRequest.setOnClickListener { presenter.cancelJoin(eventId, joinId) }
     }
 
-    override fun showJoined() {
+    override fun showJoined(joinId: String) {
         btnJoin.visibility = View.GONE
+        btnJoinRequest.visibility = View.GONE
         btnJoinAccepted.visibility = View.VISIBLE
+
+        btnJoinAccepted.setOnClickListener { presenter.cancelConfirm(joinId) }
+    }
+
+    override fun showDefJoin() {
+        btnJoin.visibility = View.VISIBLE
+        btnJoinRequest.visibility = View.GONE
+        btnJoinAccepted.visibility = View.GONE
+    }
+
+    override fun showCancelJoin(joinId: String) {
+        alert("Cancel joined this invitation ?") {
+            yesButton { presenter.cancelJoin(eventId, joinId) }
+            noButton { it.dismiss() }
+        }.show()
     }
 
     override fun showDeleteConfirm() {

@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.SearchView
+import android.view.MenuItem
 import android.view.View
 import com.wysiwyg.temanolga.R
 import com.wysiwyg.temanolga.adapters.SearchUserAdapter
@@ -40,6 +41,7 @@ class SearchUserActivity : AppCompatActivity(), SearchUserView {
         setContentView(R.layout.activity_search_user)
 
         setSupportActionBar(toolbarSearch)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         searchUser.requestFocus()
         searchUser.isIconified = false
@@ -59,5 +61,15 @@ class SearchUserActivity : AppCompatActivity(), SearchUserView {
             }
 
         })
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        return when(item?.itemId) {
+            android.R.id.home -> {
+                finish()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 }

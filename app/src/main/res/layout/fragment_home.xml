@@ -17,6 +17,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:padding="12dp"
+                android:layout_marginStart="4dp"
                 android:background="@color/colorWhite">
 
             <TextView
@@ -37,7 +38,7 @@
                 android:id="@+id/rv_data"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingBottom="30dp"
+                android:paddingBottom="60dp"
                 android:clipToPadding="false"
                 tools:listitem="@layout/item_event"/>
 

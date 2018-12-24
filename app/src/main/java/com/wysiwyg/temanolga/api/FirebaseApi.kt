@@ -368,6 +368,10 @@ object FirebaseApi {
         }
     }
 
+    fun cancelJoin(evendId: String, joinId: String) {
+        database.child("join").child(evendId).child(joinId).removeValue()
+    }
+
     fun checkJoin(presenter: EventDetailPresenter, eventId: String?) {
         database.child("join")
             .child(eventId!!)
@@ -383,8 +387,9 @@ object FirebaseApi {
                         p0.children.mapNotNullTo(join) {
                             val data = it.getValue(Join::class.java)
                             when (data?.status) {
-                                "1" -> presenter.isJoin()
-                                "2" -> presenter.isRequested()
+                                "1" -> presenter.isJoin(data.joinId!!)
+                                "2" -> presenter.isRequested(data.joinId!!)
+                                else -> presenter.defaultJoin()
                             }
                             data
                         }

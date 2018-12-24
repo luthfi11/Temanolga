@@ -12,11 +12,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:cardElevation="0dp"
-            android:layout_marginBottom="4dp">
+            android:layout_marginBottom="2dp">
 
         <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" >
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="4dp">
 
             <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/imgUserNotif2"
@@ -66,6 +68,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:baselineAligned="false"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="4dp"
                 android:orientation="horizontal">
 
             <RelativeLayout
@@ -158,7 +162,6 @@
         </LinearLayout>
 
     </android.support.v7.widget.CardView>
-
 
 
 </LinearLayout>

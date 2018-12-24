@@ -7,8 +7,10 @@ interface EventDetailView {
     fun showMap(savedInstanceState: Bundle?, long: String?, lat: String?, title: String?)
     fun hideMap()
     fun showJoinMsg()
-    fun showRequested()
-    fun showJoined()
+    fun showRequested(joinId: String)
+    fun showJoined(joinId: String)
+    fun showDefJoin()
+    fun showCancelJoin(joinId: String)
     fun showDeleteConfirm()
     fun afterDelete()
 }

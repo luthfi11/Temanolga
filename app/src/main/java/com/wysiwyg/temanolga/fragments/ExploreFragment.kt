@@ -1,7 +1,5 @@
 package com.wysiwyg.temanolga.fragments
 
-import android.location.Location
-import android.location.LocationListener
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
@@ -16,7 +14,6 @@ import com.wysiwyg.temanolga.presenters.ExplorePresenter
 import com.wysiwyg.temanolga.views.ExploreView
 import kotlinx.android.synthetic.main.fragment_explore.*
 import org.jetbrains.anko.support.v4.startActivity
-import org.jetbrains.anko.toast
 
 class ExploreFragment: Fragment(), ExploreView {
 
@@ -31,13 +28,21 @@ class ExploreFragment: Fragment(), ExploreView {
     }
 
     override fun showLoading() {
-        rv_people.visibility = View.GONE
-        progressExplore.visibility = View.VISIBLE
+        try {
+            rv_people.visibility = View.GONE
+            progressExplore.visibility = View.VISIBLE
+        } catch (ex: Exception) {
+            ex.printStackTrace()
+        }
     }
 
     override fun hideLoading() {
-        rv_people.visibility = View.VISIBLE
-        progressExplore.visibility = View.GONE
+        try {
+            rv_people.visibility = View.VISIBLE
+            progressExplore.visibility = View.GONE
+        } catch (ex: Exception) {
+            ex.printStackTrace()
+        }
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {

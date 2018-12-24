@@ -5,6 +5,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/colorSemiWhite"
         tools:context=".activities.ChatRoomActivity">
 
     <android.support.design.widget.AppBarLayout
@@ -22,8 +23,7 @@
 
             <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:layout_height="wrap_content" >
 
                 <de.hdodenhof.circleimageview.CircleImageView
                         android:id="@+id/imgUserRoom"
@@ -75,7 +75,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginBottom="50dp"
                 android:paddingTop="10dp"
-                android:paddingBottom="10dp"
+                android:paddingBottom="20dp"
                 android:paddingStart="5dp"
                 android:paddingEnd="5dp"
                 android:clipToPadding="false"
@@ -85,21 +85,24 @@
     <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:minHeight="60dp"
             android:layout_alignParentBottom="true"
-            app:layout_constraintBottom_toBottomOf="@id/frm"
-            android:background="@color/colorWhite">
+            android:background="@color/colorWhite"
+            app:layout_constraintBottom_toBottomOf="@id/frm">
 
         <EditText
                 android:id="@+id/et_message"
                 android:layout_width="0dip"
                 android:layout_weight="0.9"
                 android:layout_height="match_parent"
-                android:background="@color/colorWhite"
-                android:hint="@string/message_text"
+                android:background="@drawable/chat_input_shape"
                 android:inputType="textMultiLine"
-                android:ems="10"
-                android:padding="10dp"
-                android:textSize="14sp"
+                android:hint="@string/message_text"
+                android:layout_margin="10dp"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:maxLines="4"
+                android:textSize="16sp"
                 android:textAlignment="textStart"/>
 
         <ImageButton
@@ -109,6 +112,7 @@
                 android:contentDescription="@string/send"
                 android:layout_height="match_parent"
                 android:src="@drawable/ic_send"
+                android:layout_gravity="bottom"
                 style="@style/Base.Widget.AppCompat.Button.Borderless"/>
     </LinearLayout>
 

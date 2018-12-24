@@ -40,11 +40,13 @@ class MessageAdapter(private val messages: MutableList<Message>) :
 
             FirebaseApi.getPostSender(userChat!!, itemView.tvUserMsg, null, itemView.imgUserMsg)
 
-            val sdf = SimpleDateFormat("HH:mm", Locale.getDefault())
-            val time : String = sdf.format(Date(message.timeStamp!!.toLong()))
+            if (DateUtils.isToday(message.timeStamp!!.toLong())) {
+                itemView.tvTimeMsg.text = timeFormat("HH:mm", message.timeStamp)
+            } else {
+                itemView.tvTimeMsg.text = timeFormat("dd/MM/yy", message.timeStamp)
+            }
 
             itemView.tvContentMsg.text = message.msgContent
-            itemView.tvTimeMsg.text = time
 
             itemView.setOnClickListener {
                 itemView.context.startActivity<ChatRoomActivity>("userId" to userChat)
@@ -72,6 +74,11 @@ class MessageAdapter(private val messages: MutableList<Message>) :
                 yesButton { FirebaseApi.deleteChat(userChat) }
                 noButton { it.dismiss() }
             }.show()
+        }
+
+        private fun timeFormat(format: String, millis: String): String {
+            val sdf = SimpleDateFormat(format, Locale.getDefault())
+            return sdf.format(Date(millis.toLong()))
         }
     }
 }

@@ -1,6 +1,7 @@
 package com.wysiwyg.temanolga.adapters
 
 import android.support.v7.widget.RecyclerView
+import android.text.format.DateUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -30,6 +31,8 @@ class ChatRoomAdapter(private val messages: MutableList<Message>) :
         fun bindItem(message: Message) {
             val sdf = SimpleDateFormat("HH:mm", Locale.getDefault())
             val time : String = sdf.format(Date(message.timeStamp!!.toLong()))
+
+            DateUtils.isToday(message.timeStamp.toLong())
 
             if (message.senderId == FirebaseApi.currentUser()) {
                 itemView.tvMessage.text = message.msgContent

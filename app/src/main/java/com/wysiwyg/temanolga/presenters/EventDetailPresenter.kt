@@ -35,12 +35,25 @@ class EventDetailPresenter(private val view: EventDetailView) {
         FirebaseApi.checkJoin(this, eventId)
     }
 
-    fun isRequested() {
-        view.showRequested()
+    fun isRequested(joinId: String) {
+        view.showRequested(joinId)
     }
 
-    fun isJoin() {
-        view.showJoined()
+    fun isJoin(joinId: String) {
+        view.showJoined(joinId)
+    }
+
+    fun defaultJoin(){
+        view.showDefJoin()
+    }
+
+    fun cancelConfirm(joinId: String) {
+        view.showCancelJoin(joinId)
+    }
+
+    fun cancelJoin(eventId: String, joinId: String){
+        FirebaseApi.cancelJoin(eventId, joinId)
+        view.showDefJoin()
     }
 
     fun deleteConfirm() {
