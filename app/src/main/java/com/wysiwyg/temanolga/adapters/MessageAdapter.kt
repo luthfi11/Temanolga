@@ -1,7 +1,6 @@
 package com.wysiwyg.temanolga.adapters
 
 import android.support.v7.widget.RecyclerView
-import android.text.format.DateUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,10 +10,11 @@ import com.wysiwyg.temanolga.activities.UserDetailActivity
 import com.wysiwyg.temanolga.api.FirebaseApi
 import kotlinx.android.synthetic.main.item_message.view.*
 import com.wysiwyg.temanolga.models.Message
+import com.wysiwyg.temanolga.utils.DateTimeUtils.isToday
+import com.wysiwyg.temanolga.utils.DateTimeUtils.isYesterday
+import com.wysiwyg.temanolga.utils.DateTimeUtils.dayAgo
+import com.wysiwyg.temanolga.utils.DateTimeUtils.timeFormat
 import org.jetbrains.anko.*
-import org.jetbrains.anko.support.v4.alert
-import java.text.SimpleDateFormat
-import java.util.*
 
 class MessageAdapter(private val messages: MutableList<Message>) :
     RecyclerView.Adapter<MessageAdapter.ViewHolder>() {
@@ -40,8 +40,10 @@ class MessageAdapter(private val messages: MutableList<Message>) :
 
             FirebaseApi.getPostSender(userChat!!, itemView.tvUserMsg, null, itemView.imgUserMsg)
 
-            if (DateUtils.isToday(message.timeStamp!!.toLong())) {
+            if (isToday(message.timeStamp!!)) {
                 itemView.tvTimeMsg.text = timeFormat("HH:mm", message.timeStamp)
+            } else if (isYesterday(message.timeStamp)) {
+                itemView.tvTimeMsg.text = dayAgo(message.timeStamp)
             } else {
                 itemView.tvTimeMsg.text = timeFormat("dd/MM/yy", message.timeStamp)
             }
@@ -74,11 +76,6 @@ class MessageAdapter(private val messages: MutableList<Message>) :
                 yesButton { FirebaseApi.deleteChat(userChat) }
                 noButton { it.dismiss() }
             }.show()
-        }
-
-        private fun timeFormat(format: String, millis: String): String {
-            val sdf = SimpleDateFormat(format, Locale.getDefault())
-            return sdf.format(Date(millis.toLong()))
         }
     }
 }

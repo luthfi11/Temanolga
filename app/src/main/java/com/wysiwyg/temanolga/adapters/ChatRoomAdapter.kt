@@ -1,7 +1,6 @@
 package com.wysiwyg.temanolga.adapters
 
 import android.support.v7.widget.RecyclerView
-import android.text.format.DateUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,8 +8,13 @@ import com.wysiwyg.temanolga.R
 import com.wysiwyg.temanolga.api.FirebaseApi
 import com.wysiwyg.temanolga.models.Message
 import kotlinx.android.synthetic.main.item_chat_room.view.*
+import org.jetbrains.anko.selector
 import java.text.SimpleDateFormat
 import java.util.*
+import android.content.ClipData
+import android.content.ClipboardManager
+import android.content.Context
+import com.wysiwyg.temanolga.utils.DateTimeUtils.dayAgo
 
 class ChatRoomAdapter(private val messages: MutableList<Message>) :
     RecyclerView.Adapter<ChatRoomAdapter.ViewHolder>() {
@@ -18,8 +22,17 @@ class ChatRoomAdapter(private val messages: MutableList<Message>) :
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
         ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_chat_room, parent, false))
 
-
     override fun onBindViewHolder(viewHolder: ViewHolder, i: Int) {
+        if (i > 0) {
+            if (dayAgo(messages[i-1].timeStamp!!) != dayAgo(messages[i].timeStamp!!)) {
+                viewHolder.bindTime(messages[i])
+            } else {
+                viewHolder.hideTime()
+            }
+        }
+        if((i == 0) && (messages.size != 0)) {
+            viewHolder.bindTime(messages[0])
+        }
         viewHolder.bindItem(messages[i])
     }
 
@@ -30,21 +43,48 @@ class ChatRoomAdapter(private val messages: MutableList<Message>) :
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         fun bindItem(message: Message) {
             val sdf = SimpleDateFormat("HH:mm", Locale.getDefault())
-            val time : String = sdf.format(Date(message.timeStamp!!.toLong()))
-
-            DateUtils.isToday(message.timeStamp.toLong())
+            val time: String = sdf.format(Date(message.timeStamp!!.toLong()))
 
             if (message.senderId == FirebaseApi.currentUser()) {
                 itemView.tvMessage.text = message.msgContent
                 itemView.tvSentTime.text = time
                 itemView.view1.visibility = View.GONE
+                itemView.cv.copyToClipboard(message.msgContent)
+
             } else {
                 FirebaseApi.getPostSender(message.senderId!!, null, null, itemView.imgSender)
                 itemView.tvMessage1.text = message.msgContent
                 itemView.tvSentTime1.text = time
                 itemView.view.visibility = View.GONE
-            }
+                itemView.cv1.copyToClipboard(message.msgContent)
 
+            }
+        }
+
+        fun bindTime(message: Message) {
+            itemView.tvTime.visibility = View.VISIBLE
+            itemView.tvTime.text = dayAgo(message.timeStamp!!)
+        }
+
+        fun hideTime() {
+            itemView.tvTime.visibility = View.GONE
+        }
+
+        private fun View.copyToClipboard(msg: String?) {
+            setOnLongClickListener {
+                val menu = listOf("Copy Text")
+                itemView.context.selector(null, menu) { _, i ->
+                    when (i) {
+                        0 -> {
+                            val clipboard =
+                                itemView.context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+                            val clip = ClipData.newPlainText("", msg)
+                            clipboard.primaryClip = clip
+                        }
+                    }
+                }
+                true
+            }
         }
     }
 }

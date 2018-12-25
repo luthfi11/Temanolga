@@ -8,8 +8,25 @@
         android:orientation="vertical">
 
     <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <TextView
+                android:id="@+id/tvTime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"
+                android:textAlignment="center"
+                tools:text="Today" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
             android:id="@+id/view1"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
         <de.hdodenhof.circleimageview.CircleImageView
@@ -47,7 +64,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="10dp"
-                    android:layout_marginStart="8dp"
                     android:orientation="horizontal">
 
                 <TextView
@@ -66,8 +82,7 @@
     <RelativeLayout
             android:id="@+id/view"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="end">
+            android:layout_height="wrap_content">
 
         <TextView
                 android:id="@+id/tvSentTime"
@@ -93,7 +108,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="10dp"
-                    android:layout_marginEnd="8dp"
                     android:orientation="horizontal">
 
                 <TextView
@@ -105,8 +119,6 @@
                         tools:text="MESSAGE"/>
 
             </LinearLayout>
-
         </FrameLayout>
     </RelativeLayout>
-
 </LinearLayout>

@@ -5,7 +5,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:id="@+id/cvEvent"
-        android:background="@color/colorWhite"
+        android:background="@drawable/card_selected"
         android:layout_height="wrap_content">
 
     <RelativeLayout
@@ -32,7 +32,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toEndOf="@id/imgUserMini"
-                android:textColor="@color/colorPrimary"
+                android:textColor="@color/colorBlack"
                 android:textStyle="bold"
                 android:layout_marginTop="1dp"
                 tools:text="USERNAME"/>
@@ -69,109 +69,101 @@
                 android:layout_below="@id/tvUser"
                 tools:text="Deskripsi"/>
 
-        <android.support.v7.widget.CardView
+        <RelativeLayout
                 android:id="@+id/card"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@drawable/card_shape"
+                android:paddingBottom="10dp"
+                android:paddingStart="0dp"
+                android:paddingEnd="6dp"
                 android:layout_below="@id/tvDesc"
                 android:layout_toEndOf="@id/imgUserMini"
-                app:cardElevation="0dp"
-                android:layout_marginTop="5dp"
-                app:cardCornerRadius="4dp"
-                android:layout_marginEnd="2dp">
+                android:layout_marginTop="5dp" >
 
-            <RelativeLayout
-                    android:layout_width="match_parent"
+            <TextView
+                    android:id="@+id/tvDay"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="1dp"
-                    android:background="@drawable/card_shape"
-                    android:paddingBottom="10dp">
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="18dp"
+                    android:textSize="44sp"
+                    android:textColor="@color/colorBlack"
+                    tools:text="10"/>
 
-                <TextView
-                        android:id="@+id/tvDay"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginEnd="18dp"
-                        android:textSize="44sp"
-                        android:textColor="@color/colorBlack"
-                        tools:text="10"/>
+            <TextView
+                    android:id="@+id/tvMonth"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="-8dp"
+                    android:layout_below="@id/tvDay"
+                    android:textColor="@color/colorBlack"
+                    tools:text="Jan 2018"/>
 
-                <TextView
-                        android:id="@+id/tvMonth"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="12sp"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginTop="-8dp"
-                        android:layout_below="@id/tvDay"
-                        android:textColor="@color/colorBlack"
-                        tools:text="Jan 2018"/>
+            <ImageView
+                    android:id="@+id/imgSport"
+                    android:layout_width="14dp"
+                    android:layout_height="14dp"
+                    android:layout_marginTop="12dp"
+                    android:contentDescription="@string/sport"
+                    android:layout_marginEnd="4dp"
+                    android:layout_toEndOf="@id/tvDay"
+                    android:tint="@color/colorBlack"
+                    android:src="@drawable/ic_sport"/>
 
-                <ImageView
-                        android:id="@+id/imgSport"
-                        android:layout_width="14dp"
-                        android:layout_height="14dp"
-                        android:layout_marginTop="12dp"
-                        android:contentDescription="@string/sport"
-                        android:layout_marginEnd="4dp"
-                        android:layout_toEndOf="@id/tvDay"
-                        android:tint="@color/colorBlack"
-                        android:src="@drawable/ic_sport"/>
+            <TextView
+                    android:id="@+id/tvSport"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_toEndOf="@id/imgSport"
+                    tools:text="Nama Olahraga"/>
 
-                <TextView
-                        android:id="@+id/tvSport"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:layout_toEndOf="@id/imgSport"
-                        tools:text="Nama Olahraga"/>
+            <ImageView
+                    android:id="@+id/imgPlace"
+                    android:layout_width="14dp"
+                    android:layout_height="14dp"
+                    android:contentDescription="@string/venue"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginEnd="4dp"
+                    android:layout_toEndOf="@id/tvDay"
+                    android:layout_below="@id/imgSport"
+                    android:tint="@color/colorBlack"
+                    android:src="@drawable/ic_place"/>
 
-                <ImageView
-                        android:id="@+id/imgPlace"
-                        android:layout_width="14dp"
-                        android:layout_height="14dp"
-                        android:contentDescription="@string/venue"
-                        android:layout_marginTop="6dp"
-                        android:layout_marginEnd="4dp"
-                        android:layout_toEndOf="@id/tvDay"
-                        android:layout_below="@id/imgSport"
-                        android:tint="@color/colorBlack"
-                        android:src="@drawable/ic_place"/>
+            <TextView
+                    android:id="@+id/tvPlace"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toEndOf="@id/imgPlace"
+                    android:layout_below="@id/tvSport"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    tools:text="Tempat"/>
 
-                <TextView
-                        android:id="@+id/tvPlace"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_toEndOf="@id/imgPlace"
-                        android:layout_below="@id/tvSport"
-                        android:maxLines="1"
-                        android:ellipsize="end"
-                        tools:text="Tempat"/>
+            <ImageView
+                    android:id="@+id/imgDesc"
+                    android:layout_width="14dp"
+                    android:layout_height="14dp"
+                    android:contentDescription="@string/add_desc"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="4dp"
+                    android:layout_toEndOf="@id/tvDay"
+                    android:layout_below="@id/imgPlace"
+                    android:tint="@color/colorBlack"
+                    android:src="@drawable/ic_people"/>
 
-                <ImageView
-                        android:id="@+id/imgDesc"
-                        android:layout_width="14dp"
-                        android:layout_height="14dp"
-                        android:contentDescription="@string/add_desc"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginEnd="4dp"
-                        android:layout_toEndOf="@id/tvDay"
-                        android:layout_below="@id/imgPlace"
-                        android:tint="@color/colorBlack"
-                        android:src="@drawable/ic_people"/>
+            <TextView
+                    android:id="@+id/tvSlotJoin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toEndOf="@id/imgDesc"
+                    android:layout_below="@id/tvPlace"
+                    tools:text="0/1 Team Joined"/>
 
-                <TextView
-                        android:id="@+id/tvSlotJoin"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_toEndOf="@id/imgDesc"
-                        android:layout_below="@id/tvPlace"
-                        tools:text="0/1 Team Joined"/>
-
-            </RelativeLayout>
-
-        </android.support.v7.widget.CardView>
+        </RelativeLayout>
 
         <RelativeLayout
                 android:id="@+id/button"

@@ -10,6 +10,7 @@ import com.wysiwyg.temanolga.activities.EventDetailActivity
 import com.wysiwyg.temanolga.activities.UserDetailActivity
 import com.wysiwyg.temanolga.api.FirebaseApi
 import com.wysiwyg.temanolga.models.Join
+import com.wysiwyg.temanolga.utils.DateTimeUtils.minAgo
 import org.jetbrains.anko.startActivity
 import kotlinx.android.synthetic.main.item_notification.view.*
 import org.jetbrains.anko.textColorResource
@@ -48,10 +49,7 @@ class NotificationAdapter(private val notif: MutableList<Join>) :
                 FirebaseApi.getPostSender(notif.userReqId!!, null, null, itemView.imgUserNotif)
                 FirebaseApi.getNotifDetail(itemView.tvReqNotif, notif.eventId!!, notif.userReqId!!, notif.joinId!!, itemView.context)
 
-                val ago = DateUtils.getRelativeTimeSpanString(notif.timeStamp!!.toLong(),
-                    System.currentTimeMillis(), DateUtils.MINUTE_IN_MILLIS)
-
-                itemView.tvTimeNotif.text = ago
+                itemView.tvTimeNotif.text = minAgo(notif.timeStamp!!)
 
                 itemView.imgUserNotif.setOnClickListener {
                     itemView.context.startActivity<UserDetailActivity>("userId" to notif.userReqId)
@@ -70,9 +68,7 @@ class NotificationAdapter(private val notif: MutableList<Join>) :
                 FirebaseApi.getPostSender(notif.postSender!!, null, null, itemView.imgUserNotif2)
                 FirebaseApi.getNotifDetail(itemView.tvNotif, notif.eventId!!, notif.postSender!!, notif.joinId!!, itemView.context)
 
-                val conAgo = DateUtils.getRelativeTimeSpanString(notif.confirmTS!!.toLong(),
-                    System.currentTimeMillis(), DateUtils.MINUTE_IN_MILLIS)
-                itemView.tvTimeNotif2.text = conAgo
+                itemView.tvTimeNotif2.text = minAgo(notif.confirmTS!!)
 
                 itemView.cvReq.visibility = View.GONE
             }

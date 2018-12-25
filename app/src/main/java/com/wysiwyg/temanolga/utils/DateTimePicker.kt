@@ -36,6 +36,7 @@ object DateTimePicker {
 
         }, year, month, day)
 
+        dpd.datePicker.minDate = System.currentTimeMillis() - 1000
         dpd.show()
     }
 

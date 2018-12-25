@@ -66,11 +66,9 @@ class LoginActivity : AppCompatActivity(), LoginView {
                 presenter.login(etToString(et_email), etToString(et_password))
 
             } else {
-                hideLoading()
                 setError(et_password, getString(R.string.empty_password))
             }
         } else {
-            hideLoading()
             setError(et_email, getString(R.string.email_invalid))
         }
     }

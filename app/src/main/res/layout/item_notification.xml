@@ -17,8 +17,9 @@
         <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:layout_marginEnd="4dp">
+                android:paddingStart="4dp"
+                android:paddingEnd="4dp"
+                android:background="@drawable/card_selected">
 
             <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/imgUserNotif2"
@@ -68,8 +69,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:baselineAligned="false"
-                android:layout_marginStart="4dp"
-                android:layout_marginEnd="4dp"
+                android:paddingStart="4dp"
+                android:paddingEnd="4dp"
+                android:background="@drawable/card_selected"
                 android:orientation="horizontal">
 
             <RelativeLayout

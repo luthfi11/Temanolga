@@ -56,6 +56,7 @@ class SignUpActivity : AppCompatActivity(), SignUpView {
         }
 
         btn_signup.setOnClickListener {
+            initProgressBar()
             signUp()
         }
     }
@@ -80,7 +81,6 @@ class SignUpActivity : AppCompatActivity(), SignUpView {
             if (etValidate(et_city)) {
                 if (emailValidate(et_email)) {
                     if (passwordValidate(et_password_signup)) {
-                        initProgressBar()
                         presenter.signUp(
                             etToString(et_full_name),
                             etToString(et_email),
@@ -91,19 +91,15 @@ class SignUpActivity : AppCompatActivity(), SignUpView {
                         )
 
                     } else {
-                        hideLoading()
                         setError(et_password_signup, getString(R.string.password_length))
                     }
                 } else {
-                    hideLoading()
                     setError(et_email, getString(R.string.email_invalid))
                 }
             } else {
-                hideLoading()
                 setError(et_city, getString(R.string.city_invalid))
             }
         } else {
-            hideLoading()
             setError(et_full_name, getString(R.string.fullname_invalid))
         }
     }

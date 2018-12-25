@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<RelativeLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -9,6 +9,7 @@
         tools:context=".activities.ChatRoomActivity">
 
     <android.support.design.widget.AppBarLayout
+            android:id="@+id/appbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:elevation="0dp"
@@ -23,7 +24,7 @@
 
             <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" >
+                    android:layout_height="wrap_content">
 
                 <de.hdodenhof.circleimageview.CircleImageView
                         android:id="@+id/imgUserRoom"
@@ -63,46 +64,46 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <FrameLayout
-            android:id="@+id/frm"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="?attr/actionBarSize">
-
         <android.support.v7.widget.RecyclerView
                 android:id="@+id/rv_chat_room"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="50dp"
+                android:layout_height="wrap_content"
                 android:paddingTop="10dp"
-                android:paddingBottom="20dp"
+                android:paddingBottom="10dp"
                 android:paddingStart="5dp"
                 android:paddingEnd="5dp"
                 android:clipToPadding="false"
+                android:layout_below="@id/appbar"
+                android:layout_above="@id/lytText"
                 tools:listitem="@layout/item_chat_room"/>
-    </FrameLayout>
 
     <LinearLayout
+            android:id="@+id/lytText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:minHeight="60dp"
+            android:minHeight="50dp"
             android:layout_alignParentBottom="true"
-            android:background="@color/colorWhite"
-            app:layout_constraintBottom_toBottomOf="@id/frm">
+            android:layout_marginStart="6dp"
+            android:layout_marginEnd="6dp"
+            android:layout_marginBottom="4dp"
+            android:paddingStart="6dp"
+            android:paddingEnd="10dp"
+            android:focusableInTouchMode="true"
+            android:background="@drawable/button_shape_white">
 
         <EditText
                 android:id="@+id/et_message"
                 android:layout_width="0dip"
                 android:layout_weight="0.9"
                 android:layout_height="match_parent"
-                android:background="@drawable/chat_input_shape"
                 android:inputType="textMultiLine"
                 android:hint="@string/message_text"
+                android:background="@android:color/transparent"
                 android:layout_margin="10dp"
                 android:paddingStart="10dp"
                 android:paddingEnd="10dp"
                 android:maxLines="4"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 android:textAlignment="textStart"/>
 
         <ImageButton
@@ -116,4 +117,4 @@
                 style="@style/Base.Widget.AppCompat.Button.Borderless"/>
     </LinearLayout>
 
-</android.support.constraint.ConstraintLayout>
+</RelativeLayout>

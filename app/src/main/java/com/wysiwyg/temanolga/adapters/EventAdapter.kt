@@ -21,6 +21,7 @@ import com.wysiwyg.temanolga.activities.EventDetailActivity
 import com.wysiwyg.temanolga.activities.UserDetailActivity
 import com.wysiwyg.temanolga.api.FirebaseApi
 import com.wysiwyg.temanolga.models.Join
+import com.wysiwyg.temanolga.utils.DateTimeUtils.minAgo
 import com.wysiwyg.temanolga.utils.SpinnerItem.slotType
 import com.wysiwyg.temanolga.utils.SpinnerItem.sportPref
 import org.jetbrains.anko.alert
@@ -47,9 +48,6 @@ class EventAdapter(private val events: MutableList<Event>) :
         private val database = FirebaseDatabase.getInstance().reference
         fun bindItem(event: Event) {
 
-            val time: Long = event.postTime!!.toLong()
-            val ago = DateUtils.getRelativeTimeSpanString(time, System.currentTimeMillis(), DateUtils.SECOND_IN_MILLIS)
-
             var place = event.place
             if (place!!.contains(",")) {
                 val shortPlace = event.place?.split(",")
@@ -58,7 +56,7 @@ class EventAdapter(private val events: MutableList<Event>) :
 
             FirebaseApi.getPostSender(event.postSender!!, itemView.tvUser, null, itemView.imgUserMini)
 
-            itemView.tvTimePost.text = ago
+            itemView.tvTimePost.text = minAgo(event.postTime!!)
             itemView.tvDay.text = dateTimeFormat(event.date, "dd")
             itemView.tvMonth.text = dateTimeFormat(event.date, "MMM yyyy")
             itemView.tvSport.text = sportPref(itemView.context, event.sportName)
