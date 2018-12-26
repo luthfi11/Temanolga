@@ -13,4 +13,5 @@ interface EventDetailView {
     fun showCancelJoin(joinId: String)
     fun showDeleteConfirm()
     fun afterDelete()
+    fun showExpire(date: String)
 }

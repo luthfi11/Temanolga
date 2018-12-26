@@ -11,7 +11,6 @@ import android.os.Bundle
 import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
 import android.view.MenuItem
-import android.view.View
 import android.webkit.GeolocationPermissions
 import android.webkit.WebChromeClient
 import android.webkit.WebView
@@ -21,6 +20,8 @@ import kotlinx.android.synthetic.main.activity_sport_venue.*
 import android.content.Intent
 import android.provider.Settings
 import android.view.KeyEvent
+import com.wysiwyg.temanolga.utils.gone
+import com.wysiwyg.temanolga.utils.visible
 
 class SportVenueActivity : AppCompatActivity() {
     private lateinit var locationManager: LocationManager
@@ -32,13 +33,13 @@ class SportVenueActivity : AppCompatActivity() {
     private val locationListener = object : LocationListener {
 
         override fun onProviderDisabled(provider: String?) {
-            frm_map.visibility = View.GONE
-            lyt_enable.visibility = View.VISIBLE
+            frm_map.gone()
+            lyt_enable.visible()
         }
 
         override fun onProviderEnabled(provider: String?) {
-            frm_map.visibility = View.VISIBLE
-            lyt_enable.visibility = View.GONE
+            frm_map.visible()
+            lyt_enable.gone()
             initMap(venue)
         }
 

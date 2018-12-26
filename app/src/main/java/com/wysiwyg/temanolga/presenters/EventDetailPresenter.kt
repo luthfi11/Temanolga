@@ -64,4 +64,8 @@ class EventDetailPresenter(private val view: EventDetailView) {
         FirebaseApi.deletePost(eventId)
         view.afterDelete()
     }
+
+    fun isExpire(date: String) {
+        view.showExpire(date)
+    }
 }

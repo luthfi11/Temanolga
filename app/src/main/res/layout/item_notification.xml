@@ -112,6 +112,25 @@
             </RelativeLayout>
 
             <RelativeLayout
+                    android:id="@+id/vTvExpire"
+                    android:layout_width="0dip"
+                    android:layout_weight="0.23"
+                    android:visibility="gone"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center">
+
+                <TextView
+                        android:id="@+id/tvExpire"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        android:textColor="@android:color/holo_red_light"
+                        android:layout_centerHorizontal="true"
+                        android:text="@string/expire"/>
+            </RelativeLayout>
+
+            <RelativeLayout
                     android:id="@+id/vTvStatus"
                     android:layout_width="0dip"
                     android:layout_weight="0.23"

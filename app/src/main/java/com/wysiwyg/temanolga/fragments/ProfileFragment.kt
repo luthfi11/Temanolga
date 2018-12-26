@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.view.*
-import android.widget.ImageView
 import com.squareup.picasso.Picasso
 import com.wysiwyg.temanolga.R
 import com.wysiwyg.temanolga.activities.EditProfileActivity
@@ -15,6 +14,8 @@ import com.wysiwyg.temanolga.models.Event
 import com.wysiwyg.temanolga.models.User
 import com.wysiwyg.temanolga.presenters.ProfilePresenter
 import com.wysiwyg.temanolga.utils.SpinnerItem
+import com.wysiwyg.temanolga.utils.gone
+import com.wysiwyg.temanolga.utils.visible
 import com.wysiwyg.temanolga.views.ProfileView
 import kotlinx.android.synthetic.main.fragment_profile.*
 import org.jetbrains.anko.noButton
@@ -29,11 +30,11 @@ class ProfileFragment : Fragment(), ProfileView {
     private lateinit var adapter: EventAdapter
 
     override fun showLoading() {
-        progressBar?.visibility = View.VISIBLE
+        progressBar?.visible()
     }
 
     override fun hideLoading() {
-        progressBar?.visibility = View.GONE
+        progressBar?.gone()
     }
 
     override fun showUserData(user: List<User>) {

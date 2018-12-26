@@ -33,4 +33,11 @@ object DateTimeUtils {
     fun isYesterday(millis: String): Boolean {
         return DateUtils.isToday(millis.toLong() + DateUtils.DAY_IN_MILLIS)
     }
+
+    fun dateTimeFormat(date: String?, pattern: String): String {
+        val format = SimpleDateFormat("dd/MM/yyy", Locale.getDefault())
+        val sdf = SimpleDateFormat(pattern, Locale.getDefault())
+
+        return sdf.format(format.parse(date))
+    }
 }

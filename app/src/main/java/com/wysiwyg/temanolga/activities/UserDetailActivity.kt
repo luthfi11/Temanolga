@@ -15,6 +15,8 @@ import com.wysiwyg.temanolga.models.Event
 import com.wysiwyg.temanolga.models.User
 import com.wysiwyg.temanolga.presenters.UserDetailPresenter
 import com.wysiwyg.temanolga.utils.SpinnerItem.sportPref
+import com.wysiwyg.temanolga.utils.gone
+import com.wysiwyg.temanolga.utils.visible
 import com.wysiwyg.temanolga.views.UserDetailView
 import org.jetbrains.anko.startActivity
 
@@ -44,11 +46,11 @@ class UserDetailActivity : AppCompatActivity(), UserDetailView {
     }
 
     override fun showLoading() {
-        progressBar.visibility = View.VISIBLE
+        progressBar.visible()
     }
 
     override fun hideLoading() {
-        progressBar.visibility = View.GONE
+        progressBar.gone()
     }
 
     private fun sport(accType: String?, sport: String?): String {

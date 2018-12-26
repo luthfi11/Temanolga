@@ -70,7 +70,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="jar:file:/C:/Program%20Files/Android/Android%20Studio/plugins/android/lib/android.jar!/images/material_design_icons/action/ic_exit_to_app_black_24dp.xml" />
+                                      <entry key="url" value="jar:file:/C:/Program%20Files/Android/Android%20Studio/plugins/android/lib/android.jar!/images/material_design_icons/content/ic_block_black_24dp.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -80,7 +80,8 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="outputName" value="ic_logout" />
+                            <entry key="color" value="777777" />
+                            <entry key="outputName" value="ic_expire" />
                             <entry key="sourceFile" value="C:\Users\Luthfi Alfarisi" />
                           </map>
                         </option>

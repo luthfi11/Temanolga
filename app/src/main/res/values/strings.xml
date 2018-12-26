@@ -69,6 +69,8 @@
     <string name="futsal_field">Futsal Field</string>
     <string name="football_field">Football Field</string>
     <string name="change_photo">Change Photo</string>
+    <string name="expire">EXPIRE</string>
+    <string name="expire_msg">The Event Has Expired</string>
 
     <string name="event_invitation">%s Invitation</string>
     <string name="joined_event_limited">%1$d/%2$d %3$s Joined</string>

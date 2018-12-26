@@ -368,8 +368,19 @@ object FirebaseApi {
         }
     }
 
-    fun cancelJoin(evendId: String, joinId: String) {
-        database.child("join").child(evendId).child(joinId).removeValue()
+    fun cancelJoin(eventId: String, joinId: String) {
+        database.child("join").child(eventId).child(joinId).removeValue()
+        database.child("event").child(eventId).addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onCancelled(p0: DatabaseError) {
+
+            }
+
+            override fun onDataChange(p0: DataSnapshot) {
+                val slotFill: Int? = p0.child("slotFill").getValue(Int::class.java)
+                val newSlot = slotFill!! - 1
+                database.child("event").child(eventId).child("slotFill").setValue(newSlot)
+            }
+        })
     }
 
     fun checkJoin(presenter: EventDetailPresenter, eventId: String?) {

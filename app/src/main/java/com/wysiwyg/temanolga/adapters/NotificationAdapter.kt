@@ -5,15 +5,24 @@ import android.text.format.DateUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import com.wysiwyg.temanolga.R
 import com.wysiwyg.temanolga.activities.EventDetailActivity
 import com.wysiwyg.temanolga.activities.UserDetailActivity
 import com.wysiwyg.temanolga.api.FirebaseApi
 import com.wysiwyg.temanolga.models.Join
 import com.wysiwyg.temanolga.utils.DateTimeUtils.minAgo
+import com.wysiwyg.temanolga.utils.gone
+import com.wysiwyg.temanolga.utils.invisible
+import com.wysiwyg.temanolga.utils.visible
 import org.jetbrains.anko.startActivity
 import kotlinx.android.synthetic.main.item_notification.view.*
 import org.jetbrains.anko.textColorResource
+import java.text.SimpleDateFormat
+import java.util.*
 
 class NotificationAdapter(private val notif: MutableList<Join>) :
     RecyclerView.Adapter<NotificationAdapter.ViewHolder>() {
@@ -33,13 +42,13 @@ class NotificationAdapter(private val notif: MutableList<Join>) :
         fun bindItem(notif: Join) {
             when(notif.status) {
                 "0" -> {
-                    itemView.vBtnNotif.visibility = View.GONE
-                    itemView.vTvStatus.visibility = View.VISIBLE
+                    itemView.vBtnNotif.gone()
+                    itemView.vTvStatus.visible()
                     itemView.tvStatus.text = itemView.context.getString(R.string.ignored)
                 }
                 "1" -> {
-                    itemView.vBtnNotif.visibility = View.GONE
-                    itemView.vTvStatus.visibility = View.VISIBLE
+                    itemView.vBtnNotif.gone()
+                    itemView.vTvStatus.visible()
                     itemView.tvStatus.text = itemView.context.getString(R.string.accepted)
                     itemView.tvStatus.textColorResource = R.color.colorAccent
                 }
@@ -58,10 +67,14 @@ class NotificationAdapter(private val notif: MutableList<Join>) :
                 itemView.btnAccept.setOnClickListener { FirebaseApi.acceptRequest(notif.eventId!!, notif.joinId!!) }
                 itemView.btnIgnore.setOnClickListener { FirebaseApi.ignoreRequest(notif.eventId!!, notif.joinId!!) }
 
-                itemView.cvNotif.visibility = View.GONE
+                itemView.cvNotif.gone()
+
+                if (notif.status == "2") {
+                    isExpire(notif.eventId!!)
+                }
 
             } else if((notif.postSender != FirebaseApi.currentUser()) and (notif.status == "2")) {
-                itemView.cvNotif.visibility = View.GONE
+                itemView.cvNotif.gone()
             }
 
             if (notif.userReqId == FirebaseApi.currentUser()) {
@@ -70,10 +83,30 @@ class NotificationAdapter(private val notif: MutableList<Join>) :
 
                 itemView.tvTimeNotif2.text = minAgo(notif.confirmTS!!)
 
-                itemView.cvReq.visibility = View.GONE
+                itemView.cvReq.gone()
             }
 
             itemView.setOnClickListener { itemView.context.startActivity<EventDetailActivity>("eventId" to notif.eventId) }
+        }
+
+        private fun isExpire(eventId: String) {
+            itemView.vTvExpire.gone()
+            FirebaseDatabase.getInstance().reference.child("event").child(eventId).addValueEventListener(object : ValueEventListener{
+                override fun onDataChange(p0: DataSnapshot) {
+                    val date = p0.child("date").getValue(String::class.java)
+                    val time = p0.child("time").getValue(String::class.java)
+
+                    val parseDate: Date = SimpleDateFormat("dd/MM/yyy, HH : mm", Locale.getDefault()).parse(date+", "+time)
+                    if (Date().after(parseDate)) {
+                        itemView.vBtnNotif.gone()
+                        itemView.vTvExpire.visible()
+                    }
+                }
+
+                override fun onCancelled(p0: DatabaseError) {
+
+                }
+            })
         }
     }
 }

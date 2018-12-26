@@ -7,5 +7,6 @@
     <color name="colorBlack">#000000</color>
     <color name="colorSemiWhite">#33DDDDDD</color>
     <color name="colorMuted">#CCCCCC</color>
+    <color name="colorGrey">#999999</color>
     <color name="transparentDark">#22000000</color>
 </resources>

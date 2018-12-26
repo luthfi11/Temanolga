@@ -1,11 +1,14 @@
 package com.wysiwyg.temanolga.activities
 
 import android.content.Intent
+import android.graphics.PorterDuff
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v4.content.ContextCompat
 import android.view.MenuItem
 import android.view.MotionEvent
 import android.view.View
+import android.widget.Button
 import com.mapbox.mapboxsdk.Mapbox
 import com.wysiwyg.temanolga.R
 import com.wysiwyg.temanolga.api.FirebaseApi
@@ -16,8 +19,12 @@ import com.mapbox.mapboxsdk.annotations.MarkerOptions
 import com.wysiwyg.temanolga.presenters.EventDetailPresenter
 import com.wysiwyg.temanolga.views.EventDetailView
 import com.mapbox.mapboxsdk.camera.CameraUpdateFactory
+import com.wysiwyg.temanolga.utils.DateTimeUtils.dateTimeFormat
 import com.wysiwyg.temanolga.utils.SpinnerItem.slotType
 import com.wysiwyg.temanolga.utils.SpinnerItem.sportPref
+import com.wysiwyg.temanolga.utils.gone
+import com.wysiwyg.temanolga.utils.invisible
+import com.wysiwyg.temanolga.utils.visible
 import org.jetbrains.anko.*
 import org.jetbrains.anko.design.snackbar
 import java.text.SimpleDateFormat
@@ -33,11 +40,15 @@ class EventDetailActivity : AppCompatActivity(), EventDetailView {
         try {
             FirebaseApi.getPostSender(event[0].postSender!!, tvUserEvent, null, imgUserEvent)
             tvSportEvent.text = String.format(getString(R.string.event_invitation), sportPref(this, event[0].sportName))
-            tvDateEvent.text = dateTimeFormat(event[0].date)
+            tvDateEvent.text = dateTimeFormat(event[0].date, "EEEE, dd MMMM yyyy")
             tvTimeEvent.text = event[0].time
             tvPlaceEvent.text = event[0].place?.split(",")!![0]
             tvPlaceDetail.text = event[0].place
             tvDescEvent.text = event[0].description
+            if (event[0].description == "") {
+                tvDescEvent.text = "-"
+            }
+
             tvSlotJoinEvent.text =
                     String.format(
                         getString(R.string.joined_event),
@@ -73,7 +84,7 @@ class EventDetailActivity : AppCompatActivity(), EventDetailView {
 
             btnEdit.setOnClickListener { startActivity<EditEventActivity>("event" to event[0]) }
             presenter.checkJoin(eventId)
-
+            presenter.isExpire(event[0].date!!+", "+event[0].time)
 
             val content = "${event[0].description} \n \n" +
                     "${sportPref(this, event[0].sportName)} at " +
@@ -105,7 +116,7 @@ class EventDetailActivity : AppCompatActivity(), EventDetailView {
     }
 
     override fun hideMap() {
-        placeMap.visibility = View.GONE
+        placeMap.gone()
     }
 
     override fun showJoinMsg() {
@@ -113,25 +124,25 @@ class EventDetailActivity : AppCompatActivity(), EventDetailView {
     }
 
     override fun showRequested(joinId: String) {
-        btnJoin.visibility = View.GONE
-        btnJoinRequest.visibility = View.VISIBLE
-        btnJoinAccepted.visibility = View.GONE
+        btnJoin.gone()
+        btnJoinRequest.visible()
+        btnJoinAccepted.gone()
 
         btnJoinRequest.setOnClickListener { presenter.cancelJoin(eventId, joinId) }
     }
 
     override fun showJoined(joinId: String) {
-        btnJoin.visibility = View.GONE
-        btnJoinRequest.visibility = View.GONE
-        btnJoinAccepted.visibility = View.VISIBLE
+        btnJoin.gone()
+        btnJoinRequest.gone()
+        btnJoinAccepted.visible()
 
         btnJoinAccepted.setOnClickListener { presenter.cancelConfirm(joinId) }
     }
 
     override fun showDefJoin() {
-        btnJoin.visibility = View.VISIBLE
-        btnJoinRequest.visibility = View.GONE
-        btnJoinAccepted.visibility = View.GONE
+        btnJoin.visible()
+        btnJoinRequest.gone()
+        btnJoinAccepted.gone()
     }
 
     override fun showCancelJoin(joinId: String) {
@@ -152,6 +163,19 @@ class EventDetailActivity : AppCompatActivity(), EventDetailView {
         toast("Post Deleted").show()
     }
 
+    override fun showExpire(date: String) {
+        lytExpire.gone()
+
+        val parseDate: Date = SimpleDateFormat("dd/MM/yyy, HH : mm", Locale.getDefault()).parse(date)
+        if (Date().after(parseDate)) {
+            btnJoin.setButtonIcon(R.drawable.ic_join)
+            btnJoinRequest.setButtonIcon(R.drawable.ic_join_request)
+            btnJoinAccepted.setButtonIcon(R.drawable.ic_join_accept)
+
+            lytExpire.visible()
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Mapbox.getInstance(this, getString(R.string.access_token))
@@ -160,9 +184,12 @@ class EventDetailActivity : AppCompatActivity(), EventDetailView {
 
         eventId = intent?.getStringExtra("eventId")!!
 
-        presenter.getData(eventId, event)
-
         btnDelete.delete()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        presenter.getData(eventId, event)
     }
 
     private fun initToolbar() {
@@ -173,15 +200,15 @@ class EventDetailActivity : AppCompatActivity(), EventDetailView {
 
     private fun checkPost(postSender: String?) {
         if (postSender == FirebaseApi.currentUser()) {
-            btnChat.visibility = View.INVISIBLE
-            btnJoin.visibility = View.GONE
-            btnEdit.visibility = View.VISIBLE
-            btnDelete.visibility = View.VISIBLE
+            btnChat.invisible()
+            btnJoin.gone()
+            btnEdit.visible()
+            btnDelete.visible()
         } else {
-            btnChat.visibility = View.VISIBLE
-            btnJoin.visibility = View.VISIBLE
-            btnEdit.visibility = View.GONE
-            btnDelete.visibility = View.GONE
+            btnChat.visible()
+            btnJoin.visible()
+            btnEdit.gone()
+            btnDelete.gone()
         }
     }
 
@@ -242,11 +269,11 @@ class EventDetailActivity : AppCompatActivity(), EventDetailView {
         }
     }
 
-    private fun dateTimeFormat(date: String?): String {
-        val format = SimpleDateFormat("dd/MM/yyy", Locale.getDefault())
-        val sdf = SimpleDateFormat("EEEE, dd MMMM yyyy", Locale.getDefault())
-
-        return sdf.format(format.parse(date))
+    private fun Button.setButtonIcon(icon: Int) {
+        val drawable = ContextCompat.getDrawable(context, icon)
+        drawable?.setColorFilter(ContextCompat.getColor(context, R.color.colorGrey), PorterDuff.Mode.SRC_IN)
+        setCompoundDrawablesRelativeWithIntrinsicBounds(null, drawable, null, null)
+        textColor = ContextCompat.getColor(context, R.color.colorGrey)
+        isEnabled = false
     }
-
 }

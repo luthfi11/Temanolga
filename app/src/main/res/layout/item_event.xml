@@ -37,15 +37,33 @@
                 android:layout_marginTop="1dp"
                 tools:text="USERNAME"/>
 
-        <TextView
-                android:id="@+id/tvUserCity"
+        <LinearLayout
+                android:id="@+id/lytCity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toEndOf="@id/imgUserMini"
                 android:layout_below="@id/card"
-                android:textSize="12sp"
                 android:layout_margin="3dp"
-                tools:text="City"/>
+                android:orientation="vertical">
+
+            <TextView
+                    android:id="@+id/tvUserCity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    tools:text="City"/>
+
+            <TextView
+                    android:id="@+id/tvExpire"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/holo_red_light"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:visibility="gone"
+                    android:text="@string/expire"/>
+
+        </LinearLayout>
 
         <TextView
                 android:id="@+id/tvTimePost"
@@ -79,7 +97,7 @@
                 android:paddingEnd="6dp"
                 android:layout_below="@id/tvDesc"
                 android:layout_toEndOf="@id/imgUserMini"
-                android:layout_marginTop="5dp" >
+                android:layout_marginTop="5dp">
 
             <TextView
                     android:id="@+id/tvDay"
@@ -169,7 +187,7 @@
                 android:id="@+id/button"
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
-                android:layout_below="@id/tvUserCity"
+                android:layout_below="@id/lytCity"
                 android:layout_marginBottom="-6dp"
                 android:layout_toEndOf="@id/imgUserMini">
 
@@ -199,7 +217,7 @@
                     style="@style/Base.Widget.AppCompat.Button.Borderless"
                     android:visibility="gone"
                     android:contentDescription="@string/join"
-                    android:src="@drawable/ic_join_request_small"/>
+                    android:src="@drawable/ic_join_request"/>
 
             <ImageButton
                     android:id="@+id/btnJoinAcc"

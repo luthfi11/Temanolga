@@ -11,6 +11,8 @@ import com.wysiwyg.temanolga.activities.SportVenueActivity
 import com.wysiwyg.temanolga.adapters.UserAdapter
 import com.wysiwyg.temanolga.models.User
 import com.wysiwyg.temanolga.presenters.ExplorePresenter
+import com.wysiwyg.temanolga.utils.gone
+import com.wysiwyg.temanolga.utils.visible
 import com.wysiwyg.temanolga.views.ExploreView
 import kotlinx.android.synthetic.main.fragment_explore.*
 import org.jetbrains.anko.support.v4.startActivity
@@ -29,8 +31,8 @@ class ExploreFragment: Fragment(), ExploreView {
 
     override fun showLoading() {
         try {
-            rv_people.visibility = View.GONE
-            progressExplore.visibility = View.VISIBLE
+            rv_people.gone()
+            progressExplore.visible()
         } catch (ex: Exception) {
             ex.printStackTrace()
         }
@@ -38,8 +40,8 @@ class ExploreFragment: Fragment(), ExploreView {
 
     override fun hideLoading() {
         try {
-            rv_people.visibility = View.VISIBLE
-            progressExplore.visibility = View.GONE
+            rv_people.visible()
+            progressExplore.gone()
         } catch (ex: Exception) {
             ex.printStackTrace()
         }

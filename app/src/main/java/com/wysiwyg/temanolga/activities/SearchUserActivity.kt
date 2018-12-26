@@ -5,11 +5,12 @@ import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.SearchView
 import android.view.MenuItem
-import android.view.View
 import com.wysiwyg.temanolga.R
 import com.wysiwyg.temanolga.adapters.SearchUserAdapter
 import com.wysiwyg.temanolga.models.User
 import com.wysiwyg.temanolga.presenters.SearchUserPresenter
+import com.wysiwyg.temanolga.utils.gone
+import com.wysiwyg.temanolga.utils.visible
 import com.wysiwyg.temanolga.views.SearchUserView
 import kotlinx.android.synthetic.main.activity_search_user.*
 
@@ -20,13 +21,13 @@ class SearchUserActivity : AppCompatActivity(), SearchUserView {
     private val presenter = SearchUserPresenter(this)
 
     override fun showLoading() {
-        progressSearch.visibility = View.VISIBLE
-        rvSearchPeople.visibility = View.GONE
+        progressSearch.visible()
+        rvSearchPeople.gone()
     }
 
     override fun hideLoading() {
-        progressSearch.visibility = View.GONE
-        rvSearchPeople.visibility = View.VISIBLE
+        progressSearch.gone()
+        rvSearchPeople.visible()
     }
 
     override fun showUser() {

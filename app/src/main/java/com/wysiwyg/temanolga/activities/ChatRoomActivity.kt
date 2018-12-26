@@ -2,6 +2,7 @@ package com.wysiwyg.temanolga.activities
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v4.content.ContextCompat
 import android.support.v7.widget.LinearLayoutManager
 import android.text.Editable
 import android.text.TextWatcher
@@ -64,7 +65,7 @@ class ChatRoomActivity : AppCompatActivity(), ChatRoomView {
     }
 
     private fun validateText() {
-        btnSend.setColorFilter(resources.getColor(R.color.colorMuted))
+        btnSend.setColorFilter(ContextCompat.getColor(this, R.color.colorMuted))
         btnSend.isEnabled = false
         et_message.addTextChangedListener(object : TextWatcher{
             override fun afterTextChanged(s: Editable?) {
@@ -77,10 +78,10 @@ class ChatRoomActivity : AppCompatActivity(), ChatRoomView {
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 if (et_message.text.isNotEmpty()) {
-                    btnSend.setColorFilter(resources.getColor(R.color.colorPrimary))
+                    btnSend.setColorFilter(ContextCompat.getColor(applicationContext, R.color.colorPrimary))
                     btnSend.isEnabled = true
                 } else {
-                    btnSend.setColorFilter(resources.getColor(R.color.colorMuted))
+                    btnSend.setColorFilter(ContextCompat.getColor(applicationContext, R.color.colorMuted))
                     btnSend.isEnabled = false
                 }
             }

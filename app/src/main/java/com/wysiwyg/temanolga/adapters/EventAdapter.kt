@@ -1,16 +1,17 @@
 package com.wysiwyg.temanolga.adapters
 
 import android.content.Intent
+import android.support.v4.content.ContextCompat
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import com.wysiwyg.temanolga.R
 import com.wysiwyg.temanolga.models.Event
 import kotlinx.android.synthetic.main.item_event.view.*
 import java.text.SimpleDateFormat
 import java.util.*
-import android.text.format.DateUtils
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -21,9 +22,12 @@ import com.wysiwyg.temanolga.activities.EventDetailActivity
 import com.wysiwyg.temanolga.activities.UserDetailActivity
 import com.wysiwyg.temanolga.api.FirebaseApi
 import com.wysiwyg.temanolga.models.Join
+import com.wysiwyg.temanolga.utils.DateTimeUtils.dateTimeFormat
 import com.wysiwyg.temanolga.utils.DateTimeUtils.minAgo
 import com.wysiwyg.temanolga.utils.SpinnerItem.slotType
 import com.wysiwyg.temanolga.utils.SpinnerItem.sportPref
+import com.wysiwyg.temanolga.utils.gone
+import com.wysiwyg.temanolga.utils.visible
 import org.jetbrains.anko.alert
 import org.jetbrains.anko.noButton
 import org.jetbrains.anko.startActivity
@@ -64,7 +68,7 @@ class EventAdapter(private val events: MutableList<Event>) :
             itemView.tvUserCity.text = event.city
 
             if (event.description == "") {
-                itemView.tvDesc.visibility = View.GONE
+                itemView.tvDesc.gone()
             } else {
                 itemView.tvDesc.text = event.description
             }
@@ -128,18 +132,19 @@ class EventAdapter(private val events: MutableList<Event>) :
             }
 
             if (event.postSender == FirebaseApi.currentUser()) {
-                itemView.btnJoin.visibility = View.GONE
-                itemView.btnChat.visibility = View.GONE
-                itemView.btnEdit.visibility = View.VISIBLE
-                itemView.btnDelete.visibility = View.VISIBLE
+                itemView.btnJoin.gone()
+                itemView.btnChat.gone()
+                itemView.btnEdit.visible()
+                itemView.btnDelete.visible()
             } else {
-                itemView.btnJoin.visibility = View.VISIBLE
-                itemView.btnChat.visibility = View.VISIBLE
-                itemView.btnEdit.visibility = View.GONE
-                itemView.btnDelete.visibility = View.GONE
+                itemView.btnJoin.visible()
+                itemView.btnChat.visible()
+                itemView.btnEdit.gone()
+                itemView.btnDelete.gone()
             }
 
             checkJoin(event.eventId)
+            isExpire(event.date!!+", "+event.time)
         }
 
         private fun checkJoin(eventId: String?) {
@@ -176,21 +181,21 @@ class EventAdapter(private val events: MutableList<Event>) :
 
 
         private fun joined() {
-            itemView.btnJoin.visibility = View.GONE
-            itemView.btnJoinReq.visibility = View.GONE
-            itemView.btnJoinAcc.visibility = View.VISIBLE
+            itemView.btnJoin.gone()
+            itemView.btnJoinReq.gone()
+            itemView.btnJoinAcc.visible()
         }
 
         private fun requested() {
-            itemView.btnJoin.visibility = View.GONE
-            itemView.btnJoinAcc.visibility = View.GONE
-            itemView.btnJoinReq.visibility = View.VISIBLE
+            itemView.btnJoin.gone()
+            itemView.btnJoinAcc.gone()
+            itemView.btnJoinReq.visible()
         }
 
         private fun default() {
-            itemView.btnJoin.visibility = View.VISIBLE
-            itemView.btnJoinAcc.visibility = View.GONE
-            itemView.btnJoinReq.visibility = View.GONE
+            itemView.btnJoin.visible()
+            itemView.btnJoinAcc.gone()
+            itemView.btnJoinReq.gone()
         }
 
         private fun View.showCancel(eventId: String, joinId: String) {
@@ -212,11 +217,18 @@ class EventAdapter(private val events: MutableList<Event>) :
             }
         }
 
-        private fun dateTimeFormat(date: String?, pattern: String): String {
-            val format = SimpleDateFormat("dd/MM/yyy", Locale.getDefault())
-            val sdf = SimpleDateFormat(pattern, Locale.getDefault())
+        private fun isExpire(date: String) {
+            val parseDate: Date = SimpleDateFormat("dd/MM/yyy, HH : mm", Locale.getDefault()).parse(date)
+            if (Date().after(parseDate)) {
+                itemView.tvExpire.visible()
+                itemView.btnJoin.isEnabled = false
+                itemView.btnJoinAcc.isEnabled = false
+                itemView.btnJoinReq.isEnabled = false
 
-            return sdf.format(format.parse(date))
+                itemView.btnJoin.setColorFilter(ContextCompat.getColor(itemView.context, R.color.colorGrey))
+                itemView.btnJoinAcc.setColorFilter(ContextCompat.getColor(itemView.context, R.color.colorGrey))
+                itemView.btnJoinReq.setColorFilter(ContextCompat.getColor(itemView.context, R.color.colorGrey))
+            }
         }
     }
 }

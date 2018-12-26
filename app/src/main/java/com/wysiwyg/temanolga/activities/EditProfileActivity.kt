@@ -14,8 +14,10 @@ import com.wysiwyg.temanolga.R
 import com.wysiwyg.temanolga.models.User
 import com.wysiwyg.temanolga.presenters.EditProfilePresenter
 import com.wysiwyg.temanolga.utils.CityUtil
-import com.wysiwyg.temanolga.utils.ValidateUtil
 import com.wysiwyg.temanolga.utils.ValidateUtil.etToString
+import com.wysiwyg.temanolga.utils.ValidateUtil.etValidate
+import com.wysiwyg.temanolga.utils.ValidateUtil.passwordValidate
+import com.wysiwyg.temanolga.utils.ValidateUtil.setError
 import com.wysiwyg.temanolga.utils.ValidateUtil.spnPosition
 import com.wysiwyg.temanolga.views.EditProfileView
 import kotlinx.android.synthetic.main.activity_edit_profile.*
@@ -112,9 +114,9 @@ class EditProfileActivity : AppCompatActivity(), EditProfileView {
                 true
             }
             R.id.nav_done -> {
-                if (ValidateUtil.etValidate(etFullName)) {
-                    if (ValidateUtil.etValidate(etCity)) {
-                        if (ValidateUtil.passwordValidate(etPassword)) {
+                if (etValidate(etFullName)) {
+                    if (etValidate(etCity)) {
+                        if (passwordValidate(etPassword)) {
 
                             initProgress()
                             newUser = User(
@@ -124,13 +126,13 @@ class EditProfileActivity : AppCompatActivity(), EditProfileView {
                             presenter.saveData(newUser)
 
                         } else {
-                            ValidateUtil.setError(etPassword, getString(R.string.password_length))
+                            setError(etPassword, getString(R.string.password_length))
                         }
                     } else {
-                        ValidateUtil.setError(etCity, getString(R.string.city_invalid))
+                        setError(etCity, getString(R.string.city_invalid))
                     }
                 } else {
-                    ValidateUtil.setError(etFullName, getString(R.string.fullname_invalid))
+                    setError(etFullName, getString(R.string.fullname_invalid))
                 }
 
                 true

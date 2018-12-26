@@ -15,6 +15,8 @@ import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
 import com.wysiwyg.temanolga.utils.DateTimeUtils.dayAgo
+import com.wysiwyg.temanolga.utils.gone
+import com.wysiwyg.temanolga.utils.visible
 
 class ChatRoomAdapter(private val messages: MutableList<Message>) :
     RecyclerView.Adapter<ChatRoomAdapter.ViewHolder>() {
@@ -48,26 +50,26 @@ class ChatRoomAdapter(private val messages: MutableList<Message>) :
             if (message.senderId == FirebaseApi.currentUser()) {
                 itemView.tvMessage.text = message.msgContent
                 itemView.tvSentTime.text = time
-                itemView.view1.visibility = View.GONE
+                itemView.view1.gone()
                 itemView.cv.copyToClipboard(message.msgContent)
 
             } else {
                 FirebaseApi.getPostSender(message.senderId!!, null, null, itemView.imgSender)
                 itemView.tvMessage1.text = message.msgContent
                 itemView.tvSentTime1.text = time
-                itemView.view.visibility = View.GONE
+                itemView.view.gone()
                 itemView.cv1.copyToClipboard(message.msgContent)
 
             }
         }
 
         fun bindTime(message: Message) {
-            itemView.tvTime.visibility = View.VISIBLE
+            itemView.tvTime.visible()
             itemView.tvTime.text = dayAgo(message.timeStamp!!)
         }
 
         fun hideTime() {
-            itemView.tvTime.visibility = View.GONE
+            itemView.tvTime.gone()
         }
 
         private fun View.copyToClipboard(msg: String?) {
