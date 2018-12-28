@@ -5,11 +5,11 @@ import android.widget.EditText
 import android.widget.Spinner
 
 object ValidateUtil {
-    fun etToString(editText: EditText) : String {
+    fun etToString(editText: EditText): String {
         return editText.text.toString()
     }
 
-    fun spnPosition(spinner: Spinner) : String {
+    fun spnPosition(spinner: Spinner): String {
         return spinner.selectedItemPosition.toString()
     }
 
@@ -21,11 +21,12 @@ object ValidateUtil {
         return etToString(etPass).length >= 8
     }
 
-    fun etValidate(editText: EditText) : Boolean {
+    fun etValidate(editText: EditText): Boolean {
         return etToString(editText).isNotEmpty()
     }
 
     fun setError(editText: EditText, msg: String) {
+        editText.requestFocus()
         editText.error = msg
     }
 }

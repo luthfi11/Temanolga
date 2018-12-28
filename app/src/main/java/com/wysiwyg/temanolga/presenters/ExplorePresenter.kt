@@ -7,12 +7,24 @@ import com.wysiwyg.temanolga.views.ExploreView
 class ExplorePresenter(private val view: ExploreView) {
 
     fun getUsers(user: MutableList<User>) {
-        view.showLoading()
-        FirebaseApi.getSuggestedUser(this, user)
+        try {
+            view.showLoading()
+            FirebaseApi.getSuggestedUser(this, user)
+        } catch (ex: Exception) {
+            ex.printStackTrace()
+        }
     }
 
-    fun getUsersSuccess() {
-        view.hideLoading()
-        view.showUsers()
+    fun getUsersSuccess(user: MutableList<User>) {
+        try {
+            view.hideLoading()
+            if (user.size == 0) {
+                view.showEmptyUser()
+            } else {
+                view.showUsers()
+            }
+        } catch (ex: Exception) {
+            ex.printStackTrace()
+        }
     }
 }

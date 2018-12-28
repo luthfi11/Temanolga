@@ -9,7 +9,7 @@ class ProfilePresenter(private val view: ProfileView) {
 
     fun getUser(user: MutableList<User>) {
         view.showLoading()
-        FirebaseApi.getCurrentUserData(user,this)
+        FirebaseApi.getCurrentUserData(user, this)
     }
 
     fun getUserSuccess(user: MutableList<User>) {
@@ -21,8 +21,20 @@ class ProfilePresenter(private val view: ProfileView) {
         FirebaseApi.getUserEventData(events, this)
     }
 
-    fun getUserEventSuccess() {
-        view.showEventData()
+    fun getUserEventSuccess(events: MutableList<Event>) {
+        try {
+            if (events.size == 0) {
+                view.showEmptyEvent()
+            } else {
+                view.showEventData()
+            }
+        } catch (ex: Exception) {
+            ex.printStackTrace()
+        }
+    }
+
+    fun logoutPrompt() {
+        view.showLogout()
     }
 
     fun logOut() {

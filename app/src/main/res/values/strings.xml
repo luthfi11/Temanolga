@@ -22,7 +22,7 @@
     <string name="signup_msg">Don\'t have an account ?</string>
     <string name="signin_msg">Already have an account ?</string>
     <string name="empty_password">Please fill your password</string>
-    <string name="email_invalid">Email is invalid</string>
+    <string name="email_invalid">Please fill your email correctly</string>
     <string name="fullname_invalid">Please fill your name</string>
     <string name="city_invalid">Please fill your city</string>
     <string name="password_length">Password min 8 character</string>
@@ -71,6 +71,14 @@
     <string name="change_photo">Change Photo</string>
     <string name="expire">EXPIRE</string>
     <string name="expire_msg">The Event Has Expired</string>
+    <string name="empty_event_user">No invitation yet</string>
+    <string name="empty_event_home">No invitation data found</string>
+    <string name="first_invitee">Be the first invitee</string>
+    <string name="empty_notif">No recent activity</string>
+    <string name="empty_message">Message empty</string>
+    <string name="empty_profile">No invitation yet on your profile</string>
+    <string name="empty_explore">No Suggested user found</string>
+    <string name="empty_search">User not found</string>
 
     <string name="event_invitation">%s Invitation</string>
     <string name="joined_event_limited">%1$d/%2$d %3$s Joined</string>

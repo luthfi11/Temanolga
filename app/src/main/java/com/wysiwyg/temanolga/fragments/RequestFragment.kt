@@ -10,6 +10,8 @@ import com.wysiwyg.temanolga.R
 import com.wysiwyg.temanolga.adapters.NotificationAdapter
 import com.wysiwyg.temanolga.models.Join
 import com.wysiwyg.temanolga.presenters.NotificationPresenter
+import com.wysiwyg.temanolga.utils.gone
+import com.wysiwyg.temanolga.utils.visible
 import com.wysiwyg.temanolga.views.NotificationView
 import kotlinx.android.synthetic.main.fragment_notification.*
 
@@ -27,10 +29,18 @@ class RequestFragment: Fragment(), NotificationView {
     }
 
     override fun showNotification() {
+        rv_notif.visible()
+        tvEmptyNotif.gone()
+
         adapter = NotificationAdapter(notif)
         adapter.notifyDataSetChanged()
         rv_notif?.layoutManager = LinearLayoutManager(context)
         rv_notif?.adapter = adapter
+    }
+
+    override fun showEmptyNotif() {
+        tvEmptyNotif.visible()
+        rv_notif.gone()
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {

@@ -4,6 +4,7 @@ import com.wysiwyg.temanolga.api.FirebaseApi
 import com.wysiwyg.temanolga.views.LoginView
 
 class LoginPresenter(private val view: LoginView) {
+
     fun login(email: String, password: String) {
         view.showLoading()
         FirebaseApi.login(email, password, this)

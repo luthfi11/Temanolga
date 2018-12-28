@@ -19,9 +19,17 @@ class HomePresenter(private val view: HomeView) {
         FirebaseApi.getEventData(events, sport, city,this)
     }
 
-    fun getDataSuccess() {
+    fun getDataSuccess(events: MutableList<Event>) {
         view.hideLoading()
-        view.showData()
+        try {
+            if (events.size == 0) {
+                view.showEmptyEvent()
+            } else {
+                view.showData()
+            }
+        } catch (ex: Exception) {
+            ex.printStackTrace()
+        }
     }
 
     fun getDataFail() {

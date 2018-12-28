@@ -31,10 +31,17 @@ class SearchUserActivity : AppCompatActivity(), SearchUserView {
     }
 
     override fun showUser() {
+        tvEmptySearch.gone()
+        rvSearchPeople.visible()
         rvSearchPeople.layoutManager = LinearLayoutManager(this)
         adapter = SearchUserAdapter(user)
         rvSearchPeople.adapter = adapter
         adapter.notifyDataSetChanged()
+    }
+
+    override fun showUserNotFound() {
+        tvEmptySearch.visible()
+        rvSearchPeople.gone()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

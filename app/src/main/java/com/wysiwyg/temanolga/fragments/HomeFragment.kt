@@ -4,7 +4,6 @@ import android.app.AlertDialog
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
-import android.util.Log
 import android.view.*
 import android.widget.ArrayAdapter
 import com.wysiwyg.temanolga.R
@@ -14,6 +13,8 @@ import kotlinx.android.synthetic.main.fragment_home.*
 import com.wysiwyg.temanolga.presenters.HomePresenter
 import com.wysiwyg.temanolga.utils.CityUtil
 import com.wysiwyg.temanolga.utils.SpinnerItem.sportPref
+import com.wysiwyg.temanolga.utils.gone
+import com.wysiwyg.temanolga.utils.visible
 import com.wysiwyg.temanolga.views.HomeView
 import kotlinx.android.synthetic.main.layout_filter.*
 import kotlinx.android.synthetic.main.layout_filter.view.*
@@ -36,6 +37,9 @@ class HomeFragment : Fragment(), HomeView {
     }
 
     override fun showData() {
+        lytEmptyHome.gone()
+        rv_data.visible()
+
         rv_data?.layoutManager = LinearLayoutManager(context)
         adapter = EventAdapter(events)
         rv_data?.adapter = adapter
@@ -87,6 +91,11 @@ class HomeFragment : Fragment(), HomeView {
         }
     }
 
+    override fun showEmptyEvent() {
+        rv_data.gone()
+        lytEmptyHome.visible()
+    }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_home, container, false)
     }
@@ -115,11 +124,4 @@ class HomeFragment : Fragment(), HomeView {
             else -> super.onOptionsItemSelected(item)
         }
     }
-
-    override fun onSaveInstanceState(outState: Bundle) {
-        outState.putString("sport", sport)
-        outState.putString("city", city)
-        super.onSaveInstanceState(outState)
-    }
-
 }

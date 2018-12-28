@@ -16,8 +16,16 @@ class NotificationPresenter(private val view: NotificationView) {
         FirebaseApi.getRequestNotif(this, join)
     }
 
-    fun getNotifSuccess() {
+    fun getNotifSuccess(join: MutableList<Join>) {
         view.hideLoading()
-        view.showNotification()
+        try {
+            if (join.size == 0) {
+                view.showEmptyNotif()
+            } else {
+                view.showNotification()
+            }
+        } catch (ex: Exception) {
+            ex.printStackTrace()
+        }
     }
 }

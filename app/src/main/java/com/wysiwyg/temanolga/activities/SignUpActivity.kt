@@ -56,7 +56,6 @@ class SignUpActivity : AppCompatActivity(), SignUpView {
         }
 
         btn_signup.setOnClickListener {
-            initProgressBar()
             signUp()
         }
     }
@@ -81,6 +80,7 @@ class SignUpActivity : AppCompatActivity(), SignUpView {
             if (etValidate(et_city)) {
                 if (emailValidate(et_email)) {
                     if (passwordValidate(et_password_signup)) {
+                        initProgressBar()
                         presenter.signUp(
                             etToString(et_full_name),
                             etToString(et_email),

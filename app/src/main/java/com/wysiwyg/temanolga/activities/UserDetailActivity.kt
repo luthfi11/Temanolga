@@ -14,6 +14,7 @@ import com.wysiwyg.temanolga.adapters.EventAdapter
 import com.wysiwyg.temanolga.models.Event
 import com.wysiwyg.temanolga.models.User
 import com.wysiwyg.temanolga.presenters.UserDetailPresenter
+import com.wysiwyg.temanolga.utils.SpinnerItem.accountType
 import com.wysiwyg.temanolga.utils.SpinnerItem.sportPref
 import com.wysiwyg.temanolga.utils.gone
 import com.wysiwyg.temanolga.utils.visible
@@ -28,6 +29,9 @@ class UserDetailActivity : AppCompatActivity(), UserDetailView {
     private lateinit var uid: String
 
     override fun showUserData(user: List<User>) {
+        rv_event_profile.visible()
+        tvEmptyEvent.gone()
+
         userData.addAll(user)
 
         val imgUser = findViewById<ImageView>(R.id.imgUser)
@@ -35,7 +39,7 @@ class UserDetailActivity : AppCompatActivity(), UserDetailView {
         Picasso.get().load(userData[0].imgPath).resize(200,200)
             .centerCrop().placeholder(R.color.colorMuted).into(imgUser)
         tvUserFullName.text = userData[0].fullName
-        tvUserSport.text = sport(userData[0].accountType, userData[0].sportPreferred)
+        tvUserSport.text = accountType(this, userData[0].accountType, userData[0].sportPreferred)
         tvUserCity.text = userData[0].city
     }
 
@@ -53,11 +57,9 @@ class UserDetailActivity : AppCompatActivity(), UserDetailView {
         progressBar.gone()
     }
 
-    private fun sport(accType: String?, sport: String?): String {
-        return when (accType) {
-            "1" -> String.format(getString(R.string.acc_team), sportPref(this, sport))
-            else -> String.format(getString(R.string.acc_personal), sportPref(this, sport))
-        }
+    override fun showEmptyPost() {
+        rv_event_profile.gone()
+        tvEmptyEvent.visible()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

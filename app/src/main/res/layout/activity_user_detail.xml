@@ -86,11 +86,22 @@
             android:layout_height="wrap_content"
             app:layout_behavior="android.support.design.widget.AppBarLayout$ScrollingViewBehavior">
 
-        <android.support.constraint.ConstraintLayout
+        <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:orientation="vertical"
                 android:paddingTop="4dp"
                 android:paddingBottom="10dp">
+
+            <TextView
+                    android:id="@+id/tvEmptyEvent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:textSize="16sp"
+                    android:padding="10dp"
+                    android:visibility="gone"
+                    android:text="@string/empty_event_user"/>
 
             <android.support.v7.widget.RecyclerView
                     android:id="@+id/rv_event_profile"
@@ -100,6 +111,6 @@
                     android:clipToPadding="false"
                     tools:listitem="@layout/item_event"/>
 
-        </android.support.constraint.ConstraintLayout>
+        </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
 </android.support.design.widget.CoordinatorLayout>

@@ -114,30 +114,33 @@ class EditProfileActivity : AppCompatActivity(), EditProfileView {
                 true
             }
             R.id.nav_done -> {
-                if (etValidate(etFullName)) {
-                    if (etValidate(etCity)) {
-                        if (passwordValidate(etPassword)) {
-
-                            initProgress()
-                            newUser = User(
-                                user.userId, etToString(etFullName), user.email, etToString(etPassword),
-                                spnPosition(spnAccount), spnPosition(spnSport), etToString(etCity), path
-                            )
-                            presenter.saveData(newUser)
-
-                        } else {
-                            setError(etPassword, getString(R.string.password_length))
-                        }
-                    } else {
-                        setError(etCity, getString(R.string.city_invalid))
-                    }
-                } else {
-                    setError(etFullName, getString(R.string.fullname_invalid))
-                }
-
+                updateProfile()
                 true
             }
             else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+    private fun updateProfile() {
+        if (etValidate(etFullName)) {
+            if (etValidate(etCity)) {
+                if (passwordValidate(etPassword)) {
+
+                    initProgress()
+                    newUser = User(
+                        user.userId, etToString(etFullName), user.email, etToString(etPassword),
+                        spnPosition(spnAccount), spnPosition(spnSport), etToString(etCity), path
+                    )
+                    presenter.saveData(newUser)
+
+                } else {
+                    setError(etPassword, getString(R.string.password_length))
+                }
+            } else {
+                setError(etCity, getString(R.string.city_invalid))
+            }
+        } else {
+            setError(etFullName, getString(R.string.fullname_invalid))
         }
     }
 

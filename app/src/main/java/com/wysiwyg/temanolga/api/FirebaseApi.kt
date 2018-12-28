@@ -83,7 +83,7 @@ object FirebaseApi {
                     }
 
                     reverse(events)
-                    presenter.getDataSuccess()
+                    presenter.getDataSuccess(events)
                 }
 
                 override fun onCancelled(databaseError: DatabaseError) {
@@ -101,7 +101,7 @@ object FirebaseApi {
                         it.getValue<Event>(Event::class.java)
                     }
                     reverse(events)
-                    presenter.getUserEventSuccess()
+                    presenter.getUserEventSuccess(events)
                 }
 
                 override fun onCancelled(databaseError: DatabaseError) {
@@ -314,7 +314,7 @@ object FirebaseApi {
                             return o2?.timeStamp!!.compareTo(o1?.timeStamp!!)
                         }
                     })
-                    presenter.getMessageSuccess()
+                    presenter.getMessageSuccess(msg)
                 }
             })
     }
@@ -346,7 +346,7 @@ object FirebaseApi {
                         it.getValue<Event>(Event::class.java)
                     }
                     reverse(events)
-                    presenter.getUserEventSuccess()
+                    presenter.getUserEventSuccess(events)
                 }
 
                 override fun onCancelled(databaseError: DatabaseError) {
@@ -437,7 +437,7 @@ object FirebaseApi {
 
                     })
 
-                    presenter.getNotifSuccess()
+                    presenter.getNotifSuccess(join)
                 }
             })
     }
@@ -468,7 +468,7 @@ object FirebaseApi {
                         }
                     })
 
-                    presenter.getNotifSuccess()
+                    presenter.getNotifSuccess(join)
                 }
             })
     }
@@ -567,7 +567,7 @@ object FirebaseApi {
                     }
                 }
 
-                presenter.getUsersSuccess()
+                presenter.getUsersSuccess(user)
             }
 
         })
@@ -612,7 +612,7 @@ object FirebaseApi {
                         }
                     }
 
-                    presenter.getDataSuccess()
+                    presenter.getDataSuccess(user)
                 }
 
                 override fun onCancelled(p0: DatabaseError) {

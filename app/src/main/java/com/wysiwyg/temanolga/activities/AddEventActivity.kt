@@ -8,7 +8,6 @@ import android.view.Menu
 import android.view.MenuItem
 import com.wysiwyg.temanolga.R
 import com.wysiwyg.temanolga.R.id.*
-import com.wysiwyg.temanolga.api.FirebaseApi
 import com.wysiwyg.temanolga.presenters.AddEventPresenter
 import com.wysiwyg.temanolga.utils.DateTimePicker
 import com.wysiwyg.temanolga.utils.ValidateUtil.etToString
@@ -55,6 +54,14 @@ class AddEventActivity : AppCompatActivity(), AddEventView {
         supportActionBar?.title = ""
     }
 
+    private fun initProgressBar() {
+        mProgressDialog = indeterminateProgressDialog("Posting", null){
+            this.setCancelable(false)
+            this.setCanceledOnTouchOutside(false)
+            this.show()
+        }
+    }
+
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         return when (item?.itemId) {
             android.R.id.home -> {
@@ -62,11 +69,6 @@ class AddEventActivity : AppCompatActivity(), AddEventView {
                 true
             }
             nav_done -> {
-                mProgressDialog = indeterminateProgressDialog("Posting", null){
-                    this.setCancelable(false)
-                    this.setCanceledOnTouchOutside(false)
-                    this.show()
-                }
                 addEvent()
                 true
             }
@@ -88,7 +90,7 @@ class AddEventActivity : AppCompatActivity(), AddEventView {
     }
 
     private fun initDialog() {
-        FirebaseApi.getUserSportPreferred(spn_sport_add, spn_slot_type)
+        presenter.getUserPreferred(spn_sport_add, spn_slot_type)
         btnDatePicker.setOnClickListener { DateTimePicker.datePicker(et_date, tvDate, this) }
         btnTimePicker.setOnClickListener { DateTimePicker.timePicker(et_time, this) }
         btnPlaceSearch.setOnClickListener { startActivityForResult<PlaceSearchActivity>(1) }
@@ -99,6 +101,7 @@ class AddEventActivity : AppCompatActivity(), AddEventView {
             if (etValidate(et_date)) {
                 if (etValidate(et_time)) {
 
+                    initProgressBar()
                     presenter.addEvent(
                         spnPosition(spn_sport_add),
                         etToString(et_place),
@@ -111,15 +114,12 @@ class AddEventActivity : AppCompatActivity(), AddEventView {
                     )
 
                 } else {
-                    hideLoading()
                     setError(et_time, getString(R.string.time_invalid))
                 }
             } else {
-                hideLoading()
                 setError(et_date, getString(R.string.date_invalid))
             }
         } else {
-            hideLoading()
             setError(et_place, getString(R.string.place_invalid))
         }
     }

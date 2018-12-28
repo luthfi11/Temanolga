@@ -7,5 +7,7 @@ interface ProfileView {
     fun hideLoading()
     fun showUserData(user: List<User>)
     fun showEventData()
+    fun showEmptyEvent()
+    fun showLogout()
     fun doLogOut()
 }

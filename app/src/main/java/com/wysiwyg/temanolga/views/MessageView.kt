@@ -4,4 +4,5 @@ interface MessageView {
     fun showMessage()
     fun showLoading()
     fun hideLoading()
+    fun showEmptyMessage()
 }

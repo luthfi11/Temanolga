@@ -7,11 +7,27 @@
         android:layout_height="match_parent"
         tools:context=".fragments.NotificationFragmentManager">
 
-    <FrameLayout android:layout_width="wrap_content" android:layout_height="match_parent">
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+        <TextView
+                android:id="@+id/tvEmptyNotif"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textSize="16sp"
+                android:gravity="center"
+                android:paddingBottom="50dp"
+                android:visibility="gone"
+                android:text="@string/empty_notif"/>
+
         <android.support.v7.widget.RecyclerView
                 android:id="@+id/rv_notif"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 tools:listitem="@layout/item_notification"/>
-    </FrameLayout>
+
+    </LinearLayout>
+
 </android.support.v4.widget.SwipeRefreshLayout>

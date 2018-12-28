@@ -54,7 +54,6 @@
             <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="12dp"
                     android:orientation="horizontal">
 
                 <Spinner
@@ -63,7 +62,7 @@
                         android:layout_weight="0.5"
                         android:layout_height="50dp"
                         android:layout_marginBottom="14dp"
-                        android:layout_marginEnd="3dp"
+                        android:layout_marginEnd="7dp"
                         android:popupBackground="@color/colorPrimaryDark"
                         android:background="@drawable/edit_text_shape"
                         tools:entries="@array/account_type"/>
@@ -74,7 +73,7 @@
                         android:layout_weight="0.5"
                         android:layout_height="50dp"
                         android:layout_marginBottom="14dp"
-                        android:layout_marginStart="3dp"
+                        android:layout_marginStart="7dp"
                         android:popupBackground="@color/colorPrimaryDark"
                         android:background="@drawable/edit_text_shape"
                         tools:entries="@array/sport_array"/>
@@ -140,7 +139,7 @@
             <Button
                     android:id="@+id/btn_signup"
                     android:layout_width="140dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="40dp"
                     android:background="@drawable/button_shape_white"
                     android:layout_marginBottom="8dp"
                     android:text="@string/signup"/>

@@ -11,9 +11,17 @@ class MessagePresenter(private val view: MessageView) {
         FirebaseApi.getMessageList(msg, this)
     }
 
-    fun getMessageSuccess() {
+    fun getMessageSuccess(msg: MutableList<Message>) {
         view.hideLoading()
-        view.showMessage()
+        try {
+            if (msg.size == 0) {
+                view.showEmptyMessage()
+            } else {
+                view.showMessage()
+            }
+        } catch (ex: Exception) {
+            ex.printStackTrace()
+        }
     }
 
 }

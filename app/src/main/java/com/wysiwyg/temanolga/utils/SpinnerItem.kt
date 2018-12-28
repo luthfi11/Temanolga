@@ -23,4 +23,11 @@ object SpinnerItem {
         }
         return slotNm
     }
+
+    fun accountType(context: Context, accType: String?, sport: String?): String {
+        return when (accType) {
+            "1" -> String.format(context.getString(R.string.acc_team), sportPref(context, sport))
+            else -> String.format(context.getString(R.string.acc_personal), sportPref(context, sport))
+        }
+    }
 }

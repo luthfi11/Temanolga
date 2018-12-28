@@ -17,34 +17,34 @@ import com.wysiwyg.temanolga.views.ExploreView
 import kotlinx.android.synthetic.main.fragment_explore.*
 import org.jetbrains.anko.support.v4.startActivity
 
-class ExploreFragment: Fragment(), ExploreView {
+class ExploreFragment : Fragment(), ExploreView {
 
     private lateinit var adapter: UserAdapter
     private val presenter = ExplorePresenter(this)
     private var user: MutableList<User> = mutableListOf()
 
     override fun showUsers() {
+        rv_people.visible()
+        tvEmptyExplore.gone()
+
         adapter = UserAdapter(user)
         rv_people?.adapter = adapter
         adapter.notifyDataSetChanged()
     }
 
     override fun showLoading() {
-        try {
-            rv_people.gone()
-            progressExplore.visible()
-        } catch (ex: Exception) {
-            ex.printStackTrace()
-        }
+        rv_people.gone()
+        progressExplore.visible()
     }
 
     override fun hideLoading() {
-        try {
-            rv_people.visible()
-            progressExplore.gone()
-        } catch (ex: Exception) {
-            ex.printStackTrace()
-        }
+        rv_people.visible()
+        progressExplore.gone()
+    }
+
+    override fun showEmptyUser() {
+        rv_people.gone()
+        tvEmptyExplore.visible()
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {

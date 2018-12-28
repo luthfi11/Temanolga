@@ -21,7 +21,11 @@ class UserDetailPresenter(private val view: UserDetailView) {
         FirebaseApi.getUserDetailEvent(events, uid, this)
     }
 
-    fun getUserEventSuccess() {
-        view.showEventData()
+    fun getUserEventSuccess(events: MutableList<Event>) {
+        if (events.size == 0) {
+            view.showEmptyPost()
+        } else {
+            view.showEventData()
+        }
     }
 }

@@ -7,4 +7,5 @@ interface HomeView {
     fun showFail()
     fun selection(sport: String, city: String)
     fun showFilterDialog()
+    fun showEmptyEvent()
 }

@@ -11,8 +11,16 @@ class SearchUserPresenter(private val view: SearchUserView) {
         FirebaseApi.searchUser(this, user, name)
     }
 
-    fun getDataSuccess() {
+    fun getDataSuccess(user: MutableList<User?>) {
         view.hideLoading()
-        view.showUser()
+        try {
+            if (user.size == 0) {
+                view.showUserNotFound()
+            } else {
+                view.showUser()
+            }
+        } catch (ex: Exception) {
+            ex.printStackTrace()
+        }
     }
 }

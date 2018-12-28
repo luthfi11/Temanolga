@@ -86,11 +86,20 @@ class EditEventActivity : AppCompatActivity(), EditEventView {
         btnPlaceSearch.setOnClickListener { startActivityForResult<PlaceSearchActivity>(1) }
     }
 
+    private fun initProgressBar() {
+        mProgressDialog = indeterminateProgressDialog("Updating Invitation", null){
+            this.setCancelable(false)
+            this.setCanceledOnTouchOutside(false)
+            this.show()
+        }
+    }
+
     private fun editEvent() {
         if (ValidateUtil.etValidate(et_place)) {
             if (ValidateUtil.etValidate(et_date)) {
                 if (ValidateUtil.etValidate(et_time)) {
 
+                    initProgressBar()
                     newEvent = Event(
                         event.eventId,
                         event.postSender,
@@ -109,15 +118,12 @@ class EditEventActivity : AppCompatActivity(), EditEventView {
                     presenter.updateEvent(event.eventId!!, newEvent)
 
                 } else {
-                    hideLoading()
                     ValidateUtil.setError(et_time, getString(R.string.time_invalid))
                 }
             } else {
-                hideLoading()
                 ValidateUtil.setError(et_date, getString(R.string.date_invalid))
             }
         } else {
-            hideLoading()
             ValidateUtil.setError(et_place, getString(R.string.place_invalid))
         }
     }
@@ -134,11 +140,6 @@ class EditEventActivity : AppCompatActivity(), EditEventView {
                 true
             }
             R.id.nav_done -> {
-                mProgressDialog = indeterminateProgressDialog("Updating Invitation", null){
-                    this.setCancelable(false)
-                    this.setCanceledOnTouchOutside(false)
-                    this.show()
-                }
                 editEvent()
                 true
             }
