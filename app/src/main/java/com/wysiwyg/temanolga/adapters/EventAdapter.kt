@@ -144,6 +144,7 @@ class EventAdapter(private val events: MutableList<Event>) :
             }
 
             checkJoin(event.eventId)
+            checkAccType(event.slotType!!)
             isExpire(event.date!!+", "+event.time)
         }
 
@@ -229,6 +230,36 @@ class EventAdapter(private val events: MutableList<Event>) :
                 itemView.btnJoinAcc.setColorFilter(ContextCompat.getColor(itemView.context, R.color.colorGrey))
                 itemView.btnJoinReq.setColorFilter(ContextCompat.getColor(itemView.context, R.color.colorGrey))
             }
+        }
+
+        private fun checkAccType(slotType: String) {
+            FirebaseDatabase.getInstance().reference.child("user")
+                .child(FirebaseApi.currentUser()!!).addListenerForSingleValueEvent(object : ValueEventListener{
+                override fun onCancelled(p0: DatabaseError) {
+
+                }
+
+                override fun onDataChange(p0: DataSnapshot) {
+                    val accType = p0.child("accountType").getValue(String::class.java)
+                    when (accType) {
+                        "0" -> {
+                            if (slotType == "1") {
+                                disableJoin()
+                            }
+                        }
+                        "1" -> {
+                            if (slotType == "0") {
+                                disableJoin()
+                            }
+                        }
+                    }
+                }
+            })
+        }
+
+        private fun disableJoin() {
+            itemView.btnJoin.isEnabled = false
+            itemView.btnJoin.setColorFilter(ContextCompat.getColor(itemView.context, R.color.colorGrey))
         }
     }
 }

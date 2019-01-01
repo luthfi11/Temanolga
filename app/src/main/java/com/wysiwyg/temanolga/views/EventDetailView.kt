@@ -12,6 +12,9 @@ interface EventDetailView {
     fun showDefJoin()
     fun showCancelJoin(joinId: String)
     fun showDeleteConfirm()
+    fun isOwnPost()
+    fun isUserPost()
+    fun disableJoin(slotType: String)
     fun afterDelete()
     fun showExpire(date: String)
 }

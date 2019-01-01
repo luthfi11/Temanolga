@@ -21,6 +21,7 @@ class MainActivity : AppCompatActivity() {
         isLogin()
         initNavigation(savedInstanceState)
         fab.addEvent()
+
     }
 
     private fun View.addEvent() {

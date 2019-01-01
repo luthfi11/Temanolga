@@ -31,6 +31,22 @@ class EventDetailPresenter(private val view: EventDetailView) {
         view.showJoinMsg()
     }
 
+    fun checkPost(postSender: String?) {
+        if (postSender == FirebaseApi.currentUser()) {
+            view.isOwnPost()
+        } else {
+            view.isUserPost()
+        }
+    }
+
+    fun checkAccType(slotType: String) {
+        FirebaseApi.checkAccType(slotType, this)
+    }
+
+    fun disableJoin(slotType: String) {
+        view.disableJoin(slotType)
+    }
+
     fun checkJoin(eventId: String?) {
         FirebaseApi.checkJoin(this, eventId)
     }
@@ -43,7 +59,7 @@ class EventDetailPresenter(private val view: EventDetailView) {
         view.showJoined(joinId)
     }
 
-    fun defaultJoin(){
+    fun defaultJoin() {
         view.showDefJoin()
     }
 
@@ -51,7 +67,7 @@ class EventDetailPresenter(private val view: EventDetailView) {
         view.showCancelJoin(joinId)
     }
 
-    fun cancelJoin(eventId: String, joinId: String){
+    fun cancelJoin(eventId: String, joinId: String) {
         FirebaseApi.cancelJoin(eventId, joinId)
         view.showDefJoin()
     }

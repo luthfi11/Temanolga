@@ -18,6 +18,7 @@
     <string name="football">Football</string>
     <string name="person">Person</string>
     <string name="team">Team</string>
+    <string name="person_or_team">Team or person</string>
     <string name="city">City</string>
     <string name="signup_msg">Don\'t have an account ?</string>
     <string name="signin_msg">Already have an account ?</string>
@@ -82,9 +83,10 @@
 
     <string name="event_invitation">%s Invitation</string>
     <string name="joined_event_limited">%1$d/%2$d %3$s Joined</string>
-    <string name="slot_type_limited">%d %s Quota</string>
+    <string name="slot_type_limited">%d %s limit</string>
     <string name="joined_event">%d %s Joined</string>
     <string name="slot_type">Free %s Join</string>
+    <string name="slot_only">%s Only</string>
 
     <string name="acc_personal">Interested in %s</string>
     <string name="acc_team">%s Team</string>
@@ -95,6 +97,8 @@
 
     <string name="showing_filter">Showing %1$s invitation in %2$s</string>
     <string name="showing_filter_no_city">Showing %1$s invitation</string>
+
+    <string name="default_notification_channel_id">temanolga_default_channel</string>
 
     <string name="access_token">
         pk.eyJ1IjoibHV0aGZpMTEiLCJhIjoiY2psdWVvM3J3MGszaTN3cXA1ODRqcGQ1cSJ9.Kg15RUMGU58Zigp5yJvq3g
@@ -114,6 +118,7 @@
     <array name="slot_type_array">
         <item>Person</item>
         <item>Team</item>
+        <item>Team or person</item>
     </array>
 
 </resources>

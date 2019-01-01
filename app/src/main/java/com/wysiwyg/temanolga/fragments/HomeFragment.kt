@@ -12,6 +12,7 @@ import com.wysiwyg.temanolga.models.Event
 import kotlinx.android.synthetic.main.fragment_home.*
 import com.wysiwyg.temanolga.presenters.HomePresenter
 import com.wysiwyg.temanolga.utils.CityUtil
+import com.wysiwyg.temanolga.utils.ConnectionUtil.isOnline
 import com.wysiwyg.temanolga.utils.SpinnerItem.sportPref
 import com.wysiwyg.temanolga.utils.gone
 import com.wysiwyg.temanolga.utils.visible
@@ -46,8 +47,8 @@ class HomeFragment : Fragment(), HomeView {
         adapter.notifyDataSetChanged()
     }
 
-    override fun showFail() {
-        toast("Can't get data")
+    override fun showNoConnection() {
+        toast("Network error, can't get data")
     }
 
     override fun selection(sport: String, city: String) {
@@ -105,8 +106,6 @@ class HomeFragment : Fragment(), HomeView {
         setHasOptionsMenu(true)
 
         presenter.showDataFilter()
-
-        showLoading()
         srl_home.setOnRefreshListener { presenter.getData(events, sport, city) }
     }
 

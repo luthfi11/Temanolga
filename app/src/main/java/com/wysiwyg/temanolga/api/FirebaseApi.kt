@@ -87,7 +87,7 @@ object FirebaseApi {
                 }
 
                 override fun onCancelled(databaseError: DatabaseError) {
-                    presenter.getDataFail()
+
                 }
             })
     }
@@ -211,7 +211,6 @@ object FirebaseApi {
 
                     val accType = p0.child("accountType").getValue(String::class.java)
                     spnSlot?.setSelection(accType!!.toInt())
-
                 }
             })
     }
@@ -403,6 +402,31 @@ object FirebaseApi {
                                 else -> presenter.defaultJoin()
                             }
                             data
+                        }
+                    }
+                }
+            })
+    }
+
+    fun checkAccType(slotType: String, presenter: EventDetailPresenter) {
+        database.child("user")
+            .child(auth.currentUser!!.uid).addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onCancelled(p0: DatabaseError) {
+
+                }
+
+                override fun onDataChange(p0: DataSnapshot) {
+                    val accType = p0.child("accountType").getValue(String::class.java)
+                    when (accType) {
+                        "0" -> {
+                            if (slotType == "1") {
+                                presenter.disableJoin(slotType)
+                            }
+                        }
+                        "1" -> {
+                            if (slotType == "0") {
+                                presenter.disableJoin(slotType)
+                            }
                         }
                     }
                 }
@@ -603,22 +627,22 @@ object FirebaseApi {
 
     fun searchUser(presenter: SearchUserPresenter, user: MutableList<User?>, name: String) {
         database.child("user").addValueEventListener(object : ValueEventListener {
-                override fun onDataChange(p0: DataSnapshot) {
-                    user.clear()
-                    for (data: DataSnapshot in p0.children) {
-                        val userData = data.getValue(User::class.java)
-                        if ((userData?.userId != auth.currentUser!!.uid) and (userData?.fullName?.contains(name, true)!!) ) {
-                            user.add(userData)
-                        }
+            override fun onDataChange(p0: DataSnapshot) {
+                user.clear()
+                for (data: DataSnapshot in p0.children) {
+                    val userData = data.getValue(User::class.java)
+                    if ((userData?.userId != auth.currentUser!!.uid) and (userData?.fullName?.contains(name, true)!!)) {
+                        user.add(userData)
                     }
-
-                    presenter.getDataSuccess(user)
                 }
 
-                override fun onCancelled(p0: DatabaseError) {
+                presenter.getDataSuccess(user)
+            }
 
-                }
-            })
+            override fun onCancelled(p0: DatabaseError) {
+
+            }
+        })
     }
 
     fun editEvent(presenter: EditEventPresenter, eventId: String, event: Event) {

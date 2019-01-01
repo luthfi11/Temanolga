@@ -7,6 +7,7 @@ import com.wysiwyg.temanolga.views.HomeView
 class HomePresenter(private val view: HomeView) {
 
     fun showDataFilter() {
+        view.showLoading()
         FirebaseApi.getDataFilter(this)
     }
 
@@ -16,7 +17,7 @@ class HomePresenter(private val view: HomeView) {
 
     fun getData(events: MutableList<Event>, sport: String, city: String) {
         view.showLoading()
-        FirebaseApi.getEventData(events, sport, city,this)
+        FirebaseApi.getEventData(events, sport, city, this)
     }
 
     fun getDataSuccess(events: MutableList<Event>) {
@@ -30,11 +31,6 @@ class HomePresenter(private val view: HomeView) {
         } catch (ex: Exception) {
             ex.printStackTrace()
         }
-    }
-
-    fun getDataFail() {
-        view.hideLoading()
-        view.showFail()
     }
 
     fun showDialog() {

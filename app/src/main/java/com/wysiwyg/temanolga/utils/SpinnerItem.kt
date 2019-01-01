@@ -20,6 +20,7 @@ object SpinnerItem {
         when (slotType) {
             "0" -> slotNm = ctx.getString(R.string.person)
             "1" -> slotNm = ctx.getString(R.string.team)
+            "2" -> slotNm = ctx.getString(R.string.person_or_team)
         }
         return slotNm
     }

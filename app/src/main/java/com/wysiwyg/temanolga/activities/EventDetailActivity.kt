@@ -20,6 +20,7 @@ import com.wysiwyg.temanolga.presenters.EventDetailPresenter
 import com.wysiwyg.temanolga.views.EventDetailView
 import com.mapbox.mapboxsdk.camera.CameraUpdateFactory
 import com.wysiwyg.temanolga.utils.DateTimeUtils.dateTimeFormat
+import com.wysiwyg.temanolga.utils.SpinnerItem
 import com.wysiwyg.temanolga.utils.SpinnerItem.slotType
 import com.wysiwyg.temanolga.utils.SpinnerItem.sportPref
 import com.wysiwyg.temanolga.utils.gone
@@ -73,7 +74,7 @@ class EventDetailActivity : AppCompatActivity(), EventDetailView {
                 presenter.getMap(savedInstanceState, longLat[1], longLat[0], mapTitle(event[0].place!!))
             }
 
-            checkPost(event[0].postSender)
+            presenter.checkPost(event[0].postSender)
 
             btnJoin.join(eventId, event[0].postSender)
             btnChat.toChat(event[0].postSender!!)
@@ -84,6 +85,7 @@ class EventDetailActivity : AppCompatActivity(), EventDetailView {
 
             btnEdit.setOnClickListener { startActivity<EditEventActivity>("event" to event[0]) }
             presenter.checkJoin(eventId)
+            presenter.checkAccType(event[0].slotType!!)
             presenter.isExpire(event[0].date!!+", "+event[0].time)
 
             val content = "${event[0].description} \n \n" +
@@ -121,6 +123,25 @@ class EventDetailActivity : AppCompatActivity(), EventDetailView {
 
     override fun showJoinMsg() {
         snackbar(tvDescEvent, "Requested").show()
+    }
+
+    override fun isOwnPost() {
+        btnChat.invisible()
+        btnJoin.gone()
+        btnEdit.visible()
+        btnDelete.visible()
+    }
+
+    override fun isUserPost() {
+        btnChat.visible()
+        btnJoin.visible()
+        btnEdit.gone()
+        btnDelete.gone()
+    }
+
+    override fun disableJoin(slotType: String) {
+        btnJoin.setButtonIcon(R.drawable.ic_join)
+        btnJoin.text = String.format(getString(R.string.slot_only), slotType(this, slotType))
     }
 
     override fun showRequested(joinId: String) {
@@ -196,20 +217,6 @@ class EventDetailActivity : AppCompatActivity(), EventDetailView {
         setSupportActionBar(toolbar_add_event)
         supportActionBar?.title = ""
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-    }
-
-    private fun checkPost(postSender: String?) {
-        if (postSender == FirebaseApi.currentUser()) {
-            btnChat.invisible()
-            btnJoin.gone()
-            btnEdit.visible()
-            btnDelete.visible()
-        } else {
-            btnChat.visible()
-            btnJoin.visible()
-            btnEdit.gone()
-            btnDelete.gone()
-        }
     }
 
     private fun mapTitle(place: String): String? {
