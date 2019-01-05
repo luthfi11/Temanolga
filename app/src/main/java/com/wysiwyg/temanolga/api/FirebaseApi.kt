@@ -5,6 +5,7 @@ import android.net.Uri
 import android.widget.ImageView
 import android.widget.Spinner
 import android.widget.TextView
+import com.google.android.gms.tasks.OnSuccessListener
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import com.google.firebase.storage.FirebaseStorage
@@ -16,6 +17,9 @@ import com.wysiwyg.temanolga.models.User
 import com.wysiwyg.temanolga.presenters.*
 import java.util.Collections.reverse
 import com.google.firebase.database.DataSnapshot
+import com.google.firebase.iid.FirebaseInstanceId
+import com.google.firebase.iid.InstanceIdResult
+import com.google.firebase.messaging.FirebaseMessaging
 import com.wysiwyg.temanolga.models.Join
 import com.wysiwyg.temanolga.utils.Spannable.setBoldSpannable
 import com.wysiwyg.temanolga.utils.SpinnerItem.sportPref
@@ -36,6 +40,17 @@ object FirebaseApi {
         auth.signInWithEmailAndPassword(email, password).addOnCompleteListener { task ->
             if (task.isSuccessful) {
                 presenter.loginSuccess()
+
+                FirebaseInstanceId.getInstance().instanceId.addOnSuccessListener(object : OnSuccessListener<InstanceIdResult> {
+                    override fun onSuccess(p0: InstanceIdResult?) {
+                        val token = p0?.token.toString()
+                        database.child("user")
+                            .child(auth.currentUser!!.uid)
+                            .child("tokenId")
+                            .setValue(token)
+                    }
+                })
+
             } else {
                 presenter.loginFailed()
             }
@@ -60,12 +75,33 @@ object FirebaseApi {
         fullName: String?, email: String?, password: String?,
         accountType: String?, sport: String?, city: String?
     ) {
-        database.child("user")
-            .child(auth.currentUser!!.uid)
-            .setValue(User(auth.currentUser!!.uid, fullName, email, password, accountType, sport, city, imgPath))
+        FirebaseInstanceId.getInstance().instanceId.addOnSuccessListener(object : OnSuccessListener<InstanceIdResult> {
+            override fun onSuccess(p0: InstanceIdResult?) {
+                val token = p0?.token.toString()
+                database.child("user")
+                    .child(auth.currentUser!!.uid)
+                    .setValue(
+                        User(
+                            auth.currentUser!!.uid,
+                            fullName,
+                            email,
+                            password,
+                            accountType,
+                            sport,
+                            city,
+                            imgPath,
+                            token
+                        )
+                    )
+            }
+        })
     }
 
     fun logOut() {
+        database.child("user")
+            .child(auth.currentUser!!.uid)
+            .child("tokenId")
+            .setValue("")
         auth.signOut()
     }
 

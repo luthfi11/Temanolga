@@ -13,29 +13,16 @@ import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 import com.wysiwyg.temanolga.R
 import com.wysiwyg.temanolga.activities.ChatRoomActivity
-import org.jetbrains.anko.toast
-import java.lang.Exception
 
 class FirebaseMessagingService: FirebaseMessagingService() {
 
     override fun onMessageReceived(remoteMessage: RemoteMessage) {
-        val data = remoteMessage.data
-        val message = data["msgContent"]
-        val id = data["userId"]
-        val name = data["name"]
+        val message = remoteMessage.notification?.body
+        val id = remoteMessage.data["from_user_id"]
+        val name = remoteMessage.notification?.title
         if (FirebaseAuth.getInstance().currentUser != null){
             sendNotification(message.toString(), id.toString(), name.toString())
         }
-    }
-
-    override fun onMessageSent(p0: String?) {
-        super.onMessageSent(p0)
-        toast("Message sent $p0").show()
-    }
-
-    override fun onSendError(p0: String?, p1: Exception?) {
-        super.onSendError(p0, p1)
-        toast("Error ${p1?.stackTrace}").show()
     }
 
     override fun onNewToken(p0: String?) {

@@ -12,5 +12,6 @@ data class User (
     var accountType: String? = null,
     var sportPreferred: String? = null,
     var city: String? = null,
-    var imgPath: String? = null
+    var imgPath: String? = null,
+    var tokenId: String? = null
 ) : Parcelable

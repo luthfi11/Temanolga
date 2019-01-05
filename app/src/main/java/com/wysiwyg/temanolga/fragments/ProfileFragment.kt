@@ -100,7 +100,11 @@ class ProfileFragment : Fragment(), ProfileView {
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when (item?.itemId) {
-            R.id.nav_edit -> startActivity<EditProfileActivity>("user" to userData[0])
+            R.id.nav_edit -> {
+                try {
+                    startActivity<EditProfileActivity>("user" to userData[0])
+                } catch (ex: Exception){}
+            }
             R.id.nav_logout -> presenter.logoutPrompt()
         }
         return true
