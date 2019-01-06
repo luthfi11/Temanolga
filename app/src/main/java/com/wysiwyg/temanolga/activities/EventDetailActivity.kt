@@ -20,7 +20,6 @@ import com.wysiwyg.temanolga.presenters.EventDetailPresenter
 import com.wysiwyg.temanolga.views.EventDetailView
 import com.mapbox.mapboxsdk.camera.CameraUpdateFactory
 import com.wysiwyg.temanolga.utils.DateTimeUtils.dateTimeFormat
-import com.wysiwyg.temanolga.utils.SpinnerItem
 import com.wysiwyg.temanolga.utils.SpinnerItem.slotType
 import com.wysiwyg.temanolga.utils.SpinnerItem.sportPref
 import com.wysiwyg.temanolga.utils.gone
@@ -149,7 +148,7 @@ class EventDetailActivity : AppCompatActivity(), EventDetailView {
         btnJoinRequest.visible()
         btnJoinAccepted.gone()
 
-        btnJoinRequest.setOnClickListener { presenter.cancelJoin(eventId, joinId) }
+        btnJoinRequest.setOnClickListener { presenter.cancelRequest(eventId, joinId) }
     }
 
     override fun showJoined(joinId: String) {

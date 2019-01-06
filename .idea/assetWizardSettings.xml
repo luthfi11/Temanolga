@@ -18,12 +18,23 @@
                                 <PersistentState>
                                   <option name="children">
                                     <map>
+                                      <entry key="foregroundClipArt">
+                                        <value>
+                                          <PersistentState>
+                                            <option name="values">
+                                              <map>
+                                                <entry key="trimmed" value="true" />
+                                              </map>
+                                            </option>
+                                          </PersistentState>
+                                        </value>
+                                      </entry>
                                       <entry key="foregroundImage">
                                         <value>
                                           <PersistentState>
                                             <option name="values">
                                               <map>
-                                                <entry key="scalingPercent" value="80" />
+                                                <entry key="scalingPercent" value="63" />
                                                 <entry key="trimmed" value="true" />
                                               </map>
                                             </option>
@@ -34,12 +45,10 @@
                                   </option>
                                   <option name="values">
                                     <map>
-                                      <entry key="backgroundAssetType" value="COLOR" />
-                                      <entry key="backgroundColor" value="1565c0" />
+                                      <entry key="backgroundColor" value="383fa6" />
+                                      <entry key="backgroundImage" value="C:\Users\Luthfi Alfarisi\Documents\bg2.jpg" />
                                       <entry key="foregroundImage" value="E:\Android\Img\ic_logo_login.png" />
-                                      <entry key="generateLegacyIcon" value="false" />
-                                      <entry key="generateRoundIcon" value="false" />
-                                      <entry key="generateWebIcon" value="false" />
+                                      <entry key="showSafeZone" value="false" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -70,7 +79,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="jar:file:/C:/Program%20Files/Android/Android%20Studio/plugins/android/lib/android.jar!/images/material_design_icons/content/ic_block_black_24dp.xml" />
+                                      <entry key="url" value="jar:file:/C:/Program%20Files/Android/Android%20Studio/plugins/android/lib/android.jar!/images/material_design_icons/image/ic_brightness_1_black_24dp.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -80,8 +89,8 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="color" value="777777" />
-                            <entry key="outputName" value="ic_expire" />
+                            <entry key="color" value="1565c0" />
+                            <entry key="outputName" value="ic_mark" />
                             <entry key="sourceFile" value="C:\Users\Luthfi Alfarisi" />
                           </map>
                         </option>

@@ -5,6 +5,7 @@ import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
+import android.graphics.BitmapFactory
 import android.media.RingtoneManager
 import android.os.Build
 import android.support.v4.app.NotificationCompat
@@ -12,28 +13,25 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 import com.wysiwyg.temanolga.R
-import com.wysiwyg.temanolga.activities.ChatRoomActivity
 
 class FirebaseMessagingService: FirebaseMessagingService() {
 
     override fun onMessageReceived(remoteMessage: RemoteMessage) {
-        val message = remoteMessage.notification?.body
         val id = remoteMessage.data["from_user_id"]
+        val message = remoteMessage.notification?.body
         val name = remoteMessage.notification?.title
+        val action = remoteMessage.notification?.clickAction
+
         if (FirebaseAuth.getInstance().currentUser != null){
-            sendNotification(message.toString(), id.toString(), name.toString())
+            sendNotification(message, name, action!!, id)
         }
     }
 
-    override fun onNewToken(p0: String?) {
-        super.onNewToken(p0)
-
-        sendRegistrationToServer(p0)
-    }
-
-    private fun sendNotification(messageBody: String, id: String, name: String) {
-        val intent = Intent(this, ChatRoomActivity::class.java)
-        intent.putExtra("userId", id)
+    private fun sendNotification(messageBody: String?, name: String?, target: String, id: String?) {
+        val intent = Intent(this, Class.forName(target))
+        if (id != null) {
+            intent.putExtra("userId", id)
+        }
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
         val pendingIntent = PendingIntent.getActivity(this, 0, intent,
             PendingIntent.FLAG_ONE_SHOT)
@@ -42,7 +40,8 @@ class FirebaseMessagingService: FirebaseMessagingService() {
         val defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
         val notificationBuilder = NotificationCompat.Builder(this, channelId)
             .setContentTitle(name)
-            .setSmallIcon(R.mipmap.ic_launcher_round)
+            .setLargeIcon(BitmapFactory.decodeResource(applicationContext.resources, R.drawable.ic_logo_round))
+            .setSmallIcon(R.drawable.ic_logo_app)
             .setContentText(messageBody)
             .setAutoCancel(true)
             .setSound(defaultSoundUri)
@@ -52,15 +51,11 @@ class FirebaseMessagingService: FirebaseMessagingService() {
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val channel = NotificationChannel(channelId,
-                "Channel human readable title",
+                "Temanolga",
                 NotificationManager.IMPORTANCE_DEFAULT)
             notificationManager.createNotificationChannel(channel)
         }
 
         notificationManager.notify(0, notificationBuilder.build())
-    }
-
-    private fun sendRegistrationToServer(token: String?) {
-
     }
 }

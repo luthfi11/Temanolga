@@ -327,6 +327,42 @@ object FirebaseApi {
             })
     }
 
+    fun setReadMessage(userId: String) {
+        val ref1 = database.child("message").child(auth.currentUser?.uid!!).child(userId)
+        ref1.addValueEventListener(object : ValueEventListener{
+            override fun onDataChange(p0: DataSnapshot) {
+                for (data: DataSnapshot in p0.children) {
+                    val id = data.child("senderId").getValue(String::class.java)
+                    if (id != auth.currentUser?.uid) {
+                        val msgId = data.child("messageId").getValue(String::class.java)!!
+                        ref1.child(msgId).child("read").setValue(true)
+                    }
+                }
+            }
+
+            override fun onCancelled(p0: DatabaseError) {
+
+            }
+        })
+
+        val ref2 = database.child("message").child(userId).child(auth.currentUser?.uid!!)
+        ref2.addValueEventListener(object : ValueEventListener{
+            override fun onDataChange(p0: DataSnapshot) {
+                for (data: DataSnapshot in p0.children) {
+                    val id = data.child("receiverId").getValue(String::class.java)
+                    if (id == auth.currentUser?.uid) {
+                        val msgId = data.child("messageId").getValue(String::class.java)!!
+                        ref2.child(msgId).child("read").setValue(true)
+                    }
+                }
+            }
+
+            override fun onCancelled(p0: DatabaseError) {
+
+            }
+        })
+    }
+
     fun getMessageList(msg: MutableList<Message>, presenter: MessagePresenter) {
         database.child("message")
             .child(auth.currentUser!!.uid)
@@ -401,6 +437,10 @@ object FirebaseApi {
         ).addOnSuccessListener {
             presenter?.joinSuccess()
         }
+    }
+
+    fun cancelRequest(eventId: String, joinId: String) {
+        database.child("join").child(eventId).child(joinId).removeValue()
     }
 
     fun cancelJoin(eventId: String, joinId: String) {

@@ -67,6 +67,11 @@ class EventDetailPresenter(private val view: EventDetailView) {
         view.showCancelJoin(joinId)
     }
 
+    fun cancelRequest(eventId: String, joinId: String) {
+        FirebaseApi.cancelRequest(eventId, joinId)
+        view.showDefJoin()
+    }
+
     fun cancelJoin(eventId: String, joinId: String) {
         FirebaseApi.cancelJoin(eventId, joinId)
         view.showDefJoin()

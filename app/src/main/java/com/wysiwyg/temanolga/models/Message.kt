@@ -9,5 +9,6 @@ data class Message(
     val senderId: String? = null,
     val receiverId: String? = null,
     val msgContent: String? = null,
-    val timeStamp: String? = null
+    val timeStamp: String? = null,
+    val read: Boolean? = false
 ) : Parcelable

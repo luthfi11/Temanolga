@@ -56,6 +56,7 @@ class ChatRoomActivity : AppCompatActivity(), ChatRoomView {
     private fun initView(user: String) {
         presenter.getReceiver(user, tvUserMsgRoom, tvUserCityRoom, imgUserRoom)
         presenter.getMessage(user, msg)
+        presenter.setRead(user)
     }
 
     private fun View.viewUser(user: String){

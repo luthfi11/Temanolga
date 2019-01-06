@@ -169,7 +169,10 @@ class EventAdapter(private val events: MutableList<Event>) :
                                     }
                                     "2" -> {
                                         requested()
-                                        itemView.btnJoinReq.cancel(eventId, data.joinId!!)
+                                        itemView.btnJoinReq.setOnClickListener {
+                                            FirebaseApi.cancelRequest(eventId, data.joinId!!)
+                                            default()
+                                        }
                                     }
                                     else -> default()
                                 }
@@ -208,13 +211,6 @@ class EventAdapter(private val events: MutableList<Event>) :
                     }
                     noButton { it.dismiss() }
                 }.show()
-            }
-        }
-
-        private fun View.cancel(eventId: String, joinId: String) {
-            setOnClickListener {
-                FirebaseApi.cancelJoin(eventId, joinId)
-                default()
             }
         }
 

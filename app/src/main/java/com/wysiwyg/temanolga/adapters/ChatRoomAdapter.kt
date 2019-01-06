@@ -16,6 +16,7 @@ import android.content.ClipboardManager
 import android.content.Context
 import com.wysiwyg.temanolga.utils.DateTimeUtils.dayAgo
 import com.wysiwyg.temanolga.utils.gone
+import com.wysiwyg.temanolga.utils.invisible
 import com.wysiwyg.temanolga.utils.visible
 
 class ChatRoomAdapter(private val messages: MutableList<Message>) :
@@ -51,15 +52,23 @@ class ChatRoomAdapter(private val messages: MutableList<Message>) :
                 itemView.tvMessage.text = message.msgContent
                 itemView.tvSentTime.text = time
                 itemView.view1.gone()
+                itemView.view.visible()
                 itemView.cv.copyToClipboard(message.msgContent)
+
+                if (message.read == true) {
+                    itemView.tvRead.visible()
+                    itemView.tvRead.text = itemView.context.getString(R.string.read)
+                } else {
+                    itemView.tvRead.invisible()
+                }
 
             } else {
                 FirebaseApi.getPostSender(message.senderId!!, null, null, itemView.imgSender)
                 itemView.tvMessage1.text = message.msgContent
                 itemView.tvSentTime1.text = time
                 itemView.view.gone()
+                itemView.view1.visible()
                 itemView.cv1.copyToClipboard(message.msgContent)
-
             }
         }
 

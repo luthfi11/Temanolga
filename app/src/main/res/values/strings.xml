@@ -80,6 +80,7 @@
     <string name="empty_profile">No invitation yet on your profile</string>
     <string name="empty_explore">No Suggested user found</string>
     <string name="empty_search">User not found</string>
+    <string name="read">Read</string>
 
     <string name="event_invitation">%s Invitation</string>
     <string name="joined_event_limited">%1$d/%2$d %3$s Joined</string>

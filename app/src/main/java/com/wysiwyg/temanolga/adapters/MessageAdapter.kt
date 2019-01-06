@@ -1,5 +1,6 @@
 package com.wysiwyg.temanolga.adapters
 
+import android.graphics.Typeface
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -14,6 +15,8 @@ import com.wysiwyg.temanolga.utils.DateTimeUtils.isToday
 import com.wysiwyg.temanolga.utils.DateTimeUtils.isYesterday
 import com.wysiwyg.temanolga.utils.DateTimeUtils.dayAgo
 import com.wysiwyg.temanolga.utils.DateTimeUtils.timeFormat
+import com.wysiwyg.temanolga.utils.invisible
+import com.wysiwyg.temanolga.utils.visible
 import org.jetbrains.anko.*
 
 class MessageAdapter(private val messages: MutableList<Message>) :
@@ -57,6 +60,18 @@ class MessageAdapter(private val messages: MutableList<Message>) :
             itemView.setOnLongClickListener {
                 showMenu(userChat)
                 true
+            }
+
+            if (message.read == false && message.senderId != FirebaseApi.currentUser()) {
+                itemView.tvUserMsg.typeface = Typeface.DEFAULT_BOLD
+                itemView.tvTimeMsg.typeface = Typeface.DEFAULT_BOLD
+                itemView.tvContentMsg.typeface = Typeface.DEFAULT_BOLD
+                itemView.imgMark.visible()
+            } else {
+                itemView.tvUserMsg.typeface = Typeface.DEFAULT
+                itemView.tvTimeMsg.typeface = Typeface.DEFAULT
+                itemView.tvContentMsg.typeface = Typeface.DEFAULT
+                itemView.imgMark.invisible()
             }
         }
 
