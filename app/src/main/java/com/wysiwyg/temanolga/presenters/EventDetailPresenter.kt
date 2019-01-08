@@ -86,6 +86,12 @@ class EventDetailPresenter(private val view: EventDetailView) {
         view.afterDelete()
     }
 
+    fun isFull(slotFill: Int?, slot: Int?) {
+        if (slot != null && slotFill == slot) {
+            view.showFull()
+        }
+    }
+
     fun isExpire(date: String) {
         view.showExpire(date)
     }

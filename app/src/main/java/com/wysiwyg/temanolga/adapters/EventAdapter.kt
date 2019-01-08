@@ -1,6 +1,7 @@
 package com.wysiwyg.temanolga.adapters
 
 import android.content.Intent
+import android.graphics.Typeface
 import android.support.v4.content.ContextCompat
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -28,10 +29,7 @@ import com.wysiwyg.temanolga.utils.SpinnerItem.slotType
 import com.wysiwyg.temanolga.utils.SpinnerItem.sportPref
 import com.wysiwyg.temanolga.utils.gone
 import com.wysiwyg.temanolga.utils.visible
-import org.jetbrains.anko.alert
-import org.jetbrains.anko.noButton
-import org.jetbrains.anko.startActivity
-import org.jetbrains.anko.yesButton
+import org.jetbrains.anko.*
 
 class EventAdapter(private val events: MutableList<Event>) :
     RecyclerView.Adapter<EventAdapter.ViewHolder>() {
@@ -145,6 +143,7 @@ class EventAdapter(private val events: MutableList<Event>) :
 
             checkJoin(event.eventId)
             checkAccType(event.slotType!!)
+            isFull(event.slotFill, event.slot)
             isExpire(event.date!!+", "+event.time)
         }
 
@@ -211,6 +210,15 @@ class EventAdapter(private val events: MutableList<Event>) :
                     }
                     noButton { it.dismiss() }
                 }.show()
+            }
+        }
+
+        private fun isFull(slotFill: Int?, slot: Int?) {
+            if (slot != null && slotFill == slot) {
+                itemView.tvSlotJoin.textColorResource = R.color.colorBlack
+                itemView.tvSlotJoin.append(" (Full)")
+                itemView.btnJoin.isEnabled = false
+                itemView.btnJoin.setColorFilter(ContextCompat.getColor(itemView.context, R.color.colorGrey))
             }
         }
 

@@ -70,7 +70,7 @@
     <string name="futsal_field">Futsal Field</string>
     <string name="football_field">Football Field</string>
     <string name="change_photo">Change Photo</string>
-    <string name="expire">EXPIRE</string>
+    <string name="expire">EXPIRED</string>
     <string name="expire_msg">The Event Has Expired</string>
     <string name="empty_event_user">No invitation yet</string>
     <string name="empty_event_home">No invitation data found</string>
@@ -81,12 +81,13 @@
     <string name="empty_explore">No Suggested user found</string>
     <string name="empty_search">User not found</string>
     <string name="read">Read</string>
+    <string name="slot_full">Slot Full</string>
 
     <string name="event_invitation">%s Invitation</string>
-    <string name="joined_event_limited">%1$d/%2$d %3$s Joined</string>
+    <string name="joined_event_limited">%1$d/%2$d %3$s joined</string>
     <string name="slot_type_limited">%d %s limit</string>
-    <string name="joined_event">%d %s Joined</string>
-    <string name="slot_type">Free %s Join</string>
+    <string name="joined_event">%d %s joined</string>
+    <string name="slot_type">Free %s join</string>
     <string name="slot_only">%s Only</string>
 
     <string name="acc_personal">Interested in %s</string>

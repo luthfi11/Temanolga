@@ -37,7 +37,7 @@ class SignUpActivity : AppCompatActivity(), SignUpView {
     }
 
     override fun showFailMsg() {
-        toast("Sign up failed, Email has been used !")
+        toast("Sign up failed, Email has been used !").show()
     }
 
     override fun finishActivity() {

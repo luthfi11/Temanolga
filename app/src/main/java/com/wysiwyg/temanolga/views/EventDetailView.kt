@@ -16,5 +16,6 @@ interface EventDetailView {
     fun isUserPost()
     fun disableJoin(slotType: String)
     fun afterDelete()
+    fun showFull()
     fun showExpire(date: String)
 }

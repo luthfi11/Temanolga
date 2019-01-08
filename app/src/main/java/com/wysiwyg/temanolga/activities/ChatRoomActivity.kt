@@ -48,6 +48,11 @@ class ChatRoomActivity : AppCompatActivity(), ChatRoomView {
         btnSend.send(user)
     }
 
+    override fun onBackPressed() {
+        super.onBackPressed()
+        finish()
+    }
+
     private fun initToolbar() {
         setSupportActionBar(toolbar_message)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)

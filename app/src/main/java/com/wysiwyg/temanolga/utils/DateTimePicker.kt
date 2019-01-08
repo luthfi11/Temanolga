@@ -30,7 +30,7 @@ object DateTimePicker {
             editText.setText(dateFull)
             editText.error = null
 
-            val dateFormat = DateFormat.getDateInstance(DateFormat.SHORT)
+            val dateFormat = SimpleDateFormat("dd/MM/yyy", Locale.getDefault())
             val date = dateFormat.format(chosenDate)
             textView.text = date
 

@@ -85,6 +85,7 @@ class EventDetailActivity : AppCompatActivity(), EventDetailView {
             btnEdit.setOnClickListener { startActivity<EditEventActivity>("event" to event[0]) }
             presenter.checkJoin(eventId)
             presenter.checkAccType(event[0].slotType!!)
+            presenter.isFull(event[0].slotFill, event[0].slot)
             presenter.isExpire(event[0].date!!+", "+event[0].time)
 
             val content = "${event[0].description} \n \n" +
@@ -181,6 +182,11 @@ class EventDetailActivity : AppCompatActivity(), EventDetailView {
 
     override fun afterDelete() {
         toast("Post Deleted").show()
+    }
+
+    override fun showFull() {
+        btnJoin.setButtonIcon(R.drawable.ic_join)
+        btnJoin.textResource = R.string.slot_full
     }
 
     override fun showExpire(date: String) {

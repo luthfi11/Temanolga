@@ -5,6 +5,7 @@ import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
+import android.view.KeyEvent
 import android.view.Menu
 import android.view.MenuItem
 import android.webkit.GeolocationPermissions
@@ -66,6 +67,14 @@ class PlaceSearchActivity : AppCompatActivity() {
         override fun onGeolocationPermissionsShowPrompt(origin: String?, callback: GeolocationPermissions.Callback?) {
             callback?.invoke(origin, true, false)
         }
+    }
+
+    override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
+        if ((keyCode == KeyEvent.KEYCODE_BACK) && (placeSearch.canGoBack()) && (placeSearch.url.contains("place"))) {
+            placeSearch.goBack()
+            return true
+        }
+        return super.onKeyDown(keyCode, event)
     }
 
     private fun setPlace() {

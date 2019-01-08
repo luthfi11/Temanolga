@@ -41,7 +41,8 @@ object FirebaseApi {
             if (task.isSuccessful) {
                 presenter.loginSuccess()
 
-                FirebaseInstanceId.getInstance().instanceId.addOnSuccessListener(object : OnSuccessListener<InstanceIdResult> {
+                FirebaseInstanceId.getInstance().instanceId.addOnSuccessListener(object :
+                    OnSuccessListener<InstanceIdResult> {
                     override fun onSuccess(p0: InstanceIdResult?) {
                         val token = p0?.token.toString()
                         database.child("user")
@@ -75,26 +76,20 @@ object FirebaseApi {
         fullName: String?, email: String?, password: String?,
         accountType: String?, sport: String?, city: String?
     ) {
-        FirebaseInstanceId.getInstance().instanceId.addOnSuccessListener(object : OnSuccessListener<InstanceIdResult> {
-            override fun onSuccess(p0: InstanceIdResult?) {
-                val token = p0?.token.toString()
-                database.child("user")
-                    .child(auth.currentUser!!.uid)
-                    .setValue(
-                        User(
-                            auth.currentUser!!.uid,
-                            fullName,
-                            email,
-                            password,
-                            accountType,
-                            sport,
-                            city,
-                            imgPath,
-                            token
-                        )
-                    )
-            }
-        })
+        database.child("user")
+            .child(auth.currentUser!!.uid)
+            .setValue(
+                User(
+                    auth.currentUser!!.uid,
+                    fullName,
+                    email,
+                    password,
+                    accountType,
+                    sport,
+                    city,
+                    imgPath
+                )
+            )
     }
 
     fun logOut() {
@@ -329,7 +324,7 @@ object FirebaseApi {
 
     fun setReadMessage(userId: String) {
         val ref1 = database.child("message").child(auth.currentUser?.uid!!).child(userId)
-        ref1.addValueEventListener(object : ValueEventListener{
+        ref1.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(p0: DataSnapshot) {
                 for (data: DataSnapshot in p0.children) {
                     val id = data.child("senderId").getValue(String::class.java)
@@ -346,7 +341,7 @@ object FirebaseApi {
         })
 
         val ref2 = database.child("message").child(userId).child(auth.currentUser?.uid!!)
-        ref2.addValueEventListener(object : ValueEventListener{
+        ref2.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(p0: DataSnapshot) {
                 for (data: DataSnapshot in p0.children) {
                     val id = data.child("receiverId").getValue(String::class.java)
@@ -647,6 +642,7 @@ object FirebaseApi {
 
     fun deletePost(eventId: String) {
         database.child("event").child(eventId).removeValue()
+        database.child("join").child(eventId).removeValue()
     }
 
     fun deleteChat(userId: String) {
