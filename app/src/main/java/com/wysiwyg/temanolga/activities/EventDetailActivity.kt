@@ -5,6 +5,7 @@ import android.graphics.PorterDuff
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
+import android.view.Menu
 import android.view.MenuItem
 import android.view.MotionEvent
 import android.view.View
@@ -36,7 +37,17 @@ class EventDetailActivity : AppCompatActivity(), EventDetailView {
     private lateinit var eventId: String
     private val savedInstanceState = Bundle()
 
+    override fun showLoading() {
+        lytEvent.gone()
+        progress.visible()
+    }
+
+    override fun hideLoading() {
+        progress.gone()
+    }
+
     override fun showEventData() {
+        lytEvent.visible()
         try {
             FirebaseApi.getPostSender(event[0].postSender!!, tvUserEvent, null, imgUserEvent)
             tvSportEvent.text = String.format(getString(R.string.event_invitation), sportPref(this, event[0].sportName))
@@ -86,7 +97,7 @@ class EventDetailActivity : AppCompatActivity(), EventDetailView {
             presenter.checkJoin(eventId)
             presenter.checkAccType(event[0].slotType!!)
             presenter.isFull(event[0].slotFill, event[0].slot)
-            presenter.isExpire(event[0].date!!+", "+event[0].time)
+            presenter.isExpire(event[0].date!! + ", " + event[0].time)
 
             val content = "${event[0].description} \n \n" +
                     "${sportPref(this, event[0].sportName)} at " +
@@ -202,6 +213,10 @@ class EventDetailActivity : AppCompatActivity(), EventDetailView {
         }
     }
 
+    override fun showNoConnection() {
+        snackbar(placeMap, "Network error, can't get invitation detail").show()
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Mapbox.getInstance(this, getString(R.string.access_token))
@@ -215,7 +230,7 @@ class EventDetailActivity : AppCompatActivity(), EventDetailView {
 
     override fun onResume() {
         super.onResume()
-        presenter.getData(eventId, event)
+        presenter.getData(this, eventId, event)
     }
 
     private fun initToolbar() {
@@ -260,10 +275,20 @@ class EventDetailActivity : AppCompatActivity(), EventDetailView {
         }
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_user, menu)
+        menu?.getItem(0)?.isVisible = false
+        return super.onCreateOptionsMenu(menu)
+    }
+
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         return when (item?.itemId) {
             android.R.id.home -> {
                 finish()
+                true
+            }
+            R.id.nav_refresh -> {
+                presenter.getData(this, eventId, event)
                 true
             }
             else -> super.onOptionsItemSelected(item)

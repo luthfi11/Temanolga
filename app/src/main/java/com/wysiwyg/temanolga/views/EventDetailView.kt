@@ -3,6 +3,8 @@ package com.wysiwyg.temanolga.views
 import android.os.Bundle
 
 interface EventDetailView {
+    fun showLoading()
+    fun hideLoading()
     fun showEventData()
     fun showMap(savedInstanceState: Bundle?, long: String?, lat: String?, title: String?)
     fun hideMap()
@@ -18,4 +20,5 @@ interface EventDetailView {
     fun afterDelete()
     fun showFull()
     fun showExpire(date: String)
+    fun showNoConnection()
 }

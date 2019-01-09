@@ -2,9 +2,7 @@ package com.wysiwyg.temanolga.fragments
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import com.wysiwyg.temanolga.R
 import com.wysiwyg.temanolga.activities.SearchUserActivity
 import com.wysiwyg.temanolga.activities.SportVenueActivity
@@ -15,6 +13,7 @@ import com.wysiwyg.temanolga.utils.gone
 import com.wysiwyg.temanolga.utils.visible
 import com.wysiwyg.temanolga.views.ExploreView
 import kotlinx.android.synthetic.main.fragment_explore.*
+import org.jetbrains.anko.design.snackbar
 import org.jetbrains.anko.support.v4.startActivity
 
 class ExploreFragment : Fragment(), ExploreView {
@@ -47,6 +46,10 @@ class ExploreFragment : Fragment(), ExploreView {
         tvEmptyExplore.visible()
     }
 
+    override fun showNoConnection() {
+        snackbar(rv_people, "Network error, can't get suggested user data").show()
+    }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_explore, container, false)
     }
@@ -54,17 +57,27 @@ class ExploreFragment : Fragment(), ExploreView {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        presenter.getUsers(user)
+        setHasOptionsMenu(true)
 
-        btnSearchPeople.toSearch()
+        presenter.getUsers(context, user)
+
         btnRunningTrack.toVenue(R.string.running_track, "running+track")
         btnFutsalField.toVenue(R.string.futsal_field, "lapangan+futsal")
         btnFootballField.toVenue(R.string.football_field, "lapangan+sepak+bola")
     }
 
-    private fun View.toSearch() {
-        setOnClickListener {
-            startActivity<SearchUserActivity>()
+    override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater?.inflate(R.menu.menu_search, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        return when(item?.itemId) {
+            R.id.nav_search -> {
+                startActivity<SearchUserActivity>()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
         }
     }
 

@@ -14,6 +14,8 @@ import com.wysiwyg.temanolga.utils.gone
 import com.wysiwyg.temanolga.utils.visible
 import com.wysiwyg.temanolga.views.NotificationView
 import kotlinx.android.synthetic.main.fragment_notification.*
+import org.jetbrains.anko.design.snackbar
+import org.jetbrains.anko.support.v4.toast
 
 class RequestFragment: Fragment(), NotificationView {
     private var presenter = NotificationPresenter(this)
@@ -43,13 +45,17 @@ class RequestFragment: Fragment(), NotificationView {
         rv_notif.gone()
     }
 
+    override fun showNoConnection() {
+        snackbar(rv_notif, "Network error, can't get notification data").show()
+    }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_notification, container, false)
     }
 
     override fun onResume() {
         super.onResume()
-        presenter.getRequest(notif)
-        srl_notif.setOnRefreshListener { presenter.getRequest(notif) }
+        presenter.getRequest(context, notif)
+        srl_notif.setOnRefreshListener { presenter.getRequest(context, notif) }
     }
 }

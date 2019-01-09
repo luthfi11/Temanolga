@@ -1,7 +1,6 @@
 package com.wysiwyg.temanolga.adapters
 
 import android.support.v7.widget.RecyclerView
-import android.text.format.DateUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,11 +15,11 @@ import com.wysiwyg.temanolga.api.FirebaseApi
 import com.wysiwyg.temanolga.models.Join
 import com.wysiwyg.temanolga.utils.DateTimeUtils.minAgo
 import com.wysiwyg.temanolga.utils.gone
-import com.wysiwyg.temanolga.utils.invisible
 import com.wysiwyg.temanolga.utils.visible
 import org.jetbrains.anko.startActivity
 import kotlinx.android.synthetic.main.item_notification.view.*
 import org.jetbrains.anko.textColorResource
+import org.jetbrains.anko.textResource
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -95,11 +94,17 @@ class NotificationAdapter(private val notif: MutableList<Join>) :
                 override fun onDataChange(p0: DataSnapshot) {
                     val date = p0.child("date").getValue(String::class.java)
                     val time = p0.child("time").getValue(String::class.java)
+                    val slotFill = p0.child("slotFill").getValue(Int::class.java)
+                    val slot = p0.child("slot").getValue(Int::class.java)
 
                     val parseDate: Date = SimpleDateFormat("dd/MM/yyy, HH : mm", Locale.getDefault()).parse(date+", "+time)
                     if (Date().after(parseDate)) {
                         itemView.vBtnNotif.gone()
                         itemView.vTvExpire.visible()
+                    } else if (slotFill == slot && slot != null) {
+                        itemView.vBtnNotif.gone()
+                        itemView.vTvExpire.visible()
+                        itemView.tvExpire.textResource = R.string.slot_full
                     }
                 }
 

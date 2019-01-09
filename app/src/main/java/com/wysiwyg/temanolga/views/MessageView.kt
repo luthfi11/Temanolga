@@ -5,4 +5,5 @@ interface MessageView {
     fun showLoading()
     fun hideLoading()
     fun showEmptyMessage()
+    fun showNoConnection()
 }

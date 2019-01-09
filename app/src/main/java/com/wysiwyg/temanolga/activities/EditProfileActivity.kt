@@ -21,6 +21,7 @@ import com.wysiwyg.temanolga.utils.ValidateUtil.setError
 import com.wysiwyg.temanolga.utils.ValidateUtil.spnPosition
 import com.wysiwyg.temanolga.views.EditProfileView
 import kotlinx.android.synthetic.main.activity_edit_profile.*
+import org.jetbrains.anko.design.snackbar
 import org.jetbrains.anko.indeterminateProgressDialog
 import org.jetbrains.anko.toast
 
@@ -72,6 +73,10 @@ class EditProfileActivity : AppCompatActivity(), EditProfileView {
             .placeholder(R.color.colorMuted).into(imgUserProfile)
 
         path = imgPath
+    }
+
+    override fun showNoConnection() {
+        snackbar(etPassword, "Network unavailable, can't update profile").show()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -131,7 +136,7 @@ class EditProfileActivity : AppCompatActivity(), EditProfileView {
                         user.userId, etToString(etFullName), user.email, etToString(etPassword),
                         spnPosition(spnAccount), spnPosition(spnSport), etToString(etCity), path
                     )
-                    presenter.saveData(newUser)
+                    presenter.saveData(this, newUser)
 
                 } else {
                     setError(etPassword, getString(R.string.password_length))
@@ -170,7 +175,7 @@ class EditProfileActivity : AppCompatActivity(), EditProfileView {
             900 -> {
                 filePath = data!!.data!!
                 initProgress()
-                presenter.setUserImage(filePath)
+                presenter.setUserImage(this, filePath)
             }
         }
     }

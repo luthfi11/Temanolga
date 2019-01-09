@@ -5,4 +5,5 @@ interface NotificationView {
     fun hideLoading()
     fun showNotification()
     fun showEmptyNotif()
+    fun showNoConnection()
 }

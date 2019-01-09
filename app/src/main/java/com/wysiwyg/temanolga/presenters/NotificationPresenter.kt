@@ -1,7 +1,9 @@
 package com.wysiwyg.temanolga.presenters
 
+import android.content.Context
 import com.wysiwyg.temanolga.api.FirebaseApi
 import com.wysiwyg.temanolga.models.Join
+import com.wysiwyg.temanolga.utils.ConnectionUtil
 import com.wysiwyg.temanolga.views.NotificationView
 
 class NotificationPresenter(private val view: NotificationView) {
@@ -11,9 +13,14 @@ class NotificationPresenter(private val view: NotificationView) {
         FirebaseApi.getConfirmNotif(this, join)
     }
 
-    fun getRequest(join: MutableList<Join>) {
+    fun getRequest(ctx: Context?, join: MutableList<Join>) {
         view.showLoading()
         FirebaseApi.getRequestNotif(this, join)
+
+        if (!ConnectionUtil.isOnline(ctx)) {
+            view.hideLoading()
+            view.showNoConnection()
+        }
     }
 
     fun getNotifSuccess(join: MutableList<Join>) {

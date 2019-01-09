@@ -5,4 +5,5 @@ interface AddEventView {
     fun hideLoading()
     fun showSuccess()
     fun showFail()
+    fun showNoConnection()
 }

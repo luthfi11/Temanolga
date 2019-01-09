@@ -1,17 +1,26 @@
 package com.wysiwyg.temanolga.presenters
 
+import android.content.Context
 import android.os.Bundle
 import com.wysiwyg.temanolga.api.FirebaseApi
 import com.wysiwyg.temanolga.models.Event
+import com.wysiwyg.temanolga.utils.ConnectionUtil
 import com.wysiwyg.temanolga.views.EventDetailView
 
 class EventDetailPresenter(private val view: EventDetailView) {
 
-    fun getData(eventId: String, event: MutableList<Event>) {
+    fun getData(ctx: Context?, eventId: String, event: MutableList<Event>) {
+        view.showLoading()
         FirebaseApi.getEventDetail(eventId, this, event)
+
+        if (!ConnectionUtil.isOnline(ctx)) {
+            view.hideLoading()
+            view.showNoConnection()
+        }
     }
 
     fun getDataSuccess() {
+        view.hideLoading()
         view.showEventData()
     }
 

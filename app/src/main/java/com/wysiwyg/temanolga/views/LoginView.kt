@@ -5,4 +5,5 @@ interface LoginView {
     fun hideLoading()
     fun startActivity()
     fun showWrong()
+    fun showNoConnection()
 }

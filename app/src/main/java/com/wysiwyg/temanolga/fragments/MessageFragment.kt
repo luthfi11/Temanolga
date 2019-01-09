@@ -14,6 +14,7 @@ import com.wysiwyg.temanolga.utils.gone
 import com.wysiwyg.temanolga.utils.visible
 import com.wysiwyg.temanolga.views.MessageView
 import kotlinx.android.synthetic.main.fragment_message.*
+import org.jetbrains.anko.design.snackbar
 
 class MessageFragment : Fragment(), MessageView {
 
@@ -44,13 +45,17 @@ class MessageFragment : Fragment(), MessageView {
         tvEmptyMessage.visible()
     }
 
+    override fun showNoConnection() {
+        snackbar(rv_message, "Network error, can't get message data").show()
+    }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_message, container, false)
     }
 
     override fun onResume() {
         super.onResume()
-        presenter.getMessage(msg)
-        srl_message.setOnRefreshListener { presenter.getMessage(msg) }
+        presenter.getMessage(context, msg)
+        srl_message.setOnRefreshListener { presenter.getMessage(context, msg) }
     }
 }

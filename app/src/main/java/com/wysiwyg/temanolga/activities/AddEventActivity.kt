@@ -16,6 +16,7 @@ import com.wysiwyg.temanolga.utils.ValidateUtil.setError
 import com.wysiwyg.temanolga.utils.ValidateUtil.spnPosition
 import com.wysiwyg.temanolga.views.AddEventView
 import kotlinx.android.synthetic.main.activity_add_event.*
+import org.jetbrains.anko.design.snackbar
 import org.jetbrains.anko.indeterminateProgressDialog
 import org.jetbrains.anko.startActivityForResult
 import org.jetbrains.anko.toast
@@ -34,12 +35,16 @@ class AddEventActivity : AppCompatActivity(), AddEventView {
     }
 
     override fun showSuccess() {
-        toast("Invitation posted")
+        toast("Invitation posted").show()
         finish()
     }
 
     override fun showFail() {
-        toast("Network Error")
+        toast("Network Error").show()
+    }
+
+    override fun showNoConnection() {
+        snackbar(et_desc, "Network unavailable, can't post invitation").show()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -103,6 +108,7 @@ class AddEventActivity : AppCompatActivity(), AddEventView {
 
                     initProgressBar()
                     presenter.addEvent(
+                        this,
                         spnPosition(spn_sport_add),
                         etToString(et_place),
                         tvDate.text.toString(),

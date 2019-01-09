@@ -656,6 +656,7 @@ object FirebaseApi {
             }
 
             override fun onDataChange(p0: DataSnapshot) {
+                user.clear()
                 for (data: DataSnapshot in p0.children) {
                     val us = data.getValue(User::class.java)
                     if (us?.userId != auth.currentUser?.uid) {

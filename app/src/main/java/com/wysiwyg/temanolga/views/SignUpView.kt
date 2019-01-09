@@ -6,4 +6,5 @@ interface SignUpView {
     fun showSuccessMsg()
     fun showFailMsg()
     fun finishActivity()
+    fun showNoConnection()
 }

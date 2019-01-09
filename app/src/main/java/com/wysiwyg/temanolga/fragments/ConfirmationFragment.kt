@@ -14,6 +14,7 @@ import com.wysiwyg.temanolga.utils.gone
 import com.wysiwyg.temanolga.utils.visible
 import com.wysiwyg.temanolga.views.NotificationView
 import kotlinx.android.synthetic.main.fragment_notification.*
+import org.jetbrains.anko.support.v4.toast
 
 class ConfirmationFragment: Fragment(), NotificationView {
     private var presenter = NotificationPresenter(this)
@@ -41,6 +42,10 @@ class ConfirmationFragment: Fragment(), NotificationView {
     override fun showEmptyNotif() {
         tvEmptyNotif.visible()
         rv_notif.gone()
+    }
+
+    override fun showNoConnection() {
+        toast("Network error, can't get data").show()
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {

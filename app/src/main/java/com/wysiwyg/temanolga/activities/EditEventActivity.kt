@@ -15,6 +15,7 @@ import com.wysiwyg.temanolga.utils.ValidateUtil.etToString
 import com.wysiwyg.temanolga.utils.ValidateUtil.spnPosition
 import com.wysiwyg.temanolga.views.EditEventView
 import kotlinx.android.synthetic.main.activity_add_event.*
+import org.jetbrains.anko.design.snackbar
 import org.jetbrains.anko.indeterminateProgressDialog
 import org.jetbrains.anko.startActivityForResult
 import org.jetbrains.anko.toast
@@ -56,12 +57,16 @@ class EditEventActivity : AppCompatActivity(), EditEventView {
     }
 
     override fun showSuccessUpdate() {
-        toast("Event updated")
+        toast("Event updated").show()
         finish()
     }
 
     override fun showFailedUpdate() {
-        toast("Network error")
+        toast("Can't update invitation data").show()
+    }
+
+    override fun showNoConnection() {
+        snackbar(et_desc, "Network unavailable, can't update data").show()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -115,7 +120,7 @@ class EditEventActivity : AppCompatActivity(), EditEventView {
                         event.postTime,
                         longLat
                     )
-                    presenter.updateEvent(event.eventId!!, newEvent)
+                    presenter.updateEvent(this, event.eventId!!, newEvent)
 
                 } else {
                     ValidateUtil.setError(et_time, getString(R.string.time_invalid))

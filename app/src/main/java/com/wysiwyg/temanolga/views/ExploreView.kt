@@ -5,4 +5,5 @@ interface ExploreView {
     fun showLoading()
     fun hideLoading()
     fun showEmptyUser()
+    fun showNoConnection()
 }

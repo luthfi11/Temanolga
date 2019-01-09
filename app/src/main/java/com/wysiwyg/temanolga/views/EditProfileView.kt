@@ -8,4 +8,5 @@ interface EditProfileView {
     fun showFailUpdate()
     fun showProgress(value: Double)
     fun showUpdatedPhoto(imgPath: String)
+    fun showNoConnection()
 }

@@ -6,4 +6,5 @@ interface EditEventView {
     fun hideLoading()
     fun showSuccessUpdate()
     fun showFailedUpdate()
+    fun showNoConnection()
 }

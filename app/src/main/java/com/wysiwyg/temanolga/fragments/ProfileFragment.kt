@@ -13,12 +13,12 @@ import com.wysiwyg.temanolga.adapters.EventAdapter
 import com.wysiwyg.temanolga.models.Event
 import com.wysiwyg.temanolga.models.User
 import com.wysiwyg.temanolga.presenters.ProfilePresenter
-import com.wysiwyg.temanolga.utils.SpinnerItem
 import com.wysiwyg.temanolga.utils.SpinnerItem.accountType
 import com.wysiwyg.temanolga.utils.gone
 import com.wysiwyg.temanolga.utils.visible
 import com.wysiwyg.temanolga.views.ProfileView
 import kotlinx.android.synthetic.main.fragment_profile.*
+import org.jetbrains.anko.design.snackbar
 import org.jetbrains.anko.noButton
 import org.jetbrains.anko.support.v4.alert
 import org.jetbrains.anko.support.v4.startActivity
@@ -57,6 +57,10 @@ class ProfileFragment : Fragment(), ProfileView {
         startActivity<LoginActivity>()
     }
 
+    override fun showNoConnection() {
+        snackbar(root, "Network error, can't get your data").show()
+    }
+
     override fun showEventData() {
         tvEmptyProfile.gone()
         rv_event_profile.visible()
@@ -83,7 +87,7 @@ class ProfileFragment : Fragment(), ProfileView {
 
     override fun onResume() {
         super.onResume()
-        presenter.getUser(userData)
+        presenter.getUser(context, userData)
         presenter.getUserEvent(events)
     }
 

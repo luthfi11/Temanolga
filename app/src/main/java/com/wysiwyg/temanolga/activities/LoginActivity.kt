@@ -11,6 +11,7 @@ import com.wysiwyg.temanolga.utils.ValidateUtil.etValidate
 import com.wysiwyg.temanolga.utils.ValidateUtil.setError
 import com.wysiwyg.temanolga.views.LoginView
 import kotlinx.android.synthetic.main.activity_login.*
+import org.jetbrains.anko.design.snackbar
 import org.jetbrains.anko.indeterminateProgressDialog
 import org.jetbrains.anko.startActivity
 
@@ -34,6 +35,10 @@ class LoginActivity : AppCompatActivity(), LoginView {
 
     override fun showWrong() {
         tv_Wrong.text = getString(R.string.login_fail)
+    }
+
+    override fun showNoConnection() {
+        snackbar(btn_signin, "Network unavailable, can't login").show()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -63,7 +68,7 @@ class LoginActivity : AppCompatActivity(), LoginView {
             if (etValidate(et_password)) {
 
                 initProgressBar()
-                presenter.login(etToString(et_email), etToString(et_password))
+                presenter.login(this, etToString(et_email), etToString(et_password))
 
             } else {
                 setError(et_password, getString(R.string.empty_password))

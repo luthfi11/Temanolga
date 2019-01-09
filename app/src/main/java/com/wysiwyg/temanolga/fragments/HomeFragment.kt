@@ -12,14 +12,13 @@ import com.wysiwyg.temanolga.models.Event
 import kotlinx.android.synthetic.main.fragment_home.*
 import com.wysiwyg.temanolga.presenters.HomePresenter
 import com.wysiwyg.temanolga.utils.CityUtil
-import com.wysiwyg.temanolga.utils.ConnectionUtil.isOnline
 import com.wysiwyg.temanolga.utils.SpinnerItem.sportPref
 import com.wysiwyg.temanolga.utils.gone
 import com.wysiwyg.temanolga.utils.visible
 import com.wysiwyg.temanolga.views.HomeView
 import kotlinx.android.synthetic.main.layout_filter.*
 import kotlinx.android.synthetic.main.layout_filter.view.*
-import org.jetbrains.anko.support.v4.toast
+import org.jetbrains.anko.design.snackbar
 
 class HomeFragment : Fragment(), HomeView {
 
@@ -48,7 +47,7 @@ class HomeFragment : Fragment(), HomeView {
     }
 
     override fun showNoConnection() {
-        toast("Network error, can't get data")
+        snackbar(rv_data, "Network error, can't get invitation data").show()
     }
 
     override fun selection(sport: String, city: String) {
@@ -59,7 +58,7 @@ class HomeFragment : Fragment(), HomeView {
         } catch (ex: Exception) {
             ex.printStackTrace()
         }
-        presenter.getData(events, sport, city)
+        presenter.getData(context, events, sport, city)
     }
 
     override fun showFilterDialog() {
@@ -88,7 +87,7 @@ class HomeFragment : Fragment(), HomeView {
                 tvFilter.text = String.format(getString(R.string.showing_filter_no_city), sportPref(context!!, sport))
             }
 
-            presenter.getData(events, sport, city)
+            presenter.getData(context, events, sport, city)
         }
     }
 
@@ -106,7 +105,9 @@ class HomeFragment : Fragment(), HomeView {
         setHasOptionsMenu(true)
 
         presenter.showDataFilter()
-        srl_home.setOnRefreshListener { presenter.getData(events, sport, city) }
+        srl_home.setOnRefreshListener {
+            presenter.getData(context, events, sport, city)
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {

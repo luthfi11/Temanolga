@@ -15,6 +15,7 @@ import com.wysiwyg.temanolga.utils.ValidateUtil.setError
 import com.wysiwyg.temanolga.utils.ValidateUtil.passwordValidate
 import com.wysiwyg.temanolga.utils.ValidateUtil.spnPosition
 import kotlinx.android.synthetic.main.activity_sign_up.*
+import org.jetbrains.anko.design.snackbar
 import org.jetbrains.anko.indeterminateProgressDialog
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
@@ -43,6 +44,10 @@ class SignUpActivity : AppCompatActivity(), SignUpView {
     override fun finishActivity() {
         startActivity<LoginActivity>()
         finish()
+    }
+
+    override fun showNoConnection() {
+        snackbar(btn_signup, "Network unavailable, can't sign up").show()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -82,6 +87,7 @@ class SignUpActivity : AppCompatActivity(), SignUpView {
                     if (passwordValidate(et_password_signup)) {
                         initProgressBar()
                         presenter.signUp(
+                            this,
                             etToString(et_full_name),
                             etToString(et_email),
                             etToString(et_password_signup),

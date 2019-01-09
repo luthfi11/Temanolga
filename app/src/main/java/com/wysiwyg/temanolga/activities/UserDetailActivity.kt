@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
 import android.widget.ImageView
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_user_detail.*
@@ -15,11 +14,12 @@ import com.wysiwyg.temanolga.models.Event
 import com.wysiwyg.temanolga.models.User
 import com.wysiwyg.temanolga.presenters.UserDetailPresenter
 import com.wysiwyg.temanolga.utils.SpinnerItem.accountType
-import com.wysiwyg.temanolga.utils.SpinnerItem.sportPref
 import com.wysiwyg.temanolga.utils.gone
 import com.wysiwyg.temanolga.utils.visible
 import com.wysiwyg.temanolga.views.UserDetailView
+import org.jetbrains.anko.design.snackbar
 import org.jetbrains.anko.startActivity
+import org.jetbrains.anko.toast
 
 class UserDetailActivity : AppCompatActivity(), UserDetailView {
     private val presenter = UserDetailPresenter(this)
@@ -62,6 +62,10 @@ class UserDetailActivity : AppCompatActivity(), UserDetailView {
         tvEmptyEvent.visible()
     }
 
+    override fun showNoConnection() {
+        snackbar(rv_event_profile, "Network error, can't get user data").show()
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_detail)
@@ -79,7 +83,7 @@ class UserDetailActivity : AppCompatActivity(), UserDetailView {
     }
 
     private fun getData(uid: String) {
-        presenter.getUser(userData,uid)
+        presenter.getUser(this, userData, uid)
         presenter.getUserEvent(events,uid)
     }
 

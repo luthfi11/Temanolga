@@ -1,7 +1,9 @@
 package com.wysiwyg.temanolga.presenters
 
+import android.content.Context
 import com.wysiwyg.temanolga.api.FirebaseApi
 import com.wysiwyg.temanolga.models.Event
+import com.wysiwyg.temanolga.utils.ConnectionUtil
 import com.wysiwyg.temanolga.views.HomeView
 
 class HomePresenter(private val view: HomeView) {
@@ -15,9 +17,14 @@ class HomePresenter(private val view: HomeView) {
         view.selection(sport, city)
     }
 
-    fun getData(events: MutableList<Event>, sport: String, city: String) {
+    fun getData(ctx: Context?, events: MutableList<Event>, sport: String, city: String) {
         view.showLoading()
         FirebaseApi.getEventData(events, sport, city, this)
+
+        if (!ConnectionUtil.isOnline(ctx)) {
+            view.hideLoading()
+            view.showNoConnection()
+        }
     }
 
     fun getDataSuccess(events: MutableList<Event>) {

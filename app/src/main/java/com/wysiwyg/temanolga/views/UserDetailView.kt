@@ -8,4 +8,5 @@ interface UserDetailView {
     fun showLoading()
     fun hideLoading()
     fun showEmptyPost()
+    fun showNoConnection()
 }

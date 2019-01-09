@@ -32,7 +32,7 @@ class FirebaseMessagingService: FirebaseMessagingService() {
         if (id != null) {
             intent.putExtra("userId", id)
         }
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
         val pendingIntent = PendingIntent.getActivity(this, 0, intent,
             PendingIntent.FLAG_ONE_SHOT)
 
