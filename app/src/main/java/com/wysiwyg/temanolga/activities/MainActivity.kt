@@ -1,10 +1,8 @@
 package com.wysiwyg.temanolga.activities
 
 import android.os.Bundle
-import android.support.design.widget.BottomNavigationView
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
-import android.view.MenuItem
 import android.view.View
 import com.google.firebase.auth.FirebaseAuth
 import com.wysiwyg.temanolga.R
@@ -60,38 +58,30 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initNavigation() {
-        navigation.setOnNavigationItemSelectedListener(object : BottomNavigationView.OnNavigationItemSelectedListener {
-            override fun onNavigationItemSelected(p0: MenuItem): Boolean {
-                when (p0.itemId) {
+        navigation.setOnNavigationItemSelectedListener { item ->
+                when (item.itemId) {
                     navigation_home -> {
                         loadFragment(home, R.string.title_home)
                         fab.show()
-                        return true
                     }
                     navigation_explore -> {
                         loadFragment(explore, R.string.title_explore)
                         fab.hide()
-                        return true
                     }
                     navigation_message -> {
                         loadFragment(message, R.string.title_message)
                         fab.hide()
-                        return true
                     }
                     navigation_notification -> {
                         loadFragment(notif, R.string.title_notification)
                         fab.hide()
-                        return true
                     }
                     navigation_profile -> {
                         loadFragment(profile, R.string.title_profile)
                         fab.show()
-                        return true
                     }
                 }
-
-                return false
-            }
-        })
+            true
+        }
     }
 }
