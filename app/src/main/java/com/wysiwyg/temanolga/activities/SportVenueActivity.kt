@@ -19,6 +19,7 @@ import com.wysiwyg.temanolga.R
 import kotlinx.android.synthetic.main.activity_sport_venue.*
 import android.content.Intent
 import android.provider.Settings
+import android.util.Log
 import android.view.KeyEvent
 import com.wysiwyg.temanolga.utils.gone
 import com.wysiwyg.temanolga.utils.visible
@@ -65,11 +66,11 @@ class SportVenueActivity : AppCompatActivity() {
                 ), 1
             )
         } else {
-            initMap(venue)
             val location: Location? = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER)
             if (location != null) {
                 longitude = location.longitude
                 latitude = location.latitude
+                initMap(venue)
             } else {
                 locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 0F, locationListener)
             }
@@ -107,6 +108,8 @@ class SportVenueActivity : AppCompatActivity() {
         mapsWeb.settings.setGeolocationEnabled(true)
         mapsWeb.webChromeClient = GeoWebClient()
         mapsWeb.loadUrl("https://www.google.com/maps/search/$venue/@$latitude,$longitude,14z")
+
+        Log.d("URL MAP", "https://www.google.com/maps/search/$venue/@$latitude,$longitude,14z")
     }
 
     inner class MyBrowser : WebViewClient() {

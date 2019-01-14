@@ -44,43 +44,44 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initFragment() {
-        fm.beginTransaction().add(R.id.content, profile, "5").hide(profile).commit()
-        fm.beginTransaction().add(R.id.content, notif, "4").hide(notif).commit()
-        fm.beginTransaction().add(R.id.content, message, "3").hide(message).commit()
-        fm.beginTransaction().add(R.id.content, explore, "2").hide(explore).commit()
-        fm.beginTransaction().add(R.id.content, home, "1").commit()
+        fm.beginTransaction().add(R.id.content, home, home::class.java.simpleName).commit()
     }
 
     private fun loadFragment(fragment: Fragment, title: Int) {
+        if (fm.findFragmentByTag(fragment::class.java.simpleName) == null) {
+            fm.beginTransaction().add(R.id.content, fragment, fragment::class.java.simpleName).commit()
+        }
+
         fm.beginTransaction().hide(active).show(fragment).commit()
+
         active = fragment
         tv_toolbar_title.text = resources.getString(title)
     }
 
     private fun initNavigation() {
         navigation.setOnNavigationItemSelectedListener { item ->
-                when (item.itemId) {
-                    navigation_home -> {
-                        loadFragment(home, R.string.title_home)
-                        fab.show()
-                    }
-                    navigation_explore -> {
-                        loadFragment(explore, R.string.title_explore)
-                        fab.hide()
-                    }
-                    navigation_message -> {
-                        loadFragment(message, R.string.title_message)
-                        fab.hide()
-                    }
-                    navigation_notification -> {
-                        loadFragment(notif, R.string.title_notification)
-                        fab.hide()
-                    }
-                    navigation_profile -> {
-                        loadFragment(profile, R.string.title_profile)
-                        fab.show()
-                    }
+            when (item.itemId) {
+                navigation_home -> {
+                    loadFragment(home, R.string.title_home)
+                    fab.show()
                 }
+                navigation_explore -> {
+                    loadFragment(explore, R.string.title_explore)
+                    fab.hide()
+                }
+                navigation_message -> {
+                    loadFragment(message, R.string.title_message)
+                    fab.hide()
+                }
+                navigation_notification -> {
+                    loadFragment(notif, R.string.title_notification)
+                    fab.hide()
+                }
+                navigation_profile -> {
+                    loadFragment(profile, R.string.title_profile)
+                    fab.show()
+                }
+            }
             true
         }
     }
