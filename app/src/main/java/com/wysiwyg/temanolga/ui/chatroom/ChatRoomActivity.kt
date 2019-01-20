@@ -10,7 +10,6 @@ import android.view.MenuItem
 import android.view.View
 import com.wysiwyg.temanolga.R
 import com.wysiwyg.temanolga.ui.userdetail.UserDetailActivity
-import com.wysiwyg.temanolga.ui.adapter.ChatRoomAdapter
 import com.wysiwyg.temanolga.data.model.Message
 import com.wysiwyg.temanolga.utilities.ValidateUtil.etToString
 import kotlinx.android.synthetic.main.activity_chat_room.*
@@ -48,8 +47,8 @@ class ChatRoomActivity : AppCompatActivity(), ChatRoomView {
         btnSend.send(user)
     }
 
-    override fun onResume() {
-        super.onResume()
+    override fun onAttachedToWindow() {
+        super.onAttachedToWindow()
         presenter.setRead(user)
     }
 
@@ -64,7 +63,7 @@ class ChatRoomActivity : AppCompatActivity(), ChatRoomView {
     }
 
     private fun initView(user: String) {
-        presenter.getReceiver(user, tvUserMsgRoom, tvUserCityRoom, imgUserRoom)
+        presenter.getReceiver(user, tvUserMsgRoom, imgUserRoom)
         presenter.getMessage(user, msg)
     }
 

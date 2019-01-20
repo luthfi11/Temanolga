@@ -7,7 +7,7 @@
         android:layout_height="match_parent"
         android:background="@color/colorWhite"
         android:focusableInTouchMode="true"
-        tools:context=".activities.EditProfileActivity">
+        tools:context=".ui.editprofile.EditProfileActivity">
 
     <LinearLayout
             android:layout_width="match_parent"

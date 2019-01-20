@@ -14,7 +14,8 @@
             android:padding="10dp"
             android:layout_marginStart="4dp"
             android:layout_marginEnd="4dp"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            tools:ignore="MissingConstraints">
 
         <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/imgUserMini"
@@ -43,7 +44,8 @@
                 android:layout_height="wrap_content"
                 android:layout_toEndOf="@id/imgUserMini"
                 android:layout_below="@id/card"
-                android:layout_margin="3dp"
+                android:layout_marginTop="3dp"
+                android:layout_marginStart="2dp"
                 android:orientation="vertical">
 
             <TextView
@@ -82,7 +84,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/card_shape"
-                android:paddingBottom="10dp"
                 android:paddingStart="0dp"
                 android:paddingEnd="10dp"
                 android:layout_below="@id/tvDesc"
@@ -94,6 +95,9 @@
                     android:layout_width="80dp"
                     android:layout_height="wrap_content"
                     android:gravity="center"
+                    android:paddingBottom="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="@drawable/date_shape"
                     android:orientation="vertical">
 
                 <TextView
@@ -101,7 +105,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="44sp"
-                        android:textColor="@color/colorBlack"
+                        android:textColor="@color/colorWhite"
                         tools:text="10"/>
 
                 <TextView
@@ -110,81 +114,44 @@
                         android:layout_height="wrap_content"
                         android:textSize="12sp"
                         android:layout_marginTop="-8dp"
-                        android:textColor="@color/colorBlack"
+                        android:textColor="@color/colorWhite"
                         tools:text="Jan 2018"/>
 
-                <TextView
-                        android:id="@+id/tvExpire"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@android:color/holo_red_light"
-                        android:textSize="12sp"
-                        android:textStyle="bold"
-                        android:visibility="gone"
-                        android:text="@string/expire"/>
-
             </LinearLayout>
-
-            <ImageView
-                    android:id="@+id/imgSport"
-                    android:layout_width="13dp"
-                    android:layout_height="13dp"
-                    android:layout_marginTop="15dp"
-                    android:contentDescription="@string/sport"
-                    android:layout_marginEnd="4dp"
-                    android:layout_toEndOf="@id/lytDate"
-                    android:tint="@color/colorBlack"
-                    android:src="@drawable/ic_sport"/>
 
             <TextView
                     android:id="@+id/tvSport"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="11dp"
+                    android:layout_marginTop="10dp"
                     android:layout_marginStart="1dp"
-                    android:layout_toEndOf="@id/imgSport"
-                    tools:text="Nama Olahraga"/>
-
-            <ImageView
-                    android:id="@+id/imgPlace"
-                    android:layout_width="14dp"
-                    android:layout_height="14dp"
-                    android:contentDescription="@string/venue"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginEnd="4dp"
                     android:layout_toEndOf="@id/lytDate"
-                    android:layout_below="@id/imgSport"
-                    android:tint="@color/colorBlack"
-                    android:src="@drawable/ic_place"/>
+                    android:drawableStart="@drawable/ic_sport_event"
+                    android:drawablePadding="4dp"
+                    tools:text="Nama Olahraga"/>
 
             <TextView
                     android:id="@+id/tvPlace"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_toEndOf="@id/imgPlace"
+                    android:layout_toEndOf="@id/lytDate"
                     android:layout_below="@id/tvSport"
                     android:maxLines="1"
                     android:ellipsize="end"
+                    android:drawableStart="@drawable/ic_place_event"
+                    android:drawablePadding="4dp"
                     tools:text="Tempat"/>
-
-            <ImageView
-                    android:id="@+id/imgSlot"
-                    android:layout_width="14dp"
-                    android:layout_height="14dp"
-                    android:contentDescription="@string/add_desc"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginEnd="4dp"
-                    android:layout_toEndOf="@id/lytDate"
-                    android:layout_below="@id/imgPlace"
-                    android:tint="@color/colorBlack"
-                    android:src="@drawable/ic_people"/>
 
             <TextView
                     android:id="@+id/tvSlotJoin"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_toEndOf="@id/imgSlot"
+                    android:layout_toEndOf="@id/lytDate"
                     android:layout_below="@id/tvPlace"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    android:drawableStart="@drawable/ic_people_event"
+                    android:drawablePadding="4dp"
                     tools:text="0/1 Team Joined"/>
 
         </RelativeLayout>

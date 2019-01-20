@@ -1,11 +1,10 @@
-package com.wysiwyg.temanolga.presenters
+package com.wysiwyg.temanolga.ui.userdetail
 
 import android.content.Context
-import com.wysiwyg.temanolga.api.FirebaseApi
-import com.wysiwyg.temanolga.models.Event
-import com.wysiwyg.temanolga.models.User
-import com.wysiwyg.temanolga.utils.ConnectionUtil
-import com.wysiwyg.temanolga.views.UserDetailView
+import com.wysiwyg.temanolga.data.network.FirebaseApi
+import com.wysiwyg.temanolga.data.model.Event
+import com.wysiwyg.temanolga.data.model.User
+import com.wysiwyg.temanolga.utilities.ConnectionUtil
 
 class UserDetailPresenter(private val view: UserDetailView) {
 

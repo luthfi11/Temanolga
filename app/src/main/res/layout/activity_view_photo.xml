@@ -6,7 +6,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/colorBlack"
-        tools:context=".activities.ViewPhotoActivity">
+        tools:context=".ui.userdetail.ViewPhotoActivity">
 
     <android.support.design.widget.AppBarLayout
             android:id="@+id/appbar"

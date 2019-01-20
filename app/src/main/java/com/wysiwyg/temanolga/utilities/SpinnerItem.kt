@@ -1,4 +1,4 @@
-package com.wysiwyg.temanolga.utils
+package com.wysiwyg.temanolga.utilities
 
 import android.content.Context
 import com.wysiwyg.temanolga.R
@@ -27,8 +27,12 @@ object SpinnerItem {
 
     fun accountType(context: Context, accType: String?, sport: String?): String {
         return when (accType) {
-            "1" -> String.format(context.getString(R.string.acc_team), sportPref(context, sport))
-            else -> String.format(context.getString(R.string.acc_personal), sportPref(context, sport))
+            "1" -> String.format(context.getString(R.string.acc_team),
+                sportPref(context, sport)
+            )
+            else -> String.format(context.getString(R.string.acc_personal),
+                sportPref(context, sport)
+            )
         }
     }
 }

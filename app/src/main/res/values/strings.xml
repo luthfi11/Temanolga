@@ -8,7 +8,7 @@
     <string name="signin">Sign In</string>
     <string name="signup">Sign Up</string>
     <string name="full_name">Full Name</string>
-    <string name="prompt_email">E-Mail</string>
+    <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
     <string name="account_type">Account Type</string>
     <string name="sport_preferred">Sport Preferred</string>
@@ -27,11 +27,10 @@
     <string name="fullname_invalid">Please fill your name</string>
     <string name="city_invalid">Please fill your city</string>
     <string name="password_length">Password min 8 character</string>
-    <string name="login_fail">Username and Password is wrong</string>
+    <string name="login_fail">Email and password is wrong</string>
     <string name="done">Done</string>
     <string name="join">Join</string>
     <string name="chat">Chat</string>
-    <string name="finish">Finish</string>
     <string name="venue">Venue (Required)</string>
     <string name="slot">Slot</string>
     <string name="add_desc">Add description here ...</string>
@@ -47,7 +46,7 @@
     <string name="date_invalid">Please fill the date</string>
     <string name="time_invalid">Please fill the time</string>
     <string name="message_text">Text Message</string>
-    <string name="event_detail">Event Detail</string>
+    <string name="event_detail">Invitation Detail</string>
     <string name="refresh">Refresh</string>
     <string name="send">Send</string>
     <string name="edit">Edit</string>
@@ -71,7 +70,7 @@
     <string name="football_field">Football Field</string>
     <string name="change_photo">Change Photo</string>
     <string name="expire">EXPIRED</string>
-    <string name="expire_msg">The Event Has Expired</string>
+    <string name="expire_msg">The invitation has expired</string>
     <string name="empty_event_user">No invitation yet</string>
     <string name="empty_event_home">No invitation data found</string>
     <string name="first_invitee">Be the first invitee</string>
@@ -82,21 +81,45 @@
     <string name="empty_search">User not found</string>
     <string name="read">Read</string>
     <string name="slot_full">Slot Full</string>
-
+    <string name="enable_location">Enable Location</string>
+    <string name="please_enable">Please enable your device location</string>
+    <string name="to_access_venue">to access nearby sport venue</string>
+    <string name="posting">Posting</string>
+    <string name="invitation_posted">Invitation posted</string>
+    <string name="network_error">Network Error</string>
+    <string name="network_add_event">Network unavailable, can\'t post invitation</string>
+    <string name="network_edit_event">Network unavailable, can\'t update data</string>
+    <string name="event_updated">Invitation Updated</string>
+    <string name="event_update_fail">Can\'t update invitation data</string>
+    <string name="uploading">Uploading </string>
+    <string name="network_edit_profile">Network unavailable, can\'t update profile</string>
+    <string name="choose_photo">Choose Photo</string>
+    <string name="cancel_join_prompt">Cancel joined this invitation ?</string>
+    <string name="delete_post">Delete this invitation ?</string>
+    <string name="post_deleted">Invitation deleted</string>
+    <string name="network_event_detail">Network error, can\'t get invitation detail</string>
+    <string name="share_prompt">Share Invitation</string>
+    <string name="network_login">Network unavailable, can\'t sign in</string>
+    <string name="sign_up_success">Sign up success</string>
+    <string name="sign_up_fail">Sign up failed, Email has been used !</string>
+    <string name="network_signup">Network unavailable, can\'t sign up</string>
+    <string name="network_user_detail">Network error, can\'t get user data</string>
+    <string name="delete_chat">Delete this chat ?</string>
+    <string name="network_confirmation">Network error, can\'t get confirmation data</string>
+    <string name="network_explore">Network error, can\'t get suggested user data</string>
+    <string name="network_home">Network error, can\'t get invitation data</string>
+    <string name="network_message">Network error, can\'t get message data</string>
+    <string name="network_profile">Network error, can\'t get your data</string>
+    <string name="logout_prompt">Logout from this account ?</string>
+    <string name="network_notif">Network error, can\'t get notification data</string>
     <string name="event_invitation">%s Invitation</string>
     <string name="joined_event_limited">%1$d/%2$d %3$s joined</string>
     <string name="slot_type_limited">%d %s limit</string>
     <string name="joined_event">%d %s joined</string>
     <string name="slot_type">Free %s join</string>
     <string name="slot_only">%s Only</string>
-
     <string name="acc_personal">Interested in %s</string>
     <string name="acc_team">%s Team</string>
-
-    <string name="enable_location">Enable Location</string>
-    <string name="please_enable">Please enable your device location</string>
-    <string name="to_access_venue">to access nearby sport venue</string>
-
     <string name="showing_filter">Showing %1$s invitation in %2$s</string>
     <string name="showing_filter_no_city">Showing %1$s invitation</string>
 

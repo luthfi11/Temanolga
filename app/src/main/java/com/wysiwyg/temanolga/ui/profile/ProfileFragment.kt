@@ -9,8 +9,8 @@ import com.squareup.picasso.Picasso
 import com.wysiwyg.temanolga.R
 import com.wysiwyg.temanolga.ui.editprofile.EditProfileActivity
 import com.wysiwyg.temanolga.ui.login.LoginActivity
-import com.wysiwyg.temanolga.ui.viewphoto.ViewPhotoActivity
-import com.wysiwyg.temanolga.ui.adapter.EventAdapter
+import com.wysiwyg.temanolga.ui.userdetail.ViewPhotoActivity
+import com.wysiwyg.temanolga.ui.home.EventAdapter
 import com.wysiwyg.temanolga.data.model.Event
 import com.wysiwyg.temanolga.data.model.User
 import com.wysiwyg.temanolga.utilities.SpinnerItem.accountType

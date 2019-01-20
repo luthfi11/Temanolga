@@ -1,4 +1,4 @@
-package com.wysiwyg.temanolga.activities
+package com.wysiwyg.temanolga.ui.userdetail
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -9,17 +9,15 @@ import android.widget.ImageView
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_user_detail.*
 import com.wysiwyg.temanolga.R
-import com.wysiwyg.temanolga.adapters.EventAdapter
-import com.wysiwyg.temanolga.models.Event
-import com.wysiwyg.temanolga.models.User
-import com.wysiwyg.temanolga.presenters.UserDetailPresenter
-import com.wysiwyg.temanolga.utils.SpinnerItem.accountType
-import com.wysiwyg.temanolga.utils.gone
-import com.wysiwyg.temanolga.utils.visible
-import com.wysiwyg.temanolga.views.UserDetailView
+import com.wysiwyg.temanolga.ui.home.EventAdapter
+import com.wysiwyg.temanolga.data.model.Event
+import com.wysiwyg.temanolga.data.model.User
+import com.wysiwyg.temanolga.ui.chatroom.ChatRoomActivity
+import com.wysiwyg.temanolga.utilities.SpinnerItem.accountType
+import com.wysiwyg.temanolga.utilities.gone
+import com.wysiwyg.temanolga.utilities.visible
 import org.jetbrains.anko.design.snackbar
 import org.jetbrains.anko.startActivity
-import org.jetbrains.anko.toast
 
 class UserDetailActivity : AppCompatActivity(), UserDetailView {
     private val presenter = UserDetailPresenter(this)
@@ -63,7 +61,7 @@ class UserDetailActivity : AppCompatActivity(), UserDetailView {
     }
 
     override fun showNoConnection() {
-        snackbar(rv_event_profile, "Network error, can't get user data").show()
+        snackbar(rv_event_profile, getString(R.string.network_user_detail)).show()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -77,8 +75,8 @@ class UserDetailActivity : AppCompatActivity(), UserDetailView {
     }
 
     private fun initToolbar() {
+        setSupportActionBar(toolbar_user)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.elevation = Float.MIN_VALUE
         supportActionBar?.title = ""
     }
 

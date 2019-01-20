@@ -6,7 +6,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/colorSemiWhite"
-        tools:context=".activities.ChatRoomActivity">
+        tools:context=".ui.chatroom.ChatRoomActivity">
 
     <android.support.design.widget.AppBarLayout
             android:id="@+id/appbar"
@@ -18,7 +18,7 @@
         <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar_message"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/appBar"
                 android:background="@color/colorPrimary"
                 app:popupTheme="@style/AppTheme.AppBarOverlay">
 
@@ -28,8 +28,8 @@
 
                 <de.hdodenhof.circleimageview.CircleImageView
                         android:id="@+id/imgUserRoom"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
+                        android:layout_width="34dp"
+                        android:layout_height="34dp"
                         android:layout_marginEnd="8dp"
                         app:civ_border_width="1dp"
                         app:civ_border_color="@color/colorMuted"
@@ -39,24 +39,13 @@
                         android:id="@+id/tvUserMsgRoom"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="16sp"
                         android:textColor="@color/colorWhite"
                         android:layout_toEndOf="@id/imgUserRoom"
+                        android:layout_centerVertical="true"
+                        android:textSize="@dimen/toolbarText"
                         android:maxLines="1"
                         android:ellipsize="end"
                         tools:text="Username"/>
-
-                <TextView
-                        android:id="@+id/tvUserCityRoom"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="12sp"
-                        android:layout_toEndOf="@id/imgUserRoom"
-                        android:layout_below="@id/tvUserMsgRoom"
-                        android:textColor="@color/colorWhite"
-                        android:maxLines="1"
-                        android:ellipsize="end"
-                        tools:text="City"/>
 
             </RelativeLayout>
 

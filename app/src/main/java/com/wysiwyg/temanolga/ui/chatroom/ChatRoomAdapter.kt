@@ -1,4 +1,4 @@
-package com.wysiwyg.temanolga.ui.adapter
+package com.wysiwyg.temanolga.ui.chatroom
 
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater

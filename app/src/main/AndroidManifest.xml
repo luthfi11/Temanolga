@@ -12,51 +12,53 @@
     <application
             android:name="com.wysiwyg.temanolga.Application"
             android:allowBackup="true"
-            android:icon="@drawable/ic_logo_app"
+            android:icon="@mipmap/ic_launcher"
             android:label="@string/app_name"
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
         <activity
-                android:name=".activities.MainActivity"
+                android:name=".ui.main.MainActivity"
                 android:label="@string/app_name"
+                android:configChanges="orientation|screenSize|keyboardHidden"
                 android:screenOrientation="portrait"
                 android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <activity
-                android:name=".activities.AddEventActivity"
+                android:name=".ui.addevent.AddEventActivity"
                 android:screenOrientation="portrait"
                 android:theme="@style/AppTheme.NoActionBar"/>
         <activity
-                android:name=".activities.LoginActivity"
+                android:name=".ui.login.LoginActivity"
                 android:screenOrientation="portrait"
                 android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <activity
-                android:name=".activities.SignUpActivity"
+                android:name=".ui.signup.SignUpActivity"
                 android:screenOrientation="portrait"
                 android:theme="@style/AppTheme.NoActionBar"/>
         <activity
-                android:name=".activities.PlaceSearchActivity"
+                android:name=".ui.addevent.PlaceSearchActivity"
                 android:screenOrientation="portrait"
                 android:theme="@style/AppTheme.NoActionBar"/>
         <activity
-                android:name=".activities.ChatRoomActivity"
+                android:name=".ui.chatroom.ChatRoomActivity"
                 android:screenOrientation="portrait"
                 android:theme="@style/AppTheme.NoActionBar"/>
         <activity
-                android:name=".activities.UserDetailActivity"
-                android:screenOrientation="portrait"/>
-        <activity
-                android:name=".activities.EventDetailActivity"
+                android:name=".ui.userdetail.UserDetailActivity"
                 android:screenOrientation="portrait"
                 android:theme="@style/AppTheme.NoActionBar"/>
         <activity
-                android:name=".activities.ViewPhotoActivity"
+                android:name=".ui.eventdetail.EventDetailActivity"
+                android:screenOrientation="portrait"
+                android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+                android:name=".ui.userdetail.ViewPhotoActivity"
                 android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <activity
-                android:name=".activities.WelcomeActivity"
+                android:name=".ui.main.WelcomeActivity"
                 android:screenOrientation="portrait"
                 android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -67,7 +69,7 @@
             </intent-filter>
         </activity>
 
-        <service android:name=".api.FirebaseMessagingService">
+        <service android:name=".service.FirebaseMessagingService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT"/>
             </intent-filter>
@@ -75,27 +77,27 @@
 
         <meta-data
                 android:name="com.google.firebase.messaging.default_notification_icon"
-                android:resource="@drawable/ic_logo_app" />
+                android:resource="@drawable/ic_logo_app"/>
 
         <meta-data
                 android:name="com.google.firebase.messaging.default_notification_color"
-                android:resource="@color/colorPrimary" />
+                android:resource="@color/colorPrimary"/>
 
         <activity
-                android:name=".activities.SportVenueActivity"
+                android:name=".ui.explore.SportVenueActivity"
                 android:screenOrientation="portrait"
                 android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <activity
-                android:name=".activities.EditProfileActivity"
+                android:name=".ui.editprofile.EditProfileActivity"
                 android:screenOrientation="portrait"
                 android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <activity
-                android:name=".activities.SearchUserActivity"
+                android:name=".ui.searchuser.SearchUserActivity"
                 android:screenOrientation="portrait"
                 android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".activities.EditEventActivity"
+        <activity android:name=".ui.editevent.EditEventActivity"
                   android:screenOrientation="portrait"
                   android:theme="@style/AppTheme.NoActionBar">
         </activity>

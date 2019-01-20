@@ -1,4 +1,4 @@
-package com.wysiwyg.temanolga.utils
+package com.wysiwyg.temanolga.utilities
 
 import android.graphics.Typeface
 import android.text.Spannable

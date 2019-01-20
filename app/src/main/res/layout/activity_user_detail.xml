@@ -6,12 +6,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:context=".fragments.ProfileFragment">
+        tools:context=".ui.profile.ProfileFragment">
 
     <android.support.design.widget.AppBarLayout
             android:layout_width="match_parent"
-            android:layout_height="185dp"
+            android:layout_height="wrap_content"
             android:background="@color/colorPrimary"
+            android:theme="@style/AppTheme.AppBarOverlay"
             android:fitsSystemWindows="true">
 
         <android.support.design.widget.CollapsingToolbarLayout
@@ -22,16 +23,24 @@
                 app:layout_scrollInterpolator="@android:anim/decelerate_interpolator"
                 app:titleEnabled="false">
 
-            <RelativeLayout
+            <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:gravity="center">
+
+                <android.support.v7.widget.Toolbar
+                        android:id="@+id/toolbar_user"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/appBar"
+                        app:layout_scrollFlags="scroll|enterAlways|snap"/>
 
                 <ProgressBar
                         android:id="@+id/progressBar"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_centerHorizontal="true"
                         android:visibility="gone"
+                        android:layout_marginBottom="-48dp"
                         android:layout_gravity="center"/>
 
                 <de.hdodenhof.circleimageview.CircleImageView
@@ -39,7 +48,6 @@
                         android:layout_width="95dp"
                         android:layout_height="95dp"
                         android:layout_marginBottom="8dp"
-                        android:layout_centerHorizontal="true"
                         app:civ_border_width="1dp"
                         app:civ_border_color="@color/colorMuted"
                         tools:src="@drawable/ic_logo_login"/>
@@ -50,8 +58,6 @@
                         android:layout_height="wrap_content"
                         android:textColor="@color/colorWhite"
                         android:textStyle="bold"
-                        android:layout_below="@id/imgUser"
-                        android:layout_centerHorizontal="true"
                         android:textSize="16sp"
                         android:layout_marginBottom="2dp"
                         tools:text="USER FULL NAME"/>
@@ -60,8 +66,6 @@
                         android:id="@+id/tvUserSport"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/tvUserFullName"
-                        android:layout_centerHorizontal="true"
                         android:textColor="@color/colorWhite"
                         android:textSize="12sp"
                         tools:text="Interested in Football"/>
@@ -71,13 +75,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/colorWhite"
-                        android:layout_below="@id/tvUserSport"
-                        android:layout_centerHorizontal="true"
-                        android:layout_marginBottom="6dp"
+                        android:layout_marginBottom="16dp"
                         android:textSize="12sp"
                         tools:text="City"/>
 
-            </RelativeLayout>
+            </LinearLayout>
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
 

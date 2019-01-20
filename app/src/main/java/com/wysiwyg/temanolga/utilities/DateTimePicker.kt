@@ -1,4 +1,4 @@
-package com.wysiwyg.temanolga.utils
+package com.wysiwyg.temanolga.utilities
 
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog

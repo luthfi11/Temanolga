@@ -1,4 +1,4 @@
-package com.wysiwyg.temanolga.ui.adapter
+package com.wysiwyg.temanolga.ui.notification
 
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater

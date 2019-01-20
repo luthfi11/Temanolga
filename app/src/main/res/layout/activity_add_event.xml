@@ -8,7 +8,7 @@
         android:orientation="vertical"
         android:background="@color/colorWhite"
         android:focusableInTouchMode="true"
-        tools:context=".activities.AddEventActivity">
+        tools:context=".ui.addevent.AddEventActivity">
 
     <android.support.design.widget.AppBarLayout
             android:layout_width="match_parent"

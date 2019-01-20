@@ -1,4 +1,4 @@
-package com.wysiwyg.temanolga.ui.adapter
+package com.wysiwyg.temanolga.ui.home
 
 import android.content.Intent
 import android.graphics.Typeface
@@ -220,9 +220,10 @@ class EventAdapter(private val events: MutableList<Event>) :
 
         private fun isFull(slotFill: Int?, slot: Int?) {
             if (slot != null && slotFill == slot) {
+                val full = "$slotFill/$slot "+itemView.context.getString(R.string.slot_full)
                 itemView.tvSlotJoin.textColorResource = R.color.colorBlack
                 itemView.tvSlotJoin.typeface = Typeface.DEFAULT_BOLD
-                itemView.tvSlotJoin.append(" (Full)")
+                itemView.tvSlotJoin.text = full
                 itemView.btnJoin.isEnabled = false
                 itemView.btnJoin.setColorFilter(ContextCompat.getColor(itemView.context, R.color.colorGrey))
             }

@@ -5,18 +5,18 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".activities.SportVenueActivity">
+        tools:context=".ui.explore.SportVenueActivity">
 
     <android.support.design.widget.AppBarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:elevation="0dp"
-            android:theme="@style/AppTheme.AppBarOverlay">
+            android:theme="@style/AppTheme.AppBarOverlay" tools:ignore="MissingConstraints">
 
         <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbarVenue"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/appBar"
                 android:background="@color/colorPrimary"
                 app:popupTheme="@style/AppTheme.AppBarOverlay">
 
@@ -24,7 +24,7 @@
                     android:id="@+id/tvVenueTitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="16sp"
+                    android:textSize="@dimen/toolbarText"
                     android:textColor="@color/colorWhite"
                     tools:text="Futsal Field"/>
 
@@ -36,7 +36,7 @@
             android:id="@+id/frm_map"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="?attr/actionBarSize">
+            android:layout_marginTop="@dimen/appBar">
 
         <WebView
                 android:id="@+id/mapsWeb"

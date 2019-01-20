@@ -6,7 +6,6 @@ import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.SearchView
 import android.view.MenuItem
 import com.wysiwyg.temanolga.R
-import com.wysiwyg.temanolga.ui.adapter.SearchUserAdapter
 import com.wysiwyg.temanolga.data.model.User
 import com.wysiwyg.temanolga.utilities.gone
 import com.wysiwyg.temanolga.utilities.visible

@@ -4,7 +4,7 @@ import android.app.ProgressDialog
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import com.wysiwyg.temanolga.R
-import com.wysiwyg.temanolga.ui.MainActivity
+import com.wysiwyg.temanolga.ui.main.MainActivity
 import com.wysiwyg.temanolga.ui.signup.SignUpActivity
 import com.wysiwyg.temanolga.utilities.ValidateUtil.emailValidate
 import com.wysiwyg.temanolga.utilities.ValidateUtil.etToString

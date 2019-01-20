@@ -1,10 +1,9 @@
-package com.wysiwyg.temanolga.ui.welcome
+package com.wysiwyg.temanolga.ui.main
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import com.wysiwyg.temanolga.R
-import com.wysiwyg.temanolga.ui.MainActivity
 import org.jetbrains.anko.startActivity
 
 class WelcomeActivity : AppCompatActivity() {

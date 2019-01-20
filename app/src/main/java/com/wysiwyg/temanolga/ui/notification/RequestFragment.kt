@@ -7,7 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.wysiwyg.temanolga.R
-import com.wysiwyg.temanolga.ui.adapter.NotificationAdapter
 import com.wysiwyg.temanolga.data.model.Join
 import com.wysiwyg.temanolga.utilities.gone
 import com.wysiwyg.temanolga.utilities.visible

@@ -6,7 +6,6 @@ import android.support.v7.app.AppCompatActivity
 import android.view.*
 import com.wysiwyg.temanolga.R
 import com.wysiwyg.temanolga.ui.searchuser.SearchUserActivity
-import com.wysiwyg.temanolga.ui.adapter.UserAdapter
 import com.wysiwyg.temanolga.data.model.User
 import com.wysiwyg.temanolga.utilities.gone
 import com.wysiwyg.temanolga.utilities.visible

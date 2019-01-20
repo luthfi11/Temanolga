@@ -8,7 +8,6 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.*
 import android.widget.ArrayAdapter
 import com.wysiwyg.temanolga.R
-import com.wysiwyg.temanolga.ui.adapter.EventAdapter
 import com.wysiwyg.temanolga.data.model.Event
 import kotlinx.android.synthetic.main.fragment_home.*
 import com.wysiwyg.temanolga.utilities.CityUtil

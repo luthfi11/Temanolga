@@ -1,0 +1,150 @@
+<resources>
+    <string name="app_name">Temanolga</string>
+    <string name="title_home">Beranda</string>
+    <string name="title_explore">Jelajahi</string>
+    <string name="title_message">Pesan</string>
+    <string name="title_profile">Profil</string>
+    <string name="title_notification">Pemberitahuan</string>
+    <string name="signin">Masuk</string>
+    <string name="signup">Daftar</string>
+    <string name="full_name">Nama Lengkap</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Kata Kunci</string>
+    <string name="account_type">Tipe Akun</string>
+    <string name="sport_preferred">Olahraga Favorit</string>
+    <string name="sport">Olahraga</string>
+    <string name="running">Lari</string>
+    <string name="futsal">Futsal</string>
+    <string name="football">Sepak Bola</string>
+    <string name="person">Orang</string>
+    <string name="team">Tim</string>
+    <string name="person_or_team">Tim atau orang</string>
+    <string name="city">Kota</string>
+    <string name="signup_msg">Belum punya akun ?</string>
+    <string name="signin_msg">Sudah punya akun ?</string>
+    <string name="empty_password">Mohon untuk mengisi kata kunci anda</string>
+    <string name="email_invalid">Mohon untuk mengisi email dengan benar</string>
+    <string name="fullname_invalid">Mohon untuk mengisi nama anda</string>
+    <string name="city_invalid">Mohon untuk mengisi kota anda</string>
+    <string name="password_length">Kata kunci minimal 8 karakter</string>
+    <string name="login_fail">Email dan kata kunci salah</string>
+    <string name="done">Selesai</string>
+    <string name="join">Bergabung</string>
+    <string name="chat">Pesan</string>
+    <string name="venue">Lokasi (Wajib)</string>
+    <string name="slot">Slot</string>
+    <string name="add_desc">Tambahkan keterangan disini ...</string>
+    <string name="date">Tanggal (Wajib)</string>
+    <string name="time">Jam (Wajib)</string>
+    <string name="set">Atur</string>
+    <string name="find">Cari</string>
+    <string name="search">Cari</string>
+    <string name="search_place">Cari Lokasi</string>
+    <string name="edit_profile">Ubah Profil</string>
+    <string name="logout">Keluar</string>
+    <string name="place_invalid">Mohon untuk mengisi lokasi olahraga</string>
+    <string name="date_invalid">Mohon untuk mengisi tanggal</string>
+    <string name="time_invalid">Mohon untuk mengisi jam</string>
+    <string name="message_text">Teks Pesan</string>
+    <string name="event_detail">Rincian Ajakan</string>
+    <string name="refresh">Segarkan</string>
+    <string name="send">Kirim</string>
+    <string name="edit">Ubah</string>
+    <string name="delete">Hapus</string>
+    <string name="share">Bagikan</string>
+    <string name="joined">Tergabung</string>
+    <string name="requested">Diminta</string>
+    <string name="request_notif">%1$s ingin bergabung ke ajakan %2$s anda</string>
+    <string name="confirm_notif">%1$s telah %2$s permintaan bergabung anda</string>
+    <string name="accept">Terima</string>
+    <string name="ignore">Abaikan</string>
+    <string name="accepted">Menyetujui</string>
+    <string name="ignored">Mengabaikan</string>
+    <string name="confirmation">Konfirmasi</string>
+    <string name="request">Permintaan</string>
+    <string name="filter">Filter</string>
+    <string name="suggested_user">Temukan Pengguna</string>
+    <string name="sport_venue">Tempat Olahraga</string>
+    <string name="running_track">Lintasan Lari</string>
+    <string name="futsal_field">Lapangan Futsal</string>
+    <string name="football_field">Lapangan Sepak Bola</string>
+    <string name="change_photo">Ubah Foto</string>
+    <string name="expire">SELESAI</string>
+    <string name="expire_msg">Ajakan ini telah selesai</string>
+    <string name="empty_event_user">Belum ada kiriman ajakan</string>
+    <string name="empty_event_home">Data ajakan tidak ditemukan</string>
+    <string name="first_invitee">Jadilah pengundang pertama</string>
+    <string name="empty_notif">Belum ada aktivitas terbaru</string>
+    <string name="empty_message">Pesan kosong</string>
+    <string name="empty_profile">Tidak ada kiriman ajakan di profil anda</string>
+    <string name="empty_explore">Data pengguna yang disarankan tidak ditemukan</string>
+    <string name="empty_search">Pengguna tidak ditemukan</string>
+    <string name="read">Baca</string>
+    <string name="slot_full">Slot Penuh</string>
+    <string name="enable_location">Aktifkan Lokasi</string>
+    <string name="please_enable">Mohon aktifkan layanan lokasi di perangkat anda</string>
+    <string name="to_access_venue">untuk mengakses tempat olahraga terdekat</string>
+    <string name="posting">Mengirim</string>
+    <string name="invitation_posted">Ajakan terkirim</string>
+    <string name="network_error">Jaringan error</string>
+    <string name="network_add_event">Jaringan tidak tersedia, tidak dapat mengirim ajakan</string>
+    <string name="network_edit_event">Jaringan tidak tersedia, tidak dapat mengubah data</string>
+    <string name="event_updated">Ajakan diperbarui</string>
+    <string name="event_update_fail">Gagal memperbarui data</string>
+    <string name="uploading">Mengunggah </string>
+    <string name="network_edit_profile">Jaringan tidak tersedia, tidak dapat memperbarui profil</string>
+    <string name="choose_photo">Pilih Foto</string>
+    <string name="cancel_join_prompt">Batal bergabung dengan ajakan ini ?</string>
+    <string name="delete_post">Hapus ajakan ini ?</string>
+    <string name="post_deleted">Ajakan dihapus</string>
+    <string name="network_event_detail">Kesalahan jaringan, tidak dapat mengambil rincian ajakan</string>
+    <string name="share_prompt">Bagikan Ajakan</string>
+    <string name="network_login">Jaringan tidak tersedia, tidak dapat masuk</string>
+    <string name="sign_up_success">Daftar berhasil</string>
+    <string name="sign_up_fail">Daftar gagal, Email sudah ada yang menggunakan !</string>
+    <string name="network_signup">Jaringan tidak tersedia, tidak dapat daftar</string>
+    <string name="network_user_detail">Kesalahan jaringan, tidak dapat mengambil data pengguna</string>
+    <string name="delete_chat">Hapus obrolan ini ?</string>
+    <string name="network_confirmation">Kesalahan jaringan, tidak dapat mengambil data konfirmasi</string>
+    <string name="network_explore">Kesalahan jaringan, tidak dapat mengambil saran pengguna</string>
+    <string name="network_home">Kesalahan jaringan, tidak dapat mengambil data ajakan</string>
+    <string name="network_message">Kesalahan jaringan, tidak dapat mengambil data obrolan</string>
+    <string name="network_profile">Kesalahan jaringan, tidak dapat mengambil data anda</string>
+    <string name="logout_prompt">Keluar dari akun ini ?</string>
+    <string name="network_notif">Kesalahan jaringan, tidak dapat mengambil pemberitahuan</string>
+
+    <string name="event_invitation">Ajakan %s</string>
+    <string name="joined_event_limited">%1$d/%2$d %3$s Tergabung</string>
+    <string name="slot_type_limited">Dibatasi %d %s</string>
+    <string name="joined_event">%d %s tergabung</string>
+    <string name="slot_type">%s bebas bergabung</string>
+    <string name="slot_only">Hanya %s</string>
+    <string name="acc_personal">Berminat di %s</string>
+    <string name="acc_team">Tim %s</string>
+    <string name="showing_filter">Menampilkan ajakan %1$s di %2$s</string>
+    <string name="showing_filter_no_city">Menampilkan ajakan %1$s</string>
+
+    <string name="default_notification_channel_id">temanolga_default_channel</string>
+
+    <string name="access_token">
+        pk.eyJ1IjoibHV0aGZpMTEiLCJhIjoiY2psdWVvM3J3MGszaTN3cXA1ODRqcGQ1cSJ9.Kg15RUMGU58Zigp5yJvq3g
+    </string>
+
+    <array name="account_type">
+        <item>Pribadi</item>
+        <item>Tim</item>
+    </array>
+
+    <array name="sport_array">
+        <item>Lari</item>
+        <item>Futsal</item>
+        <item>Sepak Bola</item>
+    </array>
+
+    <array name="slot_type_array">
+        <item>Orang</item>
+        <item>Tim</item>
+        <item>TIm atau orang</item>
+    </array>
+
+</resources>

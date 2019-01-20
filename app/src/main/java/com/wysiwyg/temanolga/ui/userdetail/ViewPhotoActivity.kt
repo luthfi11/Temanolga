@@ -1,11 +1,11 @@
-package com.wysiwyg.temanolga.activities
+package com.wysiwyg.temanolga.ui.userdetail
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import com.squareup.picasso.Picasso
 import com.wysiwyg.temanolga.R
-import com.wysiwyg.temanolga.models.User
+import com.wysiwyg.temanolga.data.model.User
 import kotlinx.android.synthetic.main.activity_view_photo.*
 
 class ViewPhotoActivity : AppCompatActivity() {

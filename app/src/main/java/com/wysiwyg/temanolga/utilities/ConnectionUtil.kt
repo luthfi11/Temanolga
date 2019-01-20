@@ -1,4 +1,4 @@
-package com.wysiwyg.temanolga.utils
+package com.wysiwyg.temanolga.utilities
 
 import android.content.Context
 import android.net.ConnectivityManager

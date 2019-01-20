@@ -1,4 +1,4 @@
-package com.wysiwyg.temanolga.ui.adapter
+package com.wysiwyg.temanolga.ui.message
 
 import android.graphics.Typeface
 import android.support.v7.widget.RecyclerView

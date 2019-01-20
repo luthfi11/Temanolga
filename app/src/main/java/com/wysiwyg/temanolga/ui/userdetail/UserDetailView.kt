@@ -1,6 +1,6 @@
-package com.wysiwyg.temanolga.views
+package com.wysiwyg.temanolga.ui.userdetail
 
-import com.wysiwyg.temanolga.models.User
+import com.wysiwyg.temanolga.data.model.User
 
 interface UserDetailView {
     fun showUserData(user: List<User>)

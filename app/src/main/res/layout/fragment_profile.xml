@@ -7,11 +7,11 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:context=".fragments.ProfileFragment">
+        tools:context=".ui.profile.ProfileFragment">
 
     <android.support.design.widget.AppBarLayout
             android:layout_width="match_parent"
-            android:layout_height="185dp"
+            android:layout_height="wrap_content"
             android:background="@color/colorPrimary"
             android:fitsSystemWindows="true">
 
@@ -29,6 +29,22 @@
                     android:gravity="center"
                     android:orientation="vertical">
 
+                <android.support.v7.widget.Toolbar
+                        android:id="@+id/toolbar_profile"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/appBar"
+                        app:layout_scrollFlags="scroll|enterAlways|snap">
+
+                    <TextView
+                            android:id="@+id/tv_toolbar_title"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/title_profile"
+                            android:textSize="@dimen/toolbarText"
+                            android:textColor="@color/colorWhite"/>
+
+                </android.support.v7.widget.Toolbar>
+
                 <ProgressBar
                         android:id="@+id/progressBar"
                         android:layout_width="wrap_content"
@@ -41,6 +57,7 @@
                         android:id="@+id/imgUser"
                         android:layout_width="95dp"
                         android:layout_height="95dp"
+                        android:layout_marginTop="8dp"
                         android:layout_marginBottom="8dp"
                         app:civ_border_width="1dp"
                         app:civ_border_color="@color/colorMuted"
@@ -69,7 +86,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/colorWhite"
-                        android:layout_marginBottom="6dp"
+                        android:layout_marginBottom="16dp"
                         android:textSize="12sp"
                         tools:text="City"/>
 
@@ -81,12 +98,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_behavior="android.support.design.widget.AppBarLayout$ScrollingViewBehavior">
-
-        <android.support.constraint.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingBottom="10dp"
-                android:paddingTop="4dp">
 
             <LinearLayout
                     android:layout_width="match_parent"
@@ -110,10 +121,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:paddingBottom="10dp"
+                        android:paddingTop="4dp"
                         android:clipToPadding="false"
                         tools:listitem="@layout/item_event"/>
 
             </LinearLayout>
-        </android.support.constraint.ConstraintLayout>
+
     </android.support.v4.widget.NestedScrollView>
 </android.support.design.widget.CoordinatorLayout>

@@ -1,4 +1,4 @@
-package com.wysiwyg.temanolga.ui.adapter
+package com.wysiwyg.temanolga.ui.searchuser
 
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -8,16 +8,16 @@ import com.wysiwyg.temanolga.R
 import com.wysiwyg.temanolga.ui.userdetail.UserDetailActivity
 import com.wysiwyg.temanolga.data.network.FirebaseApi
 import com.wysiwyg.temanolga.data.model.User
-import kotlinx.android.synthetic.main.item_people.view.*
-import org.jetbrains.anko.startActivity
+import kotlinx.android.synthetic.main.item_search_people.view.*
+import org.jetbrains.anko.*
 
-class UserAdapter(private val users: MutableList<User>) :
-    RecyclerView.Adapter<UserAdapter.ViewHolder>() {
+class SearchUserAdapter(private val users: MutableList<User?>) :
+    RecyclerView.Adapter<SearchUserAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
         ViewHolder(
             LayoutInflater.from(parent.context).inflate(
-                R.layout.item_people,
+                R.layout.item_search_people,
                 parent,
                 false
             )
@@ -33,9 +33,14 @@ class UserAdapter(private val users: MutableList<User>) :
     }
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        fun bindItem(user: User) {
-            FirebaseApi.getPostSender(user.userId!!, itemView.tvUserName, itemView.tvUserCity, itemView.imgUser)
-            itemView.setOnClickListener { itemView.context.startActivity<UserDetailActivity>("userId" to user.userId) }
+        fun bindItem(user: User?) {
+
+            FirebaseApi.getPostSender(user?.userId!!, itemView.tvUserSrc, null, itemView.imgUserSrc)
+
+            itemView.setOnClickListener {
+                itemView.context.startActivity<UserDetailActivity>("userId" to user.userId!!)
+            }
+
         }
     }
 }

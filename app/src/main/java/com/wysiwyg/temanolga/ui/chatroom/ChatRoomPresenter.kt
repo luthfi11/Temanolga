@@ -7,8 +7,8 @@ import com.wysiwyg.temanolga.data.model.Message
 
 class ChatRoomPresenter(private val view: ChatRoomView) {
 
-    fun getReceiver(receiver: String, tvUserMsgRoom: TextView, tvUserCityRoom: TextView, imgUserRoom: ImageView) {
-        FirebaseApi.getPostSender(receiver, tvUserMsgRoom, tvUserCityRoom, imgUserRoom)
+    fun getReceiver(receiver: String, tvUserMsgRoom: TextView, imgUserRoom: ImageView) {
+        FirebaseApi.getPostSender(receiver, tvUserMsgRoom, null, imgUserRoom)
     }
 
     fun getMessage(receiver: String, msg: MutableList<Message>) {
