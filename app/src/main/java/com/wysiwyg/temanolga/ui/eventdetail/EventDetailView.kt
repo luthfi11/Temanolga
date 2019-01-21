@@ -21,4 +21,6 @@ interface EventDetailView {
     fun showFull()
     fun showExpire(date: String)
     fun showNoConnection()
+    fun showJoinedUser()
+    fun showNoUser()
 }

@@ -2,8 +2,10 @@ package com.wysiwyg.temanolga.ui.eventdetail
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import com.wysiwyg.temanolga.data.network.FirebaseApi
 import com.wysiwyg.temanolga.data.model.Event
+import com.wysiwyg.temanolga.data.model.User
 import com.wysiwyg.temanolga.utilities.ConnectionUtil
 
 class EventDetailPresenter(private val view: EventDetailView) {
@@ -102,5 +104,17 @@ class EventDetailPresenter(private val view: EventDetailView) {
 
     fun isExpire(date: String) {
         view.showExpire(date)
+    }
+
+    fun joinedUser(eventId: String, user: MutableList<User?>) {
+        FirebaseApi.getJoinedUser(eventId, user, this)
+    }
+
+    fun showJoinedUser(user: MutableList<User?>) {
+        if (user.size == 0) {
+            view.showNoUser()
+        } else {
+            view.showJoinedUser()
+        }
     }
 }

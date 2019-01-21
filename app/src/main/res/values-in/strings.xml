@@ -112,7 +112,6 @@
     <string name="network_profile">Kesalahan jaringan, tidak dapat mengambil data anda</string>
     <string name="logout_prompt">Keluar dari akun ini ?</string>
     <string name="network_notif">Kesalahan jaringan, tidak dapat mengambil pemberitahuan</string>
-
     <string name="event_invitation">Ajakan %s</string>
     <string name="joined_event_limited">%1$d/%2$d %3$s Tergabung</string>
     <string name="slot_type_limited">Dibatasi %d %s</string>
@@ -123,6 +122,8 @@
     <string name="acc_team">Tim %s</string>
     <string name="showing_filter">Menampilkan ajakan %1$s di %2$s</string>
     <string name="showing_filter_no_city">Menampilkan ajakan %1$s</string>
+    <string name="profile_updated">Profil diperbarui</string>
+    <string name="email_used">Email has been used, update failed</string>
 
     <string name="default_notification_channel_id">temanolga_default_channel</string>
 

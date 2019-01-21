@@ -191,8 +191,8 @@
                     android:paddingTop="8dp"
                     android:paddingBottom="8dp"
                     android:textSize="14sp"
-                    android:enabled="false"
                     android:hint="@string/prompt_email"
+                    android:inputType="textEmailAddress"
                     android:background="@color/colorWhite"
                     tools:text="@string/prompt_email"/>
 

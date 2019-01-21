@@ -58,11 +58,17 @@ class MainActivity : AppCompatActivity() {
 
     private fun loadFragment(fragment: Fragment) {
         if (fm.findFragmentByTag(fragment::class.java.simpleName) == null) {
-            fm.beginTransaction().add(R.id.content, fragment, fragment::class.java.simpleName)
-                .commit()
+            fm.beginTransaction().add(R.id.content, fragment, fragment::class.java.simpleName).commit()
         }
         fm.beginTransaction().hide(active).show(fragment).commit()
         active = fragment
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        if (fm.backStackEntryCount > 1) {
+
+        }
     }
 
     private fun initNavigation() {

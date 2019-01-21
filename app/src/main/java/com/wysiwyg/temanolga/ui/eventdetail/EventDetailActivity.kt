@@ -4,7 +4,9 @@ import android.content.Intent
 import android.graphics.PorterDuff
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.design.widget.BottomSheetDialog
 import android.support.v4.content.ContextCompat
+import android.support.v7.widget.LinearLayoutManager
 import android.view.Menu
 import android.view.MenuItem
 import android.view.MotionEvent
@@ -18,15 +20,18 @@ import kotlinx.android.synthetic.main.activity_event_detail.*
 import com.mapbox.mapboxsdk.geometry.LatLng
 import com.mapbox.mapboxsdk.annotations.MarkerOptions
 import com.mapbox.mapboxsdk.camera.CameraUpdateFactory
+import com.wysiwyg.temanolga.data.model.User
 import com.wysiwyg.temanolga.ui.userdetail.UserDetailActivity
 import com.wysiwyg.temanolga.ui.chatroom.ChatRoomActivity
 import com.wysiwyg.temanolga.ui.editevent.EditEventActivity
+import com.wysiwyg.temanolga.ui.searchuser.SearchUserAdapter
 import com.wysiwyg.temanolga.utilities.DateTimeUtils.dateTimeFormat
 import com.wysiwyg.temanolga.utilities.SpinnerItem.slotType
 import com.wysiwyg.temanolga.utilities.SpinnerItem.sportPref
 import com.wysiwyg.temanolga.utilities.gone
 import com.wysiwyg.temanolga.utilities.invisible
 import com.wysiwyg.temanolga.utilities.visible
+import kotlinx.android.synthetic.main.layout_joined.*
 import org.jetbrains.anko.*
 import org.jetbrains.anko.design.snackbar
 import java.text.SimpleDateFormat
@@ -35,6 +40,8 @@ import java.util.*
 class EventDetailActivity : AppCompatActivity(), EventDetailView {
     private val presenter = EventDetailPresenter(this)
     private var event: MutableList<Event> = mutableListOf()
+    private var user: MutableList<User?> = mutableListOf()
+    private lateinit var adapter: SearchUserAdapter
     private lateinit var eventId: String
     private val savedInstanceState = Bundle()
 
@@ -218,6 +225,32 @@ class EventDetailActivity : AppCompatActivity(), EventDetailView {
         snackbar(placeMap, getString(R.string.network_event_detail)).show()
     }
 
+    override fun showJoinedUser() {
+        adapter = SearchUserAdapter(user)
+
+        val view = layoutInflater.inflate(R.layout.layout_joined, null)
+        BottomSheetDialog(this).let {
+            it.setContentView(view)
+            it.tvEmptyJoin.gone()
+            it.lyt_join.visible()
+            it.rvJoined.layoutManager = LinearLayoutManager(this)
+            it.rvJoined.adapter = adapter
+            it.show()
+        }
+
+        adapter.notifyDataSetChanged()
+    }
+
+    override fun showNoUser() {
+        val view = layoutInflater.inflate(R.layout.layout_joined, null)
+        BottomSheetDialog(this).let {
+            it.setContentView(view)
+            it.tvEmptyJoin.visible()
+            it.lyt_join.gone()
+            it.show()
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Mapbox.getInstance(this, getString(R.string.access_token))
@@ -227,11 +260,15 @@ class EventDetailActivity : AppCompatActivity(), EventDetailView {
         eventId = intent?.getStringExtra("eventId")!!
 
         btnDelete.delete()
+        lytJoined.setOnClickListener {
+            presenter.showJoinedUser(user)
+        }
     }
 
     override fun onResume() {
         super.onResume()
         presenter.getData(this, eventId, event)
+        presenter.joinedUser(eventId, user)
     }
 
     private fun initToolbar() {

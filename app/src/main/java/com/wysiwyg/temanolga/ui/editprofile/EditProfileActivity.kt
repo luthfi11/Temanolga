@@ -13,6 +13,7 @@ import com.squareup.picasso.Picasso
 import com.wysiwyg.temanolga.R
 import com.wysiwyg.temanolga.data.model.User
 import com.wysiwyg.temanolga.utilities.CityUtil
+import com.wysiwyg.temanolga.utilities.ValidateUtil.emailValidate
 import com.wysiwyg.temanolga.utilities.ValidateUtil.etToString
 import com.wysiwyg.temanolga.utilities.ValidateUtil.etValidate
 import com.wysiwyg.temanolga.utilities.ValidateUtil.passwordValidate
@@ -56,6 +57,11 @@ class EditProfileActivity : AppCompatActivity(), EditProfileView {
 
     override fun successUpdate() {
         finish()
+        toast(getString(R.string.profile_updated)).show()
+    }
+
+    override fun showEmailUsed() {
+        toast(getString(R.string.email_used)).show()
     }
 
     override fun showFailUpdate() {
@@ -127,17 +133,21 @@ class EditProfileActivity : AppCompatActivity(), EditProfileView {
     private fun updateProfile() {
         if (etValidate(etFullName)) {
             if (etValidate(etCity)) {
-                if (passwordValidate(etPassword)) {
+                if (emailValidate(etEmail)) {
+                    if (passwordValidate(etPassword)) {
 
-                    initProgress()
-                    newUser = User(
-                        user.userId, etToString(etFullName), user.email, etToString(etPassword),
-                        spnPosition(spnAccount), spnPosition(spnSport), etToString(etCity), path
-                    )
-                    presenter.saveData(this, newUser)
+                        initProgress()
+                        newUser = User(
+                            user.userId, etToString(etFullName), etToString(etEmail), etToString(etPassword),
+                            spnPosition(spnAccount), spnPosition(spnSport), etToString(etCity), path
+                        )
+                        presenter.saveData(this, newUser)
 
+                    } else {
+                        setError(etPassword, getString(R.string.password_length))
+                    }
                 } else {
-                    setError(etPassword, getString(R.string.password_length))
+                    setError(etEmail, getString(R.string.email_invalid))
                 }
             } else {
                 setError(etCity, getString(R.string.city_invalid))

@@ -122,6 +122,8 @@
     <string name="acc_team">%s Team</string>
     <string name="showing_filter">Showing %1$s invitation in %2$s</string>
     <string name="showing_filter_no_city">Showing %1$s invitation</string>
+    <string name="profile_updated">Profile Updated</string>
+    <string name="email_used">Email sudah ada yang menggunakan, gagal memperbarui</string>
 
     <string name="default_notification_channel_id">temanolga_default_channel</string>
 

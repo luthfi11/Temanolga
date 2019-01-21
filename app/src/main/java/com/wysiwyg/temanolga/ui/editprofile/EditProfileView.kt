@@ -5,6 +5,7 @@ interface EditProfileView {
     fun hideLoading()
     fun showProfile()
     fun successUpdate()
+    fun showEmailUsed()
     fun showFailUpdate()
     fun showProgress(value: Double)
     fun showUpdatedPhoto(imgPath: String)
