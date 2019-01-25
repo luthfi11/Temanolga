@@ -33,12 +33,8 @@ class MainActivity : AppCompatActivity() {
 
         isLogin()
         initFragment()
-        fab.addEvent()
-    }
-
-    override fun onResume() {
-        super.onResume()
         initNavigation()
+        fab.addEvent()
     }
 
     private fun View.addEvent() {
@@ -62,13 +58,6 @@ class MainActivity : AppCompatActivity() {
         }
         fm.beginTransaction().hide(active).show(fragment).commit()
         active = fragment
-    }
-
-    override fun onBackPressed() {
-        super.onBackPressed()
-        if (fm.backStackEntryCount > 1) {
-
-        }
     }
 
     private fun initNavigation() {

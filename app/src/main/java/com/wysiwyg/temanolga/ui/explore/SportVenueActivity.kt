@@ -41,7 +41,6 @@ class SportVenueActivity : AppCompatActivity() {
         override fun onProviderEnabled(provider: String?) {
             frm_map.visible()
             lyt_enable.gone()
-            initMap(venue)
         }
 
         override fun onLocationChanged(location: Location?) {
@@ -92,7 +91,10 @@ class SportVenueActivity : AppCompatActivity() {
             val myIntent = Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)
             startActivity(myIntent)
         }
+    }
 
+    override fun onResume() {
+        super.onResume()
         getLocation()
     }
 
@@ -108,8 +110,6 @@ class SportVenueActivity : AppCompatActivity() {
         mapsWeb.settings.setGeolocationEnabled(true)
         mapsWeb.webChromeClient = GeoWebClient()
         mapsWeb.loadUrl("https://www.google.com/maps/search/$venue/@$latitude,$longitude,14z")
-
-        Log.d("URL MAP", "https://www.google.com/maps/search/$venue/@$latitude,$longitude,14z")
     }
 
     inner class MyBrowser : WebViewClient() {

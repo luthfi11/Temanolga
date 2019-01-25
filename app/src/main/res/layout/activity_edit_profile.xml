@@ -192,7 +192,7 @@
                     android:paddingBottom="8dp"
                     android:textSize="14sp"
                     android:hint="@string/prompt_email"
-                    android:inputType="textEmailAddress"
+                    android:enabled="false"
                     android:background="@color/colorWhite"
                     tools:text="@string/prompt_email"/>
 

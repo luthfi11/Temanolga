@@ -670,7 +670,7 @@ object FirebaseApi {
     }
 
     fun getSuggestedUser(presenter: ExplorePresenter, user: MutableList<User>) {
-        database.child("user").limitToLast(9).addValueEventListener(object : ValueEventListener {
+        database.child("user").addValueEventListener(object : ValueEventListener {
             override fun onCancelled(p0: DatabaseError) {
 
             }
@@ -679,7 +679,7 @@ object FirebaseApi {
                 user.clear()
                 for (data: DataSnapshot in p0.children) {
                     val us = data.getValue(User::class.java)
-                    if (us?.userId != auth.currentUser?.uid) {
+                    if (us?.userId != auth.currentUser?.uid && user.size < 9) {
                         user.add(us!!)
                     }
                 }

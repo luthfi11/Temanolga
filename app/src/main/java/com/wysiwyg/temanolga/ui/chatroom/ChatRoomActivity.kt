@@ -6,6 +6,7 @@ import android.support.v4.content.ContextCompat
 import android.support.v7.widget.LinearLayoutManager
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import com.wysiwyg.temanolga.R
@@ -23,6 +24,7 @@ class ChatRoomActivity : AppCompatActivity(), ChatRoomView {
     private val presenter = ChatRoomPresenter(this)
     private var msg: MutableList<Message> = mutableListOf()
     private lateinit var user: String
+    private var isActive = false
 
     override fun showMessage() {
         adapter = ChatRoomAdapter(msg)
@@ -47,14 +49,17 @@ class ChatRoomActivity : AppCompatActivity(), ChatRoomView {
         btnSend.send(user)
     }
 
-    override fun onAttachedToWindow() {
-        super.onAttachedToWindow()
-        presenter.setRead(user)
+    override fun onResume() {
+        isActive = true
+        if (isActive) {
+            presenter.setRead(user)
+        }
+        super.onResume()
     }
 
-    override fun onBackPressed() {
-        super.onBackPressed()
-        finish()
+    override fun onPause() {
+        super.onPause()
+        isActive = false
     }
 
     private fun initToolbar() {
