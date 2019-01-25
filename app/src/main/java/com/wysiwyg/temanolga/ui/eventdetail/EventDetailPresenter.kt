@@ -107,7 +107,7 @@ class EventDetailPresenter(private val view: EventDetailView) {
     }
 
     fun joinedUser(eventId: String, user: MutableList<User?>) {
-        FirebaseApi.getJoinedUser(eventId, user, this)
+        FirebaseApi.getJoinedUser(eventId, user)
     }
 
     fun showJoinedUser(user: MutableList<User?>) {

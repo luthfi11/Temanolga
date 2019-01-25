@@ -124,6 +124,14 @@
     <string name="showing_filter_no_city">Menampilkan ajakan %1$s</string>
     <string name="profile_updated">Profil diperbarui</string>
     <string name="email_used">Email has been used, update failed</string>
+    <string name="forgot_password">Lupa kata kunci anda ?</string>
+    <string name="reset_promt">Atur Ulang Kata Kunci</string>
+    <string name="send_email">Masukan email anda untuk mengatur ulang kata kunci akun anda.</string>
+    <string name="reset">Atur Ulang</string>
+    <string name="email_sent">Email untuk mengatur ulang kata sandi dikirim. Mohon cek kotak masuk anda.</string>
+    <string name="email_not_found">Akun dengan email itu tidak ditemukan. Mohon coba lagi dengan email yang berbeda.</string>
+    <string name="about">Tentang</string>
+    <string name="report">Laporkan masalah</string>
 
     <string name="default_notification_channel_id">temanolga_default_channel</string>
 

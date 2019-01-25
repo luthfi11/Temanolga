@@ -230,7 +230,7 @@ class EventAdapter(private val events: MutableList<Event>) :
         }
 
         private fun isExpire(date: String) {
-            val parseDate: Date = SimpleDateFormat("dd/MM/yyy, HH : mm", Locale.getDefault()).parse(date)
+            val parseDate: Date = SimpleDateFormat("dd/MM/yy, HH : mm", Locale.getDefault()).parse(date)
             if (Date().after(parseDate)) {
                 itemView.lytDate.backgroundResource = R.drawable.date_shape_expire
                 itemView.btnJoin.isEnabled = false

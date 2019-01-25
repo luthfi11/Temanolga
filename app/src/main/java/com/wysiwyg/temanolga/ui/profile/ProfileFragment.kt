@@ -1,5 +1,7 @@
 package com.wysiwyg.temanolga.ui.profile
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
@@ -94,6 +96,7 @@ class ProfileFragment : Fragment(), ProfileView {
         super.onActivityCreated(savedInstanceState)
         (activity as AppCompatActivity).setSupportActionBar(toolbar_profile)
         setHasOptionsMenu(true)
+
         imgUser.setOnClickListener { startActivity<ViewPhotoActivity>("user" to userData[0]) }
     }
 
@@ -108,6 +111,15 @@ class ProfileFragment : Fragment(), ProfileView {
                 try {
                     startActivity<EditProfileActivity>("user" to userData[0])
                 } catch (ex: Exception){}
+            }
+            R.id.nav_about -> startActivity<AboutActivity>()
+            R.id.nav_report -> {
+                val intent = Intent(Intent.ACTION_SENDTO)
+                intent.data = Uri.parse("mailto:luthfialfarizi98@gmail.com")
+                intent.putExtra(Intent.EXTRA_SUBJECT,"Temanolga Feedback")
+                if (intent.resolveActivity(activity?.packageManager!!) != null) {
+                    startActivity(intent)
+                }
             }
             R.id.nav_logout -> presenter.logoutPrompt()
         }

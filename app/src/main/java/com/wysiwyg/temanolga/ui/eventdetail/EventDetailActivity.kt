@@ -211,7 +211,7 @@ class EventDetailActivity : AppCompatActivity(), EventDetailView {
     override fun showExpire(date: String) {
         lytExpire.gone()
 
-        val parseDate: Date = SimpleDateFormat("dd/MM/yyy, HH : mm", Locale.getDefault()).parse(date)
+        val parseDate: Date = SimpleDateFormat("dd/MM/yy, HH : mm", Locale.getDefault()).parse(date)
         if (Date().after(parseDate)) {
             btnJoin.setButtonIcon(R.drawable.ic_join)
             btnJoinRequest.setButtonIcon(R.drawable.ic_join_request)

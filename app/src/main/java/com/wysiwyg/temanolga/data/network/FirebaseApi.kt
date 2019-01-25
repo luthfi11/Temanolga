@@ -2,7 +2,6 @@ package com.wysiwyg.temanolga.data.network
 
 import android.content.Context
 import android.net.Uri
-import android.util.Log
 import android.widget.ImageView
 import android.widget.Spinner
 import android.widget.TextView
@@ -730,7 +729,11 @@ object FirebaseApi {
                 for (data: DataSnapshot in p0.children) {
                     val userData = data.getValue(User::class.java)
                     try {
-                        if ((userData?.userId != auth.currentUser!!.uid) and (userData?.fullName?.contains(name, true)!!)) {
+                        if ((userData?.userId != auth.currentUser!!.uid) and (userData?.fullName?.contains(
+                                name,
+                                true
+                            )!!)
+                        ) {
                             user.add(userData)
                         }
                     } catch (ex: Exception) {
@@ -753,23 +756,24 @@ object FirebaseApi {
             .addOnFailureListener { presenter.updateFailed() }
     }
 
-    fun getJoinedUser(eventId: String, user: MutableList<User?>, presenter: EventDetailPresenter) {
-        database.child("join").child(eventId).addValueEventListener(object : ValueEventListener{
+    fun getJoinedUser(eventId: String, user: MutableList<User?>) {
+        database.child("join").child(eventId).addValueEventListener(object : ValueEventListener {
             override fun onDataChange(p0: DataSnapshot) {
                 user.clear()
                 for (data: DataSnapshot in p0.children) {
                     val join = data.getValue(Join::class.java)
                     if (join?.status == "1") {
-                        database.child("user").child(join.userReqId!!).addValueEventListener(object : ValueEventListener{
-                            override fun onDataChange(p0: DataSnapshot) {
-                                val joiner = p0.getValue(User::class.java)
-                                user.add(joiner)
-                            }
+                        database.child("user").child(join.userReqId!!)
+                            .addValueEventListener(object : ValueEventListener {
+                                override fun onDataChange(p0: DataSnapshot) {
+                                    val joiner = p0.getValue(User::class.java)
+                                    user.add(joiner)
+                                }
 
-                            override fun onCancelled(p0: DatabaseError) {
+                                override fun onCancelled(p0: DatabaseError) {
 
-                            }
-                        })
+                                }
+                            })
                     }
                 }
             }

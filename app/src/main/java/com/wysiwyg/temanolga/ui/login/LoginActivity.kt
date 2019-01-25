@@ -53,6 +53,10 @@ class LoginActivity : AppCompatActivity(), LoginView {
         btn_signin.setOnClickListener {
             login()
         }
+
+        btnForgot.setOnClickListener {
+            startActivity<ResetPasswordActivity>()
+        }
     }
 
     private fun initProgressBar() {

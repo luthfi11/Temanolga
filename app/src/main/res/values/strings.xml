@@ -91,7 +91,7 @@
     <string name="network_edit_event">Network unavailable, can\'t update data</string>
     <string name="event_updated">Invitation Updated</string>
     <string name="event_update_fail">Can\'t update invitation data</string>
-    <string name="uploading">Uploading </string>
+    <string name="uploading">Uploading</string>
     <string name="network_edit_profile">Network unavailable, can\'t update profile</string>
     <string name="choose_photo">Choose Photo</string>
     <string name="cancel_join_prompt">Cancel joined this invitation ?</string>
@@ -124,6 +124,14 @@
     <string name="showing_filter_no_city">Showing %1$s invitation</string>
     <string name="profile_updated">Profile Updated</string>
     <string name="email_used">Email sudah ada yang menggunakan, gagal memperbarui</string>
+    <string name="forgot_password">Forgot your password ?</string>
+    <string name="reset_promt">Reset Password</string>
+    <string name="send_email">Enter your email to reset your account password.</string>
+    <string name="reset">Reset</string>
+    <string name="email_sent">Email for reset password sent. Please check your inbox.</string>
+    <string name="email_not_found">Account with that email not found. Please try again with different email.</string>
+    <string name="about">About</string>
+    <string name="report">Report a problem</string>
 
     <string name="default_notification_channel_id">temanolga_default_channel</string>
 

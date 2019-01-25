@@ -35,7 +35,7 @@ object DateTimeUtils {
     }
 
     fun dateTimeFormat(date: String?, pattern: String): String {
-        val format = SimpleDateFormat("dd/MM/yyy", Locale.getDefault())
+        val format = SimpleDateFormat("dd/MM/yy", Locale.getDefault())
         val sdf = SimpleDateFormat(pattern, Locale.getDefault())
 
         return sdf.format(format.parse(date))
