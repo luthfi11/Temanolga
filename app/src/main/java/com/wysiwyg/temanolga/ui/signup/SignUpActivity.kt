@@ -64,6 +64,11 @@ class SignUpActivity : AppCompatActivity(), SignUpView {
         }
     }
 
+    override fun onBackPressed() {
+        super.onBackPressed()
+        finishActivity()
+    }
+
     private fun initProgressBar() {
         mProgressDialog = indeterminateProgressDialog(getString(R.string.signup)+" ...", null){
             this.setCancelable(false)

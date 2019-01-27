@@ -2,11 +2,11 @@ package com.wysiwyg.temanolga.ui.eventdetail
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import com.wysiwyg.temanolga.data.network.FirebaseApi
 import com.wysiwyg.temanolga.data.model.Event
 import com.wysiwyg.temanolga.data.model.User
 import com.wysiwyg.temanolga.utilities.ConnectionUtil
+import com.wysiwyg.temanolga.utilities.ConnectionUtil.isOnline
 
 class EventDetailPresenter(private val view: EventDetailView) {
 
@@ -33,8 +33,12 @@ class EventDetailPresenter(private val view: EventDetailView) {
         view.hideMap()
     }
 
-    fun joinEvent(eventId: String?, postSender: String?) {
-        FirebaseApi.joinEvent(this, eventId, postSender)
+    fun joinEvent(ctx: Context?, eventId: String?, postSender: String?) {
+        if (isOnline(ctx)) {
+            FirebaseApi.joinEvent(this, eventId, postSender)
+        } else {
+            view.showJoinError()
+        }
     }
 
     fun joinSuccess() {
@@ -77,23 +81,35 @@ class EventDetailPresenter(private val view: EventDetailView) {
         view.showCancelJoin(joinId)
     }
 
-    fun cancelRequest(eventId: String, joinId: String) {
-        FirebaseApi.cancelRequest(eventId, joinId)
-        view.showDefJoin()
+    fun cancelRequest(ctx: Context?, eventId: String, joinId: String) {
+        if (isOnline(ctx)) {
+            FirebaseApi.cancelRequest(eventId, joinId)
+            view.showDefJoin()
+        } else {
+            view.showRequestError()
+        }
     }
 
-    fun cancelJoin(eventId: String, joinId: String) {
-        FirebaseApi.cancelJoin(eventId, joinId)
-        view.showDefJoin()
+    fun cancelJoin(ctx: Context?, eventId: String, joinId: String) {
+        if (isOnline(ctx)) {
+            FirebaseApi.cancelJoin(eventId, joinId)
+            view.showDefJoin()
+        } else {
+            view.showJoinError()
+        }
     }
 
     fun deleteConfirm() {
         view.showDeleteConfirm()
     }
 
-    fun delete(eventId: String) {
-        FirebaseApi.deletePost(eventId)
-        view.afterDelete()
+    fun delete(context: Context, eventId: String) {
+        if (isOnline(context)) {
+            FirebaseApi.deletePost(eventId)
+            view.afterDelete()
+        } else {
+            view.showDeleteError()
+        }
     }
 
     fun isFull(slotFill: Int?, slot: Int?) {

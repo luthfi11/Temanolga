@@ -22,6 +22,7 @@ import com.wysiwyg.temanolga.ui.eventdetail.EventDetailActivity
 import com.wysiwyg.temanolga.ui.userdetail.UserDetailActivity
 import com.wysiwyg.temanolga.data.network.FirebaseApi
 import com.wysiwyg.temanolga.data.model.Join
+import com.wysiwyg.temanolga.utilities.ConnectionUtil.isOnline
 import com.wysiwyg.temanolga.utilities.DateTimeUtils.dateTimeFormat
 import com.wysiwyg.temanolga.utilities.DateTimeUtils.minAgo
 import com.wysiwyg.temanolga.utilities.SpinnerItem.slotType
@@ -29,6 +30,7 @@ import com.wysiwyg.temanolga.utilities.SpinnerItem.sportPref
 import com.wysiwyg.temanolga.utilities.gone
 import com.wysiwyg.temanolga.utilities.visible
 import org.jetbrains.anko.*
+import org.jetbrains.anko.design.snackbar
 
 class EventAdapter(private val events: MutableList<Event>) :
     RecyclerView.Adapter<EventAdapter.ViewHolder>() {
@@ -98,7 +100,11 @@ class EventAdapter(private val events: MutableList<Event>) :
             }
 
             itemView.btnJoin.setOnClickListener {
-                FirebaseApi.joinEvent(null, event.eventId, event.postSender)
+                if (isOnline(itemView.context)) {
+                    FirebaseApi.joinEvent(null, event.eventId, event.postSender)
+                } else {
+                    snackbar(itemView.tvDesc, itemView.context.getString(R.string.network_join))
+                }
             }
 
             itemView.btnChat.setOnClickListener {
@@ -115,7 +121,13 @@ class EventAdapter(private val events: MutableList<Event>) :
 
             itemView.btnDelete.setOnClickListener {
                 itemView.context.alert(itemView.context.getString(R.string.delete_post)) {
-                    yesButton { FirebaseApi.deletePost(event.eventId!!) }
+                    yesButton {
+                        if (isOnline(itemView.context)) {
+                            FirebaseApi.deletePost(event.eventId!!)
+                        } else {
+                            snackbar(itemView.tvDesc, itemView.context.getString(R.string.network_delete))
+                        }
+                    }
                     noButton { it.dismiss() }
                 }.show()
             }
@@ -174,8 +186,13 @@ class EventAdapter(private val events: MutableList<Event>) :
                                     "2" -> {
                                         requested()
                                         itemView.btnJoinReq.setOnClickListener {
-                                            FirebaseApi.cancelRequest(eventId, data.joinId!!)
-                                            default()
+                                            if (isOnline(itemView.context)) {
+                                                FirebaseApi.cancelRequest(eventId, data.joinId!!)
+                                                default()
+                                            } else {
+                                                snackbar(itemView.tvDesc, itemView.context.getString(R.string.network_join))
+                                            }
+
                                         }
                                     }
                                     else -> default()
@@ -210,8 +227,12 @@ class EventAdapter(private val events: MutableList<Event>) :
             setOnClickListener {
                 itemView.context.alert(itemView.context.getString(R.string.cancel_join_prompt)) {
                     yesButton {
-                        FirebaseApi.cancelJoin(eventId, joinId)
-                        default()
+                        if (isOnline(itemView.context)) {
+                            FirebaseApi.cancelJoin(eventId, joinId)
+                            default()
+                        } else {
+                            snackbar(itemView.tvDesc, itemView.context.getString(R.string.network_joined))
+                        }
                     }
                     noButton { it.dismiss() }
                 }.show()

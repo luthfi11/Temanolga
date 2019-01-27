@@ -26,7 +26,7 @@
                     app:elevation="0dp">
 
                 <android.support.v7.widget.Toolbar
-                        android:id="@+id/toolbar_add_event"
+                        android:id="@+id/toolbar_event_detail"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/appBar"
                         android:background="@color/colorPrimary"

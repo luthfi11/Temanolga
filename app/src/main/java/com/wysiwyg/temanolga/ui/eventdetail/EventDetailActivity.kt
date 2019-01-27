@@ -31,6 +31,7 @@ import com.wysiwyg.temanolga.utilities.SpinnerItem.sportPref
 import com.wysiwyg.temanolga.utilities.gone
 import com.wysiwyg.temanolga.utilities.invisible
 import com.wysiwyg.temanolga.utilities.visible
+import kotlinx.android.synthetic.main.activity_add_event.*
 import kotlinx.android.synthetic.main.layout_joined.*
 import org.jetbrains.anko.*
 import org.jetbrains.anko.design.snackbar
@@ -140,6 +141,14 @@ class EventDetailActivity : AppCompatActivity(), EventDetailView {
         placeMap.gone()
     }
 
+    override fun showJoinError() {
+        snackbar(tvDescEvent, getString(R.string.network_join)).show()
+    }
+
+    override fun showRequestError() {
+        snackbar(tvDescEvent, getString(R.string.network_request)).show()
+    }
+
     override fun showJoinMsg() {
         snackbar(tvDescEvent, getString(R.string.requested)).show()
     }
@@ -168,7 +177,7 @@ class EventDetailActivity : AppCompatActivity(), EventDetailView {
         btnJoinRequest.visible()
         btnJoinAccepted.gone()
 
-        btnJoinRequest.setOnClickListener { presenter.cancelRequest(eventId, joinId) }
+        btnJoinRequest.setOnClickListener { presenter.cancelRequest(applicationContext, eventId, joinId) }
     }
 
     override fun showJoined(joinId: String) {
@@ -185,18 +194,26 @@ class EventDetailActivity : AppCompatActivity(), EventDetailView {
         btnJoinAccepted.gone()
     }
 
+    override fun showCancelJoinError() {
+        snackbar(tvDescEvent, getString(R.string.network_joined)).show()
+    }
+
     override fun showCancelJoin(joinId: String) {
         alert(getString(R.string.cancel_join_prompt)) {
-            yesButton { presenter.cancelJoin(eventId, joinId) }
+            yesButton { presenter.cancelJoin(applicationContext, eventId, joinId) }
             noButton { it.dismiss() }
         }.show()
     }
 
     override fun showDeleteConfirm() {
         alert(getString(R.string.delete_post)) {
-            yesButton { presenter.delete(eventId) }
+            yesButton { presenter.delete(applicationContext, eventId) }
             noButton { it.dismiss() }
         }.show()
+    }
+
+    override fun showDeleteError() {
+        snackbar(imgUserEvent, getString(R.string.network_delete))
     }
 
     override fun afterDelete() {
@@ -272,7 +289,7 @@ class EventDetailActivity : AppCompatActivity(), EventDetailView {
     }
 
     private fun initToolbar() {
-        setSupportActionBar(toolbar_add_event)
+        setSupportActionBar(toolbar_event_detail)
         supportActionBar?.title = ""
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
@@ -287,7 +304,7 @@ class EventDetailActivity : AppCompatActivity(), EventDetailView {
     }
 
     private fun View.join(eventId: String?, postSender: String?) {
-        setOnClickListener { presenter.joinEvent(eventId, postSender) }
+        setOnClickListener { presenter.joinEvent(context, eventId, postSender) }
     }
 
     private fun View.toChat(sender: String) {

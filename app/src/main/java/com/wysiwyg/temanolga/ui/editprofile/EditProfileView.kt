@@ -4,6 +4,7 @@ interface EditProfileView {
     fun showLoading()
     fun hideLoading()
     fun showProfile()
+    fun showChangePassword()
     fun successUpdate()
     fun showEmailUsed()
     fun showFailUpdate()

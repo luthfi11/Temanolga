@@ -39,6 +39,14 @@ class ProfileFragment : Fragment(), ProfileView {
         progressBar?.gone()
     }
 
+    override fun showEventLoading() {
+        progressEventProfile?.visible()
+    }
+
+    override fun hideEventLoading() {
+        progressEventProfile?.gone()
+    }
+
     override fun showUserData(user: List<User>) {
         userData.addAll(user)
 

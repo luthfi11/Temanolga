@@ -95,6 +95,14 @@
                 android:paddingTop="4dp"
                 android:paddingBottom="10dp">
 
+            <ProgressBar
+                    android:id="@+id/progressEventProfile"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:visibility="gone"
+                    android:padding="20dp"/>
+
             <TextView
                     android:id="@+id/tvEmptyEvent"
                     android:layout_width="wrap_content"

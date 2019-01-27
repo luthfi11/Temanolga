@@ -30,13 +30,17 @@ class EditProfilePresenter (private val view: EditProfileView) {
         view.showUpdatedPhoto(imgPath)
     }
 
-    fun saveData(ctx: Context?, user: User) {
+    fun changePasswordDialog() {
+        view.showChangePassword()
+    }
+
+    fun saveData(ctx: Context?, user: User, newPassword: String?) {
         if (!ConnectionUtil.isOnline(ctx)) {
             view.hideLoading()
             view.showNoConnection()
         } else {
             view.showLoading()
-            FirebaseApi.editProfile(user, this)
+            FirebaseApi.editProfile(user, this, newPassword)
         }
     }
 

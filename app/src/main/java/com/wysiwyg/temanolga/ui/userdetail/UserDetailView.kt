@@ -7,6 +7,8 @@ interface UserDetailView {
     fun showEventData()
     fun showLoading()
     fun hideLoading()
+    fun showEventLoading()
+    fun hideEventLoading()
     fun showEmptyPost()
     fun showNoConnection()
 }

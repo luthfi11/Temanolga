@@ -24,7 +24,6 @@ class ChatRoomActivity : AppCompatActivity(), ChatRoomView {
     private val presenter = ChatRoomPresenter(this)
     private var msg: MutableList<Message> = mutableListOf()
     private lateinit var user: String
-    private var isActive = false
 
     override fun showMessage() {
         adapter = ChatRoomAdapter(msg)
@@ -50,16 +49,13 @@ class ChatRoomActivity : AppCompatActivity(), ChatRoomView {
     }
 
     override fun onResume() {
-        isActive = true
-        if (isActive) {
-            presenter.setRead(user)
-        }
         super.onResume()
+        presenter.setRead(user)
     }
 
-    override fun onPause() {
-        super.onPause()
-        isActive = false
+    override fun onDestroy() {
+        super.onDestroy()
+        presenter.setUnread(user)
     }
 
     private fun initToolbar() {

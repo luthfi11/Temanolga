@@ -1,11 +1,13 @@
 package com.wysiwyg.temanolga.ui.editprofile
 
 import android.app.Activity
+import android.app.AlertDialog
 import android.app.ProgressDialog
 import android.content.Intent
 import android.net.Uri
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.ArrayAdapter
@@ -18,7 +20,10 @@ import com.wysiwyg.temanolga.utilities.ValidateUtil.etValidate
 import com.wysiwyg.temanolga.utilities.ValidateUtil.passwordValidate
 import com.wysiwyg.temanolga.utilities.ValidateUtil.setError
 import com.wysiwyg.temanolga.utilities.ValidateUtil.spnPosition
+import com.wysiwyg.temanolga.utilities.visible
 import kotlinx.android.synthetic.main.activity_edit_profile.*
+import kotlinx.android.synthetic.main.layout_password.*
+import kotlinx.android.synthetic.main.layout_password.view.*
 import org.jetbrains.anko.design.snackbar
 import org.jetbrains.anko.indeterminateProgressDialog
 import org.jetbrains.anko.toast
@@ -30,6 +35,7 @@ class EditProfileActivity : AppCompatActivity(), EditProfileView {
     private lateinit var filePath: Uri
     private lateinit var progress: ProgressDialog
     private var path: String? = null
+    private var newPassword: String? = null
 
     override fun showLoading() {
         progress
@@ -46,12 +52,38 @@ class EditProfileActivity : AppCompatActivity(), EditProfileView {
         etFullName.setText(user.fullName)
         etCity.setText(user.city)
         etEmail.setText(user.email)
-        etPassword.setText(user.password)
 
         spnSport.setSelection(user.sportPreferred?.toInt()!!)
         spnAccount.setSelection(user.accountType?.toInt()!!)
 
         path = user.imgPath
+    }
+
+    override fun showChangePassword() {
+        val mDialogView = LayoutInflater.from(this).inflate(R.layout.layout_password, null)
+        val mBuilder = AlertDialog.Builder(this)
+            .setView(mDialogView)
+            .setTitle(getString(R.string.change_password))
+
+        val mAlertDialog = mBuilder.show()
+
+        mDialogView.btnCancel.setOnClickListener {
+            mAlertDialog.dismiss()
+        }
+
+        mDialogView.btnSave.setOnClickListener {
+            if (passwordValidate(mDialogView.etNewPassword)) {
+                if (etToString(mDialogView.etNewPassword) == etToString(mDialogView.etRetypePassword)) {
+                    mAlertDialog.dismiss()
+                    newPassword = etToString(mDialogView.etNewPassword)
+                    tvChanged.visible()
+                } else {
+                    setError(mDialogView.etRetypePassword, getString(R.string.password_match))
+                }
+            } else {
+                setError(mDialogView.etNewPassword, getString(R.string.password_length))
+            }
+        }
     }
 
     override fun successUpdate() {
@@ -75,7 +107,7 @@ class EditProfileActivity : AppCompatActivity(), EditProfileView {
     }
 
     override fun showNoConnection() {
-        snackbar(etPassword, getString(R.string.network_edit_profile)).show()
+        snackbar(btnChangePassword, getString(R.string.network_edit_profile)).show()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -89,6 +121,7 @@ class EditProfileActivity : AppCompatActivity(), EditProfileView {
         presenter.showData()
 
         btnEditPhoto.setOnClickListener { chooseFile() }
+        lytChangePassword.setOnClickListener { presenter.changePasswordDialog() }
     }
 
     private fun initToolbar() {
@@ -128,18 +161,14 @@ class EditProfileActivity : AppCompatActivity(), EditProfileView {
     private fun updateProfile() {
         if (etValidate(etFullName)) {
             if (etValidate(etCity)) {
-                if (passwordValidate(etPassword)) {
 
                     initProgress()
                     newUser = User(
-                        user.userId, etToString(etFullName), user.email, etToString(etPassword),
+                        user.userId, etToString(etFullName), user.email,
                         spnPosition(spnAccount), spnPosition(spnSport), etToString(etCity), path
                     )
-                    presenter.saveData(this, newUser)
+                    presenter.saveData(this, newUser, newPassword)
 
-                } else {
-                    setError(etPassword, getString(R.string.password_length))
-                }
             } else {
                 setError(etCity, getString(R.string.city_invalid))
             }

@@ -24,6 +24,7 @@ class SignUpPresenter(private val view: SignUpView) {
 
     fun signUpFailed() {
         view.hideLoading()
+        view.showFailMsg()
     }
 
 }

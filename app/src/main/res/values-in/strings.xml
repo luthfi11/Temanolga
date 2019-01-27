@@ -9,7 +9,7 @@
     <string name="signup">Daftar</string>
     <string name="full_name">Nama Lengkap</string>
     <string name="prompt_email">Email</string>
-    <string name="prompt_password">Kata Kunci</string>
+    <string name="prompt_password">Kata Sandi</string>
     <string name="account_type">Tipe Akun</string>
     <string name="sport_preferred">Olahraga Favorit</string>
     <string name="sport">Olahraga</string>
@@ -22,12 +22,12 @@
     <string name="city">Kota</string>
     <string name="signup_msg">Belum punya akun ?</string>
     <string name="signin_msg">Sudah punya akun ?</string>
-    <string name="empty_password">Mohon untuk mengisi kata kunci anda</string>
+    <string name="empty_password">Mohon untuk mengisi kata sandi anda</string>
     <string name="email_invalid">Mohon untuk mengisi email dengan benar</string>
     <string name="fullname_invalid">Mohon untuk mengisi nama anda</string>
     <string name="city_invalid">Mohon untuk mengisi kota anda</string>
-    <string name="password_length">Kata kunci minimal 8 karakter</string>
-    <string name="login_fail">Email dan kata kunci salah</string>
+    <string name="password_length">Kata sandi minimal 8 karakter</string>
+    <string name="login_fail">Email dan kata sandi salah</string>
     <string name="done">Selesai</string>
     <string name="join">Bergabung</string>
     <string name="chat">Pesan</string>
@@ -38,7 +38,7 @@
     <string name="time">Jam (Wajib)</string>
     <string name="set">Atur</string>
     <string name="find">Cari</string>
-    <string name="search">Cari</string>
+    <string name="search">Cari Pengguna</string>
     <string name="search_place">Cari Lokasi</string>
     <string name="edit_profile">Ubah Profil</string>
     <string name="logout">Keluar</string>
@@ -97,6 +97,10 @@
     <string name="cancel_join_prompt">Batal bergabung dengan ajakan ini ?</string>
     <string name="delete_post">Hapus ajakan ini ?</string>
     <string name="post_deleted">Ajakan dihapus</string>
+    <string name="network_join">Jaringan tidak tersedia, tidak dapat bergabung ke ajakan ini</string>
+    <string name="network_request">Jaringan tidak tersedia, tidak dapat membatalkan permintaan ini</string>
+    <string name="network_joined">Jaringan tidak tersedia, tidak dapat membatalkan bergabung ke ajakan ini</string>
+    <string name="network_delete">Jaringan tidak tersedia, tidak dapat menghapus ajakan ini</string>
     <string name="network_event_detail">Kesalahan jaringan, tidak dapat mengambil rincian ajakan</string>
     <string name="share_prompt">Bagikan Ajakan</string>
     <string name="network_login">Jaringan tidak tersedia, tidak dapat masuk</string>
@@ -124,14 +128,21 @@
     <string name="showing_filter_no_city">Menampilkan ajakan %1$s</string>
     <string name="profile_updated">Profil diperbarui</string>
     <string name="email_used">Email has been used, update failed</string>
-    <string name="forgot_password">Lupa kata kunci anda ?</string>
-    <string name="reset_promt">Atur Ulang Kata Kunci</string>
-    <string name="send_email">Masukan email anda untuk mengatur ulang kata kunci akun anda.</string>
+    <string name="forgot_password">Lupa kata sandi anda ?</string>
+    <string name="reset_promt">Atur Ulang Kata Sandi</string>
+    <string name="send_email">Masukan email anda untuk mengatur ulang kata sandi akun anda.</string>
     <string name="reset">Atur Ulang</string>
     <string name="email_sent">Email untuk mengatur ulang kata sandi dikirim. Mohon cek kotak masuk anda.</string>
     <string name="email_not_found">Akun dengan email itu tidak ditemukan. Mohon coba lagi dengan email yang berbeda.</string>
     <string name="about">Tentang</string>
     <string name="report">Laporkan masalah</string>
+    <string name="change_password">Ganti Kata Sandi</string>
+    <string name="new_password">Kata sandi baru</string>
+    <string name="retype_password">Ketik ulang kata sandi baru</string>
+    <string name="password_match">Kata sandi tidak sama, mohon ketik ulang dengan benar</string>
+    <string name="cancel">Batal</string>
+    <string name="save">Simpan</string>
+    <string name="changed">Diganti</string>
 
     <string name="default_notification_channel_id">temanolga_default_channel</string>
 

@@ -38,7 +38,7 @@
     <string name="time">Time (Required)</string>
     <string name="set">Set</string>
     <string name="find">Find</string>
-    <string name="search">Search</string>
+    <string name="search">Search User</string>
     <string name="search_place">Search Place</string>
     <string name="edit_profile">Edit Profile</string>
     <string name="logout">Logout</string>
@@ -97,6 +97,10 @@
     <string name="cancel_join_prompt">Cancel joined this invitation ?</string>
     <string name="delete_post">Delete this invitation ?</string>
     <string name="post_deleted">Invitation deleted</string>
+    <string name="network_joined">Network unavailable, can\'t cancel join this invitation</string>
+    <string name="network_join">Network unavailable, can\'t join this invitation</string>
+    <string name="network_request">Network unavailable, can\'t cancel this request</string>
+    <string name="network_delete">Network unavailable, can\'t delete this invitation</string>
     <string name="network_event_detail">Network error, can\'t get invitation detail</string>
     <string name="share_prompt">Share Invitation</string>
     <string name="network_login">Network unavailable, can\'t sign in</string>
@@ -132,6 +136,13 @@
     <string name="email_not_found">Account with that email not found. Please try again with different email.</string>
     <string name="about">About</string>
     <string name="report">Report a problem</string>
+    <string name="change_password">Change Password</string>
+    <string name="new_password">New password</string>
+    <string name="retype_password">Retype new password</string>
+    <string name="password_match">Password didn\'t match, please retype correctly</string>
+    <string name="cancel">Cancel</string>
+    <string name="save">Save</string>
+    <string name="changed">Changed</string>
 
     <string name="default_notification_channel_id">temanolga_default_channel</string>
 

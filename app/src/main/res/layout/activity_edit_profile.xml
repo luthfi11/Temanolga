@@ -140,7 +140,7 @@
                     android:text="@string/account_type"
                     android:textSize="12sp"
                     android:layout_marginStart="20dp"
-                    android:textColor="@color/colorPrimary" />
+                    android:textColor="@color/colorPrimary"/>
 
         </LinearLayout>
 
@@ -203,28 +203,33 @@
                 android:layout_height="0.3dp"
                 android:background="@color/colorMuted"/>
 
-        <android.support.design.widget.TextInputLayout
+        <LinearLayout
+                android:id="@+id/lytChangePassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingStart="20dp"
                 android:paddingEnd="20dp"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp"
-                android:textColorHint="@color/colorPrimary">
+                android:paddingTop="18dp"
+                android:paddingBottom="18dp"
+                android:background="@drawable/card_selected"
+                android:orientation="vertical">
 
-            <EditText
-                    android:id="@+id/etPassword"
+            <TextView
+                    android:id="@+id/btnChangePassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingTop="8dp"
-                    android:paddingBottom="8dp"
-                    android:textSize="14sp"
-                    android:inputType="textPassword"
-                    android:hint="@string/prompt_password"
-                    android:background="@color/colorWhite"
-                    tools:text="@string/prompt_password"/>
+                    android:text="@string/change_password"
+                    android:textColor="@color/colorPrimary" />
 
-        </android.support.design.widget.TextInputLayout>
+            <TextView
+                    android:id="@+id/tvChanged"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/changed"
+                    android:visibility="gone"
+                    android:textSize="12sp"/>
+
+        </LinearLayout>
 
         <View
                 android:layout_width="match_parent"

@@ -55,6 +55,14 @@ class UserDetailActivity : AppCompatActivity(), UserDetailView {
         progressBar.gone()
     }
 
+    override fun showEventLoading() {
+        progressEventProfile.visible()
+    }
+
+    override fun hideEventLoading() {
+        progressEventProfile.gone()
+    }
+
     override fun showEmptyPost() {
         rv_event_profile.gone()
         tvEmptyEvent.visible()

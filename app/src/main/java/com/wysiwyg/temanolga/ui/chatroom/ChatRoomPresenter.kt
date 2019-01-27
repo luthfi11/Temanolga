@@ -23,6 +23,10 @@ class ChatRoomPresenter(private val view: ChatRoomView) {
         FirebaseApi.setReadMessage(userId)
     }
 
+    fun setUnread(userId: String) {
+        FirebaseApi.setUnreadMessage(userId)
+    }
+
     fun sendMessage(receiver: String, message: String) {
         FirebaseApi.sendMessage(receiver, message, this)
     }

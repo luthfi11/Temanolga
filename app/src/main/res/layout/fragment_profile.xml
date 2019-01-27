@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.design.widget.CoordinatorLayout
-        android:id="@+id/root"
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/root"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
@@ -100,33 +100,41 @@
             android:layout_height="wrap_content"
             app:layout_behavior="android.support.design.widget.AppBarLayout$ScrollingViewBehavior">
 
-            <LinearLayout
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingTop="4dp"
+                android:paddingBottom="10dp">
+
+            <ProgressBar
+                    android:id="@+id/progressEventProfile"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:visibility="gone"
+                    android:padding="20dp"/>
+
+            <TextView
+                    android:id="@+id/tvEmptyProfile"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:textSize="16sp"
+                    android:padding="10dp"
+                    android:visibility="gone"
+                    android:text="@string/empty_profile"/>
+
+            <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_event_profile"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
+                    android:paddingBottom="10dp"
                     android:paddingTop="4dp"
-                    android:paddingBottom="10dp">
+                    android:clipToPadding="false"
+                    tools:listitem="@layout/item_event"/>
 
-                <TextView
-                        android:id="@+id/tvEmptyProfile"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:textSize="16sp"
-                        android:padding="10dp"
-                        android:visibility="gone"
-                        android:text="@string/empty_profile"/>
-
-                <android.support.v7.widget.RecyclerView
-                        android:id="@+id/rv_event_profile"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:paddingBottom="10dp"
-                        android:paddingTop="4dp"
-                        android:clipToPadding="false"
-                        tools:listitem="@layout/item_event"/>
-
-            </LinearLayout>
+        </LinearLayout>
 
     </android.support.v4.widget.NestedScrollView>
 </android.support.design.widget.CoordinatorLayout>

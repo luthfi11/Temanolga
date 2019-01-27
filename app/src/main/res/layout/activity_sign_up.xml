@@ -164,7 +164,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:layout_marginStart="6dp"
-                        android:textColor="@color/colorAccent"
+                        android:textColor="@android:color/holo_green_light"
                         android:text="@string/signin"/>
 
             </LinearLayout>

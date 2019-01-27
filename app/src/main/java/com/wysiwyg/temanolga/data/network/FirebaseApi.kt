@@ -53,16 +53,13 @@ object FirebaseApi {
             if (task.isSuccessful) {
                 presenter.loginSuccess()
 
-                FirebaseInstanceId.getInstance().instanceId.addOnSuccessListener(object :
-                    OnSuccessListener<InstanceIdResult> {
-                    override fun onSuccess(p0: InstanceIdResult?) {
-                        val token = p0?.token.toString()
-                        database.child("user")
-                            .child(auth.currentUser!!.uid)
-                            .child("tokenId")
-                            .setValue(token)
-                    }
-                })
+                FirebaseInstanceId.getInstance().instanceId.addOnSuccessListener { p0 ->
+                    val token = p0?.token.toString()
+                    database.child("user")
+                        .child(auth.currentUser!!.uid)
+                        .child("tokenId")
+                        .setValue(token)
+                }
 
             } else {
                 presenter.loginFailed()
@@ -80,7 +77,6 @@ object FirebaseApi {
                 addUserData(
                     fullName,
                     email,
-                    password,
                     accountType,
                     sport,
                     city
@@ -92,7 +88,7 @@ object FirebaseApi {
     }
 
     private fun addUserData(
-        fullName: String?, email: String?, password: String?,
+        fullName: String?, email: String?,
         accountType: String?, sport: String?, city: String?
     ) {
         database.child("user")
@@ -102,13 +98,14 @@ object FirebaseApi {
                     auth.currentUser!!.uid,
                     fullName,
                     email,
-                    password,
                     accountType,
                     sport,
                     city,
                     imgPath
                 )
-            )
+            ).addOnSuccessListener {
+                auth.signOut()
+            }
     }
 
     fun logOut() {
@@ -341,40 +338,54 @@ object FirebaseApi {
             })
     }
 
+    private lateinit var refMsg1: DatabaseReference
+    private val readMessageListener1 = object : ValueEventListener {
+        override fun onDataChange(p0: DataSnapshot) {
+            for (data: DataSnapshot in p0.children) {
+                val id = data.child("senderId").getValue(String::class.java)
+                if (id != auth.currentUser?.uid) {
+                    val msgId = data.child("messageId").getValue(String::class.java)!!
+                    refMsg1.child(msgId).child("read").setValue(true)
+                }
+            }
+        }
+
+        override fun onCancelled(p0: DatabaseError) {
+
+        }
+    }
+
+    private lateinit var refMsg2: DatabaseReference
+    private val readMessageListener2 = object : ValueEventListener {
+        override fun onDataChange(p0: DataSnapshot) {
+            for (data: DataSnapshot in p0.children) {
+                val id = data.child("receiverId").getValue(String::class.java)
+                if (id == auth.currentUser?.uid) {
+                    val msgId = data.child("messageId").getValue(String::class.java)!!
+                    refMsg2.child(msgId).child("read").setValue(true)
+                }
+            }
+        }
+
+        override fun onCancelled(p0: DatabaseError) {
+
+        }
+    }
+
+
     fun setReadMessage(userId: String) {
-        val ref1 = database.child("message").child(auth.currentUser?.uid!!).child(userId)
-        ref1.addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(p0: DataSnapshot) {
-                for (data: DataSnapshot in p0.children) {
-                    val id = data.child("senderId").getValue(String::class.java)
-                    if (id != auth.currentUser?.uid) {
-                        val msgId = data.child("messageId").getValue(String::class.java)!!
-                        ref1.child(msgId).child("read").setValue(true)
-                    }
-                }
-            }
+        refMsg1 = database.child("message").child(auth.currentUser?.uid!!).child(userId)
+        refMsg1.addValueEventListener(readMessageListener1)
 
-            override fun onCancelled(p0: DatabaseError) {
+        refMsg2 = database.child("message").child(userId).child(auth.currentUser?.uid!!)
+        refMsg2.addValueEventListener(readMessageListener2)
+    }
 
-            }
-        })
-
-        val ref2 = database.child("message").child(userId).child(auth.currentUser?.uid!!)
-        ref2.addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(p0: DataSnapshot) {
-                for (data: DataSnapshot in p0.children) {
-                    val id = data.child("receiverId").getValue(String::class.java)
-                    if (id == auth.currentUser?.uid) {
-                        val msgId = data.child("messageId").getValue(String::class.java)!!
-                        ref2.child(msgId).child("read").setValue(true)
-                    }
-                }
-            }
-
-            override fun onCancelled(p0: DatabaseError) {
-
-            }
-        })
+    fun setUnreadMessage(userId: String) {
+        refMsg1 = database.child("message").child(auth.currentUser?.uid!!).child(userId)
+        refMsg2 = database.child("message").child(userId).child(auth.currentUser?.uid!!)
+        refMsg1.removeEventListener(readMessageListener1)
+        refMsg2.removeEventListener(readMessageListener2)
     }
 
     fun getMessageList(msg: MutableList<Message>, presenter: MessagePresenter) {
@@ -689,20 +700,17 @@ object FirebaseApi {
         })
     }
 
-    fun editProfile(user: User, presenter: EditProfilePresenter) {
-        auth.currentUser?.updateEmail(user.email!!)?.addOnSuccessListener {
-            auth.currentUser?.updatePassword(user.password!!)?.addOnSuccessListener {
-                database.child("user").child(user.userId!!).setValue(user)
-                    .addOnSuccessListener {
-                        presenter.updateSuccess()
-                    }
-                    .addOnFailureListener {
-                        presenter.updateFailed()
-                    }
+    fun editProfile(user: User, presenter: EditProfilePresenter, newPassword: String?) {
+        database.child("user").child(user.userId!!).setValue(user)
+            .addOnSuccessListener {
+                presenter.updateSuccess()
+            }
+            .addOnFailureListener {
+                presenter.updateFailed()
             }
 
-        }?.addOnFailureListener {
-            presenter.emailUsed()
+        if (newPassword != null) {
+            auth.currentUser?.updatePassword(newPassword)
         }
     }
 

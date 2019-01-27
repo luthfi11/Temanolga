@@ -24,10 +24,12 @@ class ProfilePresenter(private val view: ProfileView) {
     }
 
     fun getUserEvent(events: MutableList<Event>) {
+        view.showEventLoading()
         FirebaseApi.getUserEventData(events, this)
     }
 
     fun getUserEventSuccess(events: MutableList<Event>) {
+        view.hideEventLoading()
         try {
             if (events.size == 0) {
                 view.showEmptyEvent()
