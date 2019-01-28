@@ -48,11 +48,6 @@ class EditProfilePresenter (private val view: EditProfileView) {
         view.successUpdate()
     }
 
-    fun emailUsed() {
-        view.hideLoading()
-        view.showEmailUsed()
-    }
-
     fun updateFailed() {
         view.hideLoading()
         view.showFailUpdate()

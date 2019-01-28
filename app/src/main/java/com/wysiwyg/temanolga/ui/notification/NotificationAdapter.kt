@@ -13,11 +13,13 @@ import com.wysiwyg.temanolga.ui.eventdetail.EventDetailActivity
 import com.wysiwyg.temanolga.ui.userdetail.UserDetailActivity
 import com.wysiwyg.temanolga.data.network.FirebaseApi
 import com.wysiwyg.temanolga.data.model.Join
+import com.wysiwyg.temanolga.utilities.ConnectionUtil
 import com.wysiwyg.temanolga.utilities.DateTimeUtils.minAgo
 import com.wysiwyg.temanolga.utilities.gone
 import com.wysiwyg.temanolga.utilities.visible
 import org.jetbrains.anko.startActivity
 import kotlinx.android.synthetic.main.item_notification.view.*
+import org.jetbrains.anko.design.snackbar
 import org.jetbrains.anko.textColorResource
 import org.jetbrains.anko.textResource
 import java.text.SimpleDateFormat
@@ -69,8 +71,21 @@ class NotificationAdapter(private val notif: MutableList<Join>) :
                     itemView.context.startActivity<UserDetailActivity>("userId" to notif.userReqId)
                 }
 
-                itemView.btnAccept.setOnClickListener { FirebaseApi.acceptRequest(notif.eventId!!, notif.joinId!!) }
-                itemView.btnIgnore.setOnClickListener { FirebaseApi.ignoreRequest(notif.eventId!!, notif.joinId!!) }
+                itemView.btnAccept.setOnClickListener {
+                    if (ConnectionUtil.isOnline(itemView.context)) {
+                        FirebaseApi.acceptRequest(notif.eventId!!, notif.joinId!!)
+                    } else {
+                        snackbar(itemView.tvReqNotif, itemView.context.getString(R.string.network_error))
+                    }
+                }
+
+                itemView.btnIgnore.setOnClickListener {
+                    if (ConnectionUtil.isOnline(itemView.context)) {
+                        FirebaseApi.ignoreRequest(notif.eventId!!, notif.joinId!!)
+                    } else {
+                        snackbar(itemView.tvReqNotif, itemView.context.getString(R.string.network_error))
+                    }
+                }
 
                 itemView.cvNotif.gone()
 
@@ -103,7 +118,7 @@ class NotificationAdapter(private val notif: MutableList<Join>) :
                     val slotFill = p0.child("slotFill").getValue(Int::class.java)
                     val slot = p0.child("slot").getValue(Int::class.java)
 
-                    val parseDate: Date = SimpleDateFormat("dd/MM/yyy, HH : mm", Locale.getDefault()).parse(date+", "+time)
+                    val parseDate: Date = SimpleDateFormat("dd/MM/yy, HH : mm", Locale.getDefault()).parse(date+", "+time)
                     if (Date().after(parseDate)) {
                         itemView.vBtnNotif.gone()
                         itemView.vTvExpire.visible()

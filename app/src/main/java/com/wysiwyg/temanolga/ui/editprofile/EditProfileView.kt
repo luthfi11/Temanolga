@@ -6,7 +6,6 @@ interface EditProfileView {
     fun showProfile()
     fun showChangePassword()
     fun successUpdate()
-    fun showEmailUsed()
     fun showFailUpdate()
     fun showProgress(value: Double)
     fun showUpdatedPhoto(imgPath: String)
