@@ -143,6 +143,7 @@
     <string name="cancel">Cancel</string>
     <string name="save">Save</string>
     <string name="changed">Changed</string>
+    <string name="network_logout">Network unavailable, can\'t logout</string>
 
     <string name="default_notification_channel_id">temanolga_default_channel</string>
 

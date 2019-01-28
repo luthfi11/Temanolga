@@ -143,6 +143,7 @@
     <string name="cancel">Batal</string>
     <string name="save">Simpan</string>
     <string name="changed">Diganti</string>
+    <string name="network_logout">Jaringan tidak tersedia, tidak dapat keluar</string>
 
     <string name="default_notification_channel_id">temanolga_default_channel</string>
 

@@ -12,5 +12,6 @@ interface ProfileView {
     fun showEmptyEvent()
     fun showLogout()
     fun doLogOut()
+    fun showLogoutError()
     fun showNoConnection()
 }

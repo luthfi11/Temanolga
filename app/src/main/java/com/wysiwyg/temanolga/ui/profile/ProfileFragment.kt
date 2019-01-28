@@ -66,6 +66,10 @@ class ProfileFragment : Fragment(), ProfileView {
         startActivity<LoginActivity>()
     }
 
+    override fun showLogoutError() {
+        snackbar(root, getString(R.string.network_logout)).show()
+    }
+
     override fun showNoConnection() {
         snackbar(root, getString(R.string.network_profile)).show()
     }
@@ -85,7 +89,7 @@ class ProfileFragment : Fragment(), ProfileView {
 
     override fun showLogout() {
         alert(getString(R.string.logout_prompt)) {
-            yesButton { presenter.logOut() }
+            yesButton { presenter.logOut(activity) }
             noButton { it.dismiss() }
         }.show()
     }

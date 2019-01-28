@@ -5,6 +5,7 @@ import com.wysiwyg.temanolga.data.network.FirebaseApi
 import com.wysiwyg.temanolga.data.model.Event
 import com.wysiwyg.temanolga.data.model.User
 import com.wysiwyg.temanolga.utilities.ConnectionUtil
+import com.wysiwyg.temanolga.utilities.ConnectionUtil.isOnline
 
 class ProfilePresenter(private val view: ProfileView) {
 
@@ -45,8 +46,12 @@ class ProfilePresenter(private val view: ProfileView) {
         view.showLogout()
     }
 
-    fun logOut() {
-        FirebaseApi.logOut()
-        view.doLogOut()
+    fun logOut(ctx: Context?) {
+        if (isOnline(ctx)) {
+            FirebaseApi.logOut()
+            view.doLogOut()
+        } else {
+            view.showLogoutError()
+        }
     }
 }
